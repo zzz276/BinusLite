@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "142950642020",
+    "project_id": "simplearn-6cb81",
+    "storage_bucket": "simplearn-6cb81.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142950642020:android:2f01b39841c7a0c8e54a71",
+        "android_client_info": {
+          "package_name": "com.example.final_exam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg0CpH6L34OCoQsaaVXCinOB7E1L5co3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
