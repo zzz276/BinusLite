@@ -6,32 +6,17 @@ class Profile extends StatelessWidget {
 
   List<TeamMember> setTeamMembers() {
     final List<String> names = [
+      'Gabriel Jovico Prathama',
       'Marvello Perdana',
-      'Welan Ale Zeni',
+      'Riansyah Hazmi Halomoan Abdian',
+      'Tobyas Nathaniel Triwira Nababan',
+      // 'Welan Ale Zeni',
       'Zeni Zuanda'
-    ];
-
-    final List<String> ids = [
-      '2702302795',
-      '2702357674',
-      '2702343694'
-    ];
-
-    final List<String> photos = [
-      'acdfac44-b16b-49ac-8bdb-243970a4451c',
-      'bd0130b6-2b3b-412d-b37a-3df0b4af7f24',
-      'cecceeb1-5696-4755-ae31-2add9ad91bda'
     ];
 
     List<TeamMember> teamMembers = [];
 
-    for (var i = 0; i < ids.length; i++) {
-      teamMembers.add(TeamMember(
-        name: names[i],
-        id: ids[i],
-        photo: photos[i]
-      ));
-    }
+    for (var i = 0; i < names.length; i++) teamMembers.add(TeamMember(name: names[i]));
 
     return teamMembers;
   }
@@ -48,7 +33,7 @@ class Profile extends StatelessWidget {
           },
         ),
 
-        title: const Text('Team Profile'),
+        title: const Text('Credits'),
       ),
 
       backgroundColor: Colors.black,
@@ -60,41 +45,17 @@ class Profile extends StatelessWidget {
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(30.0)
-                    ),
-
-                    padding: const EdgeInsets.all(50.0),
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        Image(image: AssetImage('lib/assets/pictures/${teamMembers[index].photo}.jpg'),),
-                        const SizedBox(height: 25.0,),
-                        Text(
-                          teamMembers[index].id,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0
-                          ),
-                        ),
-
-                        Text(
-                          teamMembers[index].name,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 20.0
-                          ),
-                        ),
-                      ],
+                  Text(
+                    teamMembers[index].name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16.0
                     ),
                   ),
 
-                  const SizedBox(height: 50.0,)
+                  const SizedBox(height: 32.0,)
                 ],
               );
             }

@@ -61,9 +61,6 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - lib/assets/pictures/acdfac44-b16b-49ac-8bdb-243970a4451c.jpg
-    - lib/assets/pictures/bd0130b6-2b3b-412d-b37a-3df0b4af7f24.jpg
-    - lib/assets/pictures/cecceeb1-5696-4755-ae31-2add9ad91bda.jpg
     - lib/assets/pictures/hand-drawn-scientific-formulas-chalkboard/3658422.jpg
 
   fonts:
