@@ -63,7 +63,7 @@ class ProductDetailsScreen extends StatelessWidget {
                   child: const SizedBox(
                     width: double.infinity,
                     child: Text(
-                      'View',
+                      'View and Download Latest Catalogue',
                       textAlign: TextAlign.center,
                     ),
                   ),
