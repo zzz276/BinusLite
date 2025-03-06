@@ -14,7 +14,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final List<String> subjects = ['Mathematics', 'Physics', 'Chemistry'];
+  final List<String> subjects = ['MAT'];
   final Future<String> numberFact = retrieveNumberFact();
   var data;
 
@@ -70,9 +70,10 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
 
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
-        title: const Text('Simplearn'),
+        title: const Text('BinusLite'),
       ),
 
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,

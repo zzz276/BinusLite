@@ -1,10 +1,21 @@
-import 'package:final_exam/screens/introduction.dart';
+// import 'package:final_exam/screens/introduction.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final String title;
 
   const ProductDetailsScreen({super.key, required this.title});
+
+  void viewFile() async {
+    const url = "https://curriculum.binus.ac.id/files/2012/04/SOCS-Mobile-Application-Technology-2023.pdf";
+
+    try {
+      await launchUrlString(url);
+    } catch (err) {
+      debugPrint("Something went wrong.");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +52,18 @@ class ProductDetailsScreen extends StatelessWidget {
 
                 const SizedBox(height: 32.0),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) => const Introduction())
-                    );
-                  },
+                  onPressed: viewFile,
+                  // () {
+                  //   Navigator.push(
+                  //   context, 
+                  //   MaterialPageRoute(builder: (context) => const Introduction())
+                  //   );
+                  // }
 
                   child: const SizedBox(
                     width: double.infinity,
                     child: Text(
-                      'Read',
+                      'View',
                       textAlign: TextAlign.center,
                     ),
                   ),
