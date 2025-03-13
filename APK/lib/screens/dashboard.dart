@@ -1,4 +1,4 @@
-import 'package:final_exam/apis.dart/api.dart';
+import 'package:final_exam/apis/api.dart';
 import 'package:final_exam/screens/detailScreen.dart';
 import 'package:final_exam/screens/loginScreen.dart';
 import 'package:final_exam/screens/profile.dart';
