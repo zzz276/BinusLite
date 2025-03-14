@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Simplearn',
+      title: 'BinusLite',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -42,6 +42,10 @@ class MyApp extends StatelessWidget {
           )
         ),
 
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.deepPurple
+        ),
+
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         elevatedButtonTheme: const ElevatedButtonThemeData(
           style: ButtonStyle(
@@ -57,7 +61,7 @@ class MyApp extends StatelessWidget {
         
         fontFamily: 'Century Gothic',
         primaryColor: Colors.deepPurple,
-        scaffoldBackgroundColor: Colors.black,
+        // scaffoldBackgroundColor: Colors.black,
         useMaterial3: true,
       ),
 

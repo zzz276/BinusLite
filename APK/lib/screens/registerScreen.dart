@@ -55,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             const Text(
-              'Welcome to Simplearn!',
+              'Welcome to BinusLite!',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 56.0,

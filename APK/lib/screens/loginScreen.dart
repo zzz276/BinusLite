@@ -1,4 +1,4 @@
-import 'package:final_exam/screens/dashboard.dart';
+import 'package:final_exam/screens/navigation.dart';
 import 'package:final_exam/screens/registerScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const Dashboard())
+          MaterialPageRoute(builder: (context) => const Navigation())
         );
       } on FirebaseAuthException catch (e) {
         if(e.code == 'user-not-found') {
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'Simplearn',
+                  'BinusLite',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 32.0,
