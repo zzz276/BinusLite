@@ -1,4 +1,4 @@
-# binus_lite
+# BinusLite
 
 Human and Computer Interaction and Software Engineering project.
 
