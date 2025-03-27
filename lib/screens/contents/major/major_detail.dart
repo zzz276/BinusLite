@@ -1,20 +1,13 @@
+import 'package:binus_lite/models/majors.dart';
 import 'package:flutter/material.dart';
 
 class MajorDetail extends StatelessWidget {
   const MajorDetail({
-    required this.title,
-    required this.faculty,
-    required this.foundedYear,
-    required this.overview,
-    required this.videoLink,
+    required this.major,
     super.key
   });
 
-  final String title;
-  final String faculty;
-  final String foundedYear;
-  final String overview;
-  final String videoLink;
+  final Majors major;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +15,11 @@ class MajorDetail extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-
+          onPressed: () {Navigator.pop(context);},
           icon: const Icon(Icons.chevron_left_outlined)
         ),
 
-        title: Text(title),
+        title: Text(major.name),
       ),
 
       body: Padding(
