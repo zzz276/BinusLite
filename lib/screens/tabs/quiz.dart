@@ -1,4 +1,4 @@
-import 'package:binus_lite/screens/introduction.dart';
+import 'package:binus_lite/screens/contents/quiz/introduction.dart';
 import 'package:flutter/material.dart';
 
 class Quiz extends StatelessWidget {

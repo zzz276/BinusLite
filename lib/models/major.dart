@@ -1,15 +1,19 @@
-class Majors {
-  Majors({
+class Major {
+  Major({
     required this.name,
+    required this.region,
     required this.faculty,
     required this.foundedYear,
     required this.overview,
-    required this.videoLink
+    this.videoLink,
+    this.catalogueLink
   });
 
   String name;
   String faculty;
   String foundedYear;
   String overview;
-  String videoLink;
+  String region;
+  String? videoLink;
+  String? catalogueLink;
 }

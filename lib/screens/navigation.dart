@@ -17,51 +17,45 @@ class _NavigationState extends State<Navigation> {
   String title = titles[0];
   int selectedIndex = 0;
 
+  void selectIndex(int value) {
+    setState(() {
+      selectedIndex = value;
+      title = titles[value];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: Text(title),
+      ),
+
       body: Center(
-        child: const <Widget>[Dashboard(), Majors(), Quiz(), Forum(), Miscellaneous()][selectedIndex],
+        child: const <Widget>[
+          Dashboard(),
+          Majors(),
+          Quiz(),
+          Forum(),
+          Miscellaneous()
+        ][selectedIndex],
       ),
 
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.deepPurple,
         currentIndex: selectedIndex,
-        iconSize: 36.0,
+        iconSize: 32.0,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: ""
-          ),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.emoji_objects_rounded),
-            label: ""
-          ),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.edit_document),
-            label: ""
-          ),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.forum_rounded),
-            label: ""
-          ),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.apps_rounded),
-            label: ""
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.emoji_objects_rounded), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.edit_document), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.forum_rounded), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.apps_rounded), label: "")
         ],
 
-        onTap: (value) {
-          setState(() {
-            selectedIndex = value;
-            title = titles[value];
-          });
-        },
-
+        onTap: selectIndex,
         selectedFontSize: 0.0,
         selectedItemColor: Colors.yellow,
         type: BottomNavigationBarType.fixed,

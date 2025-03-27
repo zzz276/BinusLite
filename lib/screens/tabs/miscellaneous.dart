@@ -1,3 +1,4 @@
+import 'package:binus_lite/screens/contents/miscellaneous/about.dart';
 import 'package:binus_lite/screens/login_screen.dart';
 import 'package:binus_lite/screens/contents/miscellaneous/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -47,21 +48,21 @@ class _MiscellaneousState extends State<Miscellaneous> {
                         );
 
                         break;
-
                       case 1:
                         
                         break;
-
                       case 2:
                         
                         break;
-
                       case 3:
-                        
-                        break;
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(builder: (context) => const About())
+                        );
 
-                      case 4:
-                        AlertDialog(
+                        break;
+                      default:
+                        AlertDialog alertDialog = AlertDialog(
                           content: Text("Are you sure?"),
                           actions: [
                             TextButton(
@@ -78,8 +79,6 @@ class _MiscellaneousState extends State<Miscellaneous> {
                             )
                           ],
                         );
-                        break;
-                      default:
                     }
                   },
         

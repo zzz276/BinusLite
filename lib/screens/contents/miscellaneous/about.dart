@@ -15,10 +15,9 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left_outlined),
+          onPressed: () => Navigator.pop(context)
         ),
 
         title: const Text('Credits'),
@@ -43,7 +42,7 @@ class About extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 32.0,)
+                  const SizedBox(height: 32.0)
                 ],
               );
             }

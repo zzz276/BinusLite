@@ -1,13 +1,21 @@
-import 'package:binus_lite/models/majors.dart';
+import 'package:binus_lite/models/major.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class MajorDetail extends StatelessWidget {
-  const MajorDetail({
-    required this.major,
-    super.key
-  });
+  const MajorDetail({required this.major, super.key});
 
-  final Majors major;
+  final Major major;
+
+  viewFile() async {
+    try {await launchUrlString(major.catalogueLink!);}
+    catch (err) {
+      debugPrint("Catalogue link isn't available at this time.");
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text("Catalogue link isn't available at this time."))
+      // );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +27,27 @@ class MajorDetail extends StatelessWidget {
           icon: const Icon(Icons.chevron_left_outlined)
         ),
 
-        title: Text(major.name),
+        title: Text("${major.name}\n@${major.region}"),
       ),
 
       body: Padding(
-        padding: EdgeInsets.all(16.0), 
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
+            const Text("Profile"),
+            const SizedBox(height: 16.0,),
+            const Text("Overview"),
+            Text(major.overview),
+            const SizedBox(height: 16.0,),
+            const Text("Promotional Video"),
+            const SizedBox(height: 16.0,),
+            const Text("Catalogues"),
+            const SizedBox(height: 16.0,),
+            ElevatedButton(
+              onPressed: viewFile,
+              child: const Text("View and Download Catalogue")
+            )
           ],
         ),
       ),
