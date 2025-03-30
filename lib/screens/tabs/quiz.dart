@@ -9,22 +9,22 @@ class Quiz extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Take the quiz",
-          textAlign: TextAlign.center,
+        const Text(
+          "Take the quiz",
+          textAlign: TextAlign.center
         ),
 
-        const SizedBox(height: 64.0,),
+        const SizedBox(height: 64.0),
         ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context, 
-              MaterialPageRoute(builder: (context) => Introduction())
-            );
-          },
+          onPressed: () => Navigator.push(
+            context, MaterialPageRoute(
+              builder: (context) => const Introduction()
+            )
+          ),
 
           child: const Text("Take the quiz")
         )
-      ],
+      ]
     );
   }
 }

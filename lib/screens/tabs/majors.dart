@@ -47,7 +47,6 @@ class _MajorsState extends State<Majors> {
 
         Expanded(
           child: ListView.builder(
-            itemCount: majors.length,
             itemBuilder: (context, index) {
               return Card(
                 margin: const EdgeInsets.all(16.0),
@@ -57,36 +56,32 @@ class _MajorsState extends State<Majors> {
                     Text(
                       "${majors[index].name}\n@${majors[index].region}",
                       overflow: TextOverflow.clip,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-
-                      textAlign: TextAlign.start,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.start
                     ),
 
-                    const SizedBox(height: 50.0,),
+                    const SizedBox(height: 64.0),
                     TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context, 
-                          MaterialPageRoute(
-                            builder: (context) => MajorDetail(major: majors[index])
-                          ),
-                        );
-                      },
+                      onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(
+                          builder: (context) => MajorDetail(major: majors[index])
+                        )
+                      ),
 
                       child: const Text(
-                        'View',
-                        textAlign: TextAlign.end,
-                      ),
-                    ),
-                  ],
-                ),
+                        "View",
+                        textAlign: TextAlign.end
+                      )
+                    )
+                  ]
+                )
               );
             },
-          ),
-        ),
-      ],
+
+            itemCount: majors.length
+          )
+        )
+      ]
     );
   }
 }

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BinusLite',
+      home: const LoginScreen(),
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -33,39 +33,37 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.deepPurple,
-          foregroundColor: Colors.white,
+          backgroundColor: Color(0xFFFFFFFF),
+          foregroundColor: Color(0xFF018ED5),
           titleTextStyle: TextStyle(
-            fontFamily: 'Century Gothic',
-            fontSize: 22.0,
+            fontFamily: "Century Gothic",
+            fontSize: 24.0,
             fontWeight: FontWeight.bold,
           )
         ),
 
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Colors.deepPurple
+          backgroundColor: Color(0xFF018ED5)
         ),
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        elevatedButtonTheme: const ElevatedButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(Colors.deepPurple),
-            foregroundColor: WidgetStatePropertyAll(Colors.white),
-          ),
-        ),
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        elevatedButtonTheme: const ElevatedButtonThemeData(style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Color(0xFFEF8800)),
+            foregroundColor: WidgetStatePropertyAll(Color(0xFFFFFFFF))
+        )),
 
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.deepPurple,
-          foregroundColor: Colors.white,
-        ),
+        // floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        //   backgroundColor: Colors.deepPurple,
+        //   foregroundColor: Colors.white,
+        // ),
         
-        fontFamily: 'Century Gothic',
-        primaryColor: Colors.deepPurple,
+        fontFamily: "Century Gothic",
+        // primaryColor: Colors.deepPurple,
         // scaffoldBackgroundColor: Colors.black,
         useMaterial3: true,
       ),
 
-      home: const LoginScreen(),
+      title: "BinusLite"
     );
   }
 }

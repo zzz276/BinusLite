@@ -17,23 +17,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if(nameController.text.isNotEmpty && emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       try {
         UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text, 
-          password: passwordController.text,
+          email: emailController.text,
+          password: passwordController.text
         );
 
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Register successful.'))
+          const SnackBar(content: Text(
+            "Register successful."
+          ))
         );
 
         Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
-        if(e.code == 'weak-password') {
+        if(e.code.compareTo("weak-password") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Password is too weak.'))
+            const SnackBar(content: Text(
+              "Password is too weak."
+            ))
           );
-        } else if(e.code == 'email-already-in-use') {
+        } else if(e.code.compareTo("email-already-in-use") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Email is already existed.'))
+            const SnackBar(content: Text(
+              "Email is already existed."
+            ))
           );
         }
       }
@@ -43,86 +49,103 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Welcome to BinusLite!',
-              style: TextStyle(
-                fontSize: 56.0,
-              ),
-          
-              textAlign: TextAlign.center,
-            ),
-          
-            const SizedBox(height: 76.0,),
-            TextField(
-              controller: nameController,
-              decoration: const InputDecoration(
-                labelText: 'Username',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(),
-              ),
-            ),
-          
-            const SizedBox(height: 32.0),
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(),
-              ),
-            ),
-          
-            const SizedBox(height: 32.0),
-            TextField(
-              controller: passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(),
-              ),
-          
-              obscureText: true,
-            ),
-          
-            const SizedBox(height: 64.0),
-            ElevatedButton(
-              onPressed: () {
-                // Handle registration logic
-                register(context: context);
-              },
-          
-              child: const Text(
-                'Register',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              }, 
-
-              child: const Text(
-                'Already have an account? Log in here!',
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-            ),
-          ],
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [Color(0xFF6DCAF6), Color(0xFF989898)],
+            end: Alignment.bottomCenter
+          )
         ),
-      ),
+
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Welcome to BinusLite",
+                  style: TextStyle(
+                    color: Color(0xFFFFFFFF),
+                    fontSize: 32.0,
+                    fontWeight: FontWeight.bold
+                  ),
+
+                  textAlign: TextAlign.center
+                ),
+              
+                const SizedBox(height: 64.0),
+                TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.0)
+                    ),
+                    
+                    filled: true,
+                    fillColor: const Color(0xFFFFFFFF),
+                    labelText: "Username ..."
+                  )
+                ),
+              
+                const SizedBox(height: 32.0),
+                TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.0)
+                    ),
+
+                    filled: true,
+                    fillColor: const Color(0xFFFFFFFF),
+                    labelText: "Email ..."
+                  )
+                ),
+              
+                const SizedBox(height: 32.0),
+                TextField(
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.0)
+                    ),
+
+                    filled: true,
+                    fillColor: const Color(0xFFFFFFFF),
+                    labelText: "Password ..."
+                  ),
+              
+                  obscureText: true,
+                ),
+              
+                const SizedBox(height: 64.0),
+                ElevatedButton(
+                  onPressed: () => register(context: context),
+                  child: const SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      "Register",
+                      style: TextStyle(color: Color(0xFFFFFFFF))
+                    )
+                  )
+                ),
+          
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text(
+                    "Already have an account? Log in here!",
+                    style: TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontStyle: FontStyle.italic
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      )
     );
   }
 }

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class About extends StatelessWidget {
   const About({super.key});
   static final List<String> names = [
-      'Gabriel Jovico Prathama',
-      'Marvello Perdana',
-      'Riansyah Hazmi Halomoan Abdian',
-      'Tobyas Nathaniel Triwira Nababan',
-      // 'Welan Ale Zeni',
-      'Zeni Zuanda'
+      "Gabriel Jovico Prathama",
+      "Marvello Perdana",
+      "Riansyah Hazmi Halomoan Abdian",
+      "Tobyas Nathaniel Triwira Nababan",
+      // "Welan Ale Zeni",
+      "Zeni Zuanda"
     ];
 
   @override
@@ -20,15 +20,13 @@ class About extends StatelessWidget {
           onPressed: () => Navigator.pop(context)
         ),
 
-        title: const Text('Credits'),
+        title: const Text("Credits")
       ),
 
-      backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.all(50.0),
+        padding: const EdgeInsets.all(64.0),
         child: Center(
           child: ListView.builder(
-            itemCount: names.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [
@@ -37,17 +35,18 @@ class About extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
                       fontSize: 16.0
-                    ),
+                    )
                   ),
 
                   const SizedBox(height: 32.0)
-                ],
+                ]
               );
-            }
-          ),
-        ),
+            },
+
+            itemCount: names.length
+          )
+        )
       )
     );
   }

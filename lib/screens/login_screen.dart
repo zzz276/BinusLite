@@ -18,22 +18,28 @@ class _LoginScreenState extends State<LoginScreen> {
     if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, 
-          password: passwordController.text,
+          email: emailController.text,
+          password: passwordController.text
         );
 
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const Navigation())
+          MaterialPageRoute(
+            builder: (context) => const Navigation()
+          )
         );
       } on FirebaseAuthException catch (e) {
-        if(e.code == 'user-not-found') {
+        if(e.code.compareTo("user-not-found") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('User isn\'t existed.'))
+            const SnackBar(content: Text(
+              "User isn't existed."
+            ))
           );
-        } else if(e.code == 'wrong-password') {
+        } else if(e.code.compareTo("wrong-password") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Password isn\'t correct.'))
+            const SnackBar(content: Text(
+              "Password isn't correct."
+            ))
           );
         }
       }
@@ -44,93 +50,92 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.deepPurple.shade100, Colors.deepPurple.shade400],
             begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            colors: [Color(0xFF018ED5), Color(0xFF7E3586)],
+            end: Alignment.bottomCenter
           ),
         ),
 
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(32.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'BinusLite',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 32.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                // const Text(
+                //   'BinusLite',
+                //   style: TextStyle(
+                //     color: Colors.black,
+                //     fontSize: 32.0,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
 
-                const SizedBox(height: 96.0),
+                Image.asset("lib/assets/pictures/BinusLite Logo NoBack.png"),
+                const SizedBox(height: 32.0),
                 TextField(
                   controller: emailController,
                   decoration: InputDecoration(
-                    labelText: 'Email',
-                    filled: true,
-                    fillColor: Colors.white,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(16.0)
                     ),
-                  ),
+
+                    filled: true,
+                    fillColor: const Color(0xFFFFFFFF),
+                    labelText: "Email ..."
+                  )
                 ),
 
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 32.0),
                 TextField(
                   controller: passwordController,
                   decoration: InputDecoration(
-                    labelText: 'Password',
-                    filled: true,
-                    fillColor: Colors.white,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(16.0)
                     ),
+
+                    filled: true,
+                    fillColor:const Color(0xFFFFFFFF),
+                    labelText: "Password ..."
                   ),
                   
                   obscureText: true,
                 ),
 
-                const SizedBox(height: 24.0),
+                const SizedBox(height: 64.0),
                 ElevatedButton(
-                  style: Theme.of(context).elevatedButtonTheme.style,
-                  onPressed: () {
-                    login(context: context);
-                  },
-
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
+                  onPressed: () => login(context: context),
+                  child: const SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      "Login",
+                      style: TextStyle(color: Color(0xFFFFFFFF))
+                    )
+                  )
                 ),
 
                 TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const RegisterScreen())
-                    );
-                  }, 
+                  onPressed: () => Navigator.push(
+                    context, MaterialPageRoute(
+                      builder: (context) => const RegisterScreen()
+                    )
+                  ),
 
                   child: const Text(
-                    'No account? Register here!',
+                    "Didn't have an account? Register here!",
                     style: TextStyle(
-                      color: Colors.white,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+                      color: Color(0xFFFFFFFF),
+                      fontStyle: FontStyle.italic
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      )
     );
   }
 }

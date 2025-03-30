@@ -12,15 +12,30 @@ class Miscellaneous extends StatefulWidget {
 }
 
 class _MiscellaneousState extends State<Miscellaneous> {
-  final List<IconData> icons = [Icons.person, Icons.edit, Icons.headset_mic, Icons.info, Icons.logout];
-  final List<String> menus = ["Profile", "Personalization", "Support", "About Us", "Log Out"];
+  final List<IconData> icons = [
+    Icons.person,
+    Icons.edit,
+    Icons.headset_mic,
+    Icons.info,
+    Icons.logout
+  ];
+
+  final List<String> menus = [
+    "Profile",
+    "Personalization",
+    "Support",
+    "About Us",
+    "Log Out"
+  ];
+
   int selectedIndex = 0;
 
   logout({required BuildContext context}) async {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
-      context, 
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
+      context, MaterialPageRoute(
+        builder: (context) => const LoginScreen()
+      )
     );
   }
 
@@ -32,7 +47,6 @@ class _MiscellaneousState extends State<Miscellaneous> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: menus.length,
               itemBuilder: (context, index) {
                 return TextButton(
                   onPressed: () {
@@ -43,8 +57,9 @@ class _MiscellaneousState extends State<Miscellaneous> {
                     switch (selectedIndex) {
                       case 0:
                         Navigator.push(
-                          context, 
-                          MaterialPageRoute(builder: (context) => const Profile())
+                          context, MaterialPageRoute(
+                            builder: (context) => const Profile()
+                          )
                         );
 
                         break;
@@ -56,17 +71,18 @@ class _MiscellaneousState extends State<Miscellaneous> {
                         break;
                       case 3:
                         Navigator.push(
-                          context, 
-                          MaterialPageRoute(builder: (context) => const About())
+                          context, MaterialPageRoute(
+                            builder: (context) => const About()
+                          )
                         );
 
                         break;
                       default:
-                        AlertDialog alertDialog = AlertDialog(
+                        AlertDialog(
                           content: Text("Are you sure?"),
                           actions: [
                             TextButton(
-                              onPressed: logout(context: context),
+                              onPressed: () => logout(context: context),
                               child: Text("Yes")
                             ),
 
@@ -77,7 +93,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
 
                               child: Text("No")
                             )
-                          ],
+                          ]
                         );
                     }
                   },
@@ -88,14 +104,16 @@ class _MiscellaneousState extends State<Miscellaneous> {
                       Icon(icons[index]),
                       const SizedBox(),
                       Text(menus[index])
-                    ],
-                  ),
+                    ]
+                  )
                 );
               },
-            ),
-          ),
-        ],
-      ),
+
+              itemCount: menus.length
+            )
+          )
+        ]
+      )
     );
   }
 }

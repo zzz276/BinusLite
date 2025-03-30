@@ -13,7 +13,14 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  static final List<String> titles = ["Dashboard", "Majors", "Quiz", "Forum", "Miscellaneous"];
+  static final List<String> titles = [
+    "Dashboard",
+    "Majors",
+    "Quiz",
+    "Forum",
+    "Miscellaneous"
+  ];
+
   String title = titles[0];
   int selectedIndex = 0;
 
@@ -30,7 +37,7 @@ class _NavigationState extends State<Navigation> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text(title),
+        title: Text(title)
       ),
 
       body: Center(
@@ -40,11 +47,11 @@ class _NavigationState extends State<Navigation> {
           Quiz(),
           Forum(),
           Miscellaneous()
-        ][selectedIndex],
+        ][selectedIndex]
       ),
 
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: BottomNavigationBarTheme.of(context).backgroundColor,
         currentIndex: selectedIndex,
         iconSize: 32.0,
         items: const [
@@ -57,11 +64,11 @@ class _NavigationState extends State<Navigation> {
 
         onTap: selectIndex,
         selectedFontSize: 0.0,
-        selectedItemColor: Colors.yellow,
+        selectedItemColor: const Color(0xFFEDE987),
         type: BottomNavigationBarType.fixed,
         unselectedFontSize: 0.0,
-        unselectedItemColor: Colors.white,
-      ),
+        unselectedItemColor: const Color(0xFFFFFFFF)
+      )
     );
   }
 }
