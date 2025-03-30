@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }
