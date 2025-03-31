@@ -18,8 +18,8 @@ class Support extends StatelessWidget {
         title: Text(title),
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(32.0),
+      body: const Padding(
+        padding: EdgeInsets.all(32.0),
         child: Column(
           children: [
             Text("A")

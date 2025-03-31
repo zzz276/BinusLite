@@ -85,7 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     
                     filled: true,
                     fillColor: const Color(0xFFFFFFFF),
-                    labelText: "Username ..."
+                    hintText: "Username ..."
                   )
                 ),
               
@@ -99,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     filled: true,
                     fillColor: const Color(0xFFFFFFFF),
-                    labelText: "Email ..."
+                    hintText: "Email ..."
                   )
                 ),
               
@@ -113,10 +113,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     filled: true,
                     fillColor: const Color(0xFFFFFFFF),
-                    labelText: "Password ..."
+                    hintText: "Password ..."
                   ),
               
-                  obscureText: true,
+                  obscureText: true
                 ),
               
                 const SizedBox(height: 64.0),

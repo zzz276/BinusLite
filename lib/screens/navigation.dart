@@ -14,31 +14,12 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  static List<tab.Tab> tabs = const [
-    tab.Tab(
-      title: "Dashboard",
-      page: Dashboard()
-    ),
-
-    tab.Tab(
-      title: "Majors",
-      page: Majors()
-    ),
-
-    tab.Tab(
-      title: "Quiz",
-      page: Quiz()
-    ),
-
-    tab.Tab(
-      title: "Forum",
-      page: Forum()
-    ),
-
-    tab.Tab(
-      title: "Miscellaneous",
-      page: Miscellaneous()
-    )
+  static const List<tab.Tab> tabs = [
+    tab.Tab(title: "Dashboard", page: Dashboard()),
+    tab.Tab(title: "Majors", page: Majors()),
+    tab.Tab(title: "Quiz", page: Quiz()),
+    tab.Tab(title: "Forum", page: Forum()),
+    tab.Tab(title: "Miscellaneous", page: Miscellaneous())
   ];
 
   String title = tabs[0].title;
@@ -88,7 +69,9 @@ class _NavigationState extends State<Navigation> {
         type: BottomNavigationBarType.fixed,
         unselectedFontSize: 0.0,
         unselectedItemColor: const Color(0xFFFFFFFF)
-      )
+      ),
+
+      extendBody: true
     );
   }
 }

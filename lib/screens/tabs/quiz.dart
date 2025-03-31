@@ -1,4 +1,4 @@
-import 'package:binus_lite/screens/contents/quiz/introduction.dart';
+import 'package:binus_lite/screens/contents/quiz/guideline.dart';
 import 'package:flutter/material.dart';
 
 class Quiz extends StatelessWidget {
@@ -18,7 +18,7 @@ class Quiz extends StatelessWidget {
         ElevatedButton(
           onPressed: () => Navigator.push(
             context, MaterialPageRoute(
-              builder: (context) => const Introduction()
+              builder: (context) => const Guideline()
             )
           ),
 

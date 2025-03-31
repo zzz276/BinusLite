@@ -20,11 +20,11 @@ class _PersonalizationState extends State<Personalization> {
           onPressed: () => Navigator.pop(context),
         ),
 
-        title: Text("Personalization"),
+        title: const Text("Personalization"),
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(32.0),
+      body: const Padding(
+        padding: EdgeInsets.all(32.0),
         child: Column(
           children: [
             Text("A")

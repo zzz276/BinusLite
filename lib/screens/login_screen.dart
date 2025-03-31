@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     filled: true,
                     fillColor: const Color(0xFFFFFFFF),
-                    labelText: "Email ..."
+                    hintText: "Email ..."
                   )
                 ),
 
@@ -89,10 +89,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     filled: true,
                     fillColor:const Color(0xFFFFFFFF),
-                    labelText: "Password ..."
+                    hintText: "Password ..."
                   ),
                   
-                  obscureText: true,
+                  obscureText: true
                 ),
 
                 const SizedBox(height: 64.0),

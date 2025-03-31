@@ -59,6 +59,9 @@ flutter:
   assets:
     - lib/assets/pictures/BinusLite Logo NoBack.png
     - lib/assets/pictures/Flazz Card.png
+    - lib/assets/pictures/carousel/Binus-Anggrek-001.png
+    - lib/assets/pictures/carousel/Binus-Bekasi-002.png
+    - lib/assets/pictures/carousel/Binus-Malang-003.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

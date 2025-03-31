@@ -37,16 +37,59 @@ class MajorDetail extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Profile"),
-            
+            const Text(
+              "Profile",
+              style: TextStyle(fontSize: 32.0)
+            ),
+
+            Table(
+              columnWidths: const {
+                0: FixedColumnWidth(100.0),
+                1:FlexColumnWidth()
+              },
+
+              children: [
+                TableRow(
+                  children: [
+                    const Text("Faculty"),
+                    Text(
+                      major.faculty,
+                      textAlign: TextAlign.end
+                    )
+                  ]
+                ),
+
+                TableRow(
+                  children: [
+                    const Text("Established"),
+                    Text(
+                      major.foundedYear,
+                      textAlign: TextAlign.end
+                    )
+                  ]
+                ),
+              ]
+            ),
+
             const SizedBox(height: 16.0),
-            const Text("Overview"),
+            const Text(
+              "Overview",
+              style: TextStyle(fontSize: 32.0)
+            ),
+
             Text(major.overview),
             const SizedBox(height: 16.0),
-            const Text("Promotional Video"),
+            const Text(
+              "Promotional Video",
+              style: TextStyle(fontSize: 32.0)
+            ),
             
             const SizedBox(height: 16.0),
-            const Text("Catalogues"),
+            const Text(
+              "Catalogues",
+              style: TextStyle(fontSize: 32.0)
+            ),
+
             const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () => viewFile(context),
