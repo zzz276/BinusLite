@@ -11,6 +11,17 @@ class _IntroductionState extends State<Introduction> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left_outlined),
+          iconSize: 60.0,
+          onPressed: () => Navigator.pop(context),
+        ),
+
+        title: const Text("Quiz")
+      ),
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -18,25 +29,25 @@ class _IntroductionState extends State<Introduction> {
           children: [
             const Text(
               'This introduction explains the outline of the course.',
-              textAlign: TextAlign.start,
+              textAlign: TextAlign.start
             ),
         
             const SizedBox(height: 16.0),
             const Text(
               'Course Outline:',
-              textAlign: TextAlign.start,
+              textAlign: TextAlign.start
             ),
         
             const SizedBox(height: 16.0),
             const Text(
               'Coming Soon',
-              textAlign: TextAlign.start,
+              textAlign: TextAlign.start
             ),
         
             const SizedBox(height: 32.0),
             const Text(
               'Prerequisites: None',
-              textAlign: TextAlign.start,
+              textAlign: TextAlign.start
             ),
         
             const SizedBox(height: 32.0),
@@ -46,13 +57,13 @@ class _IntroductionState extends State<Introduction> {
                 width: double.infinity,
                 child: Text(
                   'Start the quiz',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+                  textAlign: TextAlign.center
+                )
+              )
+            )
+          ]
+        )
+      )
     );
   }
 }

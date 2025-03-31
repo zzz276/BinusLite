@@ -1,4 +1,7 @@
+import 'package:binus_lite/models/menu.dart';
 import 'package:binus_lite/screens/contents/miscellaneous/about.dart';
+import 'package:binus_lite/screens/contents/miscellaneous/personalization.dart';
+import 'package:binus_lite/screens/contents/miscellaneous/support.dart';
 import 'package:binus_lite/screens/login_screen.dart';
 import 'package:binus_lite/screens/contents/miscellaneous/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,20 +15,53 @@ class Miscellaneous extends StatefulWidget {
 }
 
 class _MiscellaneousState extends State<Miscellaneous> {
-  final List<IconData> icons = [
-    Icons.person,
-    Icons.edit,
-    Icons.headset_mic,
-    Icons.info,
-    Icons.logout
-  ];
+  final List<Menu> menus = const [
+    Menu(
+      icon: Icon(Icons.person),
+      text: Text(
+        "Profile",
+        style: TextStyle(fontWeight: FontWeight.bold)
+      )
+    ),
 
-  final List<String> menus = [
-    "Profile",
-    "Personalization",
-    "Support",
-    "About Us",
-    "Log Out"
+    Menu(
+      icon: Icon(Icons.edit),
+      text: Text(
+        "Personalization",
+        style: TextStyle(fontWeight: FontWeight.bold)
+      )
+    ),
+
+    Menu(
+      icon: Icon(Icons.headset_mic),
+      text: Text(
+        "Support",
+        style: TextStyle(fontWeight: FontWeight.bold)
+      )
+    ),
+
+    Menu(
+      icon: Icon(Icons.info),
+      text: Text(
+        "About Us",
+        style: TextStyle(fontWeight: FontWeight.bold)
+      )
+    ),
+
+    Menu(
+      icon: Icon(
+        Icons.logout,
+        color: Color(0xFF950000)
+      ),
+
+      text: Text(
+        "Log Out",
+        style: TextStyle(
+          color: Color(0xFF750000),
+          fontWeight: FontWeight.bold
+        )
+      )
+    )
   ];
 
   int selectedIndex = 0;
@@ -39,6 +75,54 @@ class _MiscellaneousState extends State<Miscellaneous> {
     );
   }
 
+  navigate(BuildContext context, int index) {
+     switch (index) {
+      case 0:
+        return Navigator.push(
+          context, MaterialPageRoute(
+            builder: (context) => Profile(menus[index].text.data!)
+          )
+        );
+      case 1:
+        return Navigator.push(
+          context, MaterialPageRoute(
+            builder: (context) => Personalization(menus[index].text.data!)
+          )
+        );
+      case 2:
+        return Navigator.push(
+          context, MaterialPageRoute(
+            builder: (context) => Support(menus[index].text.data!)
+          )
+        );
+      case 3:
+        return Navigator.push(
+          context, MaterialPageRoute(
+            builder: (context) => About(menus[index].text.data!)
+          )
+        );
+      default:
+        showDialog(context: context, builder: (context) {
+          return AlertDialog(
+            actions: [
+              TextButton(
+                onPressed: () => logout(context: context),
+                child: const Text("Yes")
+              ),
+
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text("No")
+              )
+            ],
+
+            content: const Text("Do you really want to quit?"),
+            title: const Text("Attention!")
+          );
+        });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,60 +134,20 @@ class _MiscellaneousState extends State<Miscellaneous> {
               itemBuilder: (context, index) {
                 return TextButton(
                   onPressed: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-
-                    switch (selectedIndex) {
-                      case 0:
-                        Navigator.push(
-                          context, MaterialPageRoute(
-                            builder: (context) => const Profile()
-                          )
-                        );
-
-                        break;
-                      case 1:
-                        
-                        break;
-                      case 2:
-                        
-                        break;
-                      case 3:
-                        Navigator.push(
-                          context, MaterialPageRoute(
-                            builder: (context) => const About()
-                          )
-                        );
-
-                        break;
-                      default:
-                        AlertDialog(
-                          content: Text("Are you sure?"),
-                          actions: [
-                            TextButton(
-                              onPressed: () => logout(context: context),
-                              child: Text("Yes")
-                            ),
-
-                            TextButton(
-                              onPressed: () {
-
-                              },
-
-                              child: Text("No")
-                            )
-                          ]
-                        );
-                    }
+                    setState(() => selectedIndex = index);
+                    navigate(context, index);
                   },
-        
+
+                  style: const ButtonStyle(
+                    foregroundColor: WidgetStatePropertyAll(Color(0xFF000000))
+                  ),
+
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(icons[index]),
+                      menus[index].icon,
                       const SizedBox(),
-                      Text(menus[index])
+                      menus[index].text
                     ]
                   )
                 );

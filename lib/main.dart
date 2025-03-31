@@ -33,33 +33,29 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFFFFFFFF),
-          foregroundColor: Color(0xFF018ED5),
+          backgroundColor: Color(0xFF6DCAF6),
+          centerTitle: true,
+          foregroundColor: Color(0xFFFFFFFF),
           titleTextStyle: TextStyle(
+            color: Color(0xFFFFFFFF),
             fontFamily: "Century Gothic",
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-          )
+            fontSize: 32.0,
+            fontWeight: FontWeight.bold
+          ),
+
+          toolbarHeight: 100.0
         ),
 
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Color(0xFF018ED5)
         ),
-
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        
         elevatedButtonTheme: const ElevatedButtonThemeData(style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(Color(0xFFEF8800)),
             foregroundColor: WidgetStatePropertyAll(Color(0xFFFFFFFF))
         )),
 
-        // floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        //   backgroundColor: Colors.deepPurple,
-        //   foregroundColor: Colors.white,
-        // ),
-        
         fontFamily: "Century Gothic",
-        // primaryColor: Colors.deepPurple,
-        // scaffoldBackgroundColor: Colors.black,
         useMaterial3: true,
       ),
 

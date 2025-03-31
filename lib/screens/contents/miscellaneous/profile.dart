@@ -1,55 +1,107 @@
 import 'package:flutter/material.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class Profile extends StatefulWidget {
+  const Profile(this.title, {super.key});
+  final String title;
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  final TextEditingController displayNameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final List<String> names = [
-      'Gabriel Jovico Prathama',
-      'Marvello Perdana',
-      'Riansyah Hazmi Halomoan Abdian',
-      'Tobyas Nathaniel Triwira Nababan',
-      // 'Welan Ale Zeni',
-      'Zeni Zuanda'
-    ];
-
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left_outlined),
+          iconSize: 60.0,
+          onPressed: () => Navigator.pop(context),
         ),
 
-        title: const Text('Credits'),
+        title: Text("Profile"),
       ),
 
-      backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.all(50.0),
-        child: Center(
-          child: ListView.builder(
-            itemCount: names.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Text(
-                    names[index],
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 16.0
-                    ),
-                  ),
+        padding: const EdgeInsets.all(32.0),
+        child: Column(
+          children: [
+            Card(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Text("Display Name"),
+                    Text("Username")
+                  ],
+                )
+              ),
+            ),
 
-                  const SizedBox(height: 32.0,)
-                ],
-              );
-            }
-          ),
-        ),
+            TextField(
+              controller: displayNameController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0)
+                ),
+                    
+                filled: true,
+                fillColor: const Color(0xFFFFFFFF),
+                labelText: "Display Name ..."
+              )
+            ),
+
+            const SizedBox(height: 32.0),
+            TextField(
+              controller: usernameController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0)
+                ),
+                    
+                filled: true,
+                fillColor: const Color(0xFFFFFFFF),
+                labelText: "Username ..."
+              )
+            ),
+              
+            const SizedBox(height: 32.0),
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0)
+                ),
+
+                filled: true,
+                fillColor: const Color(0xFFFFFFFF),
+                labelText: "Email ..."
+              )
+            ),
+              
+            const SizedBox(height: 32.0),
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0)
+                ),
+
+                filled: true,
+                fillColor: const Color(0xFFFFFFFF),
+                labelText: "Password ..."
+              ),
+              
+              obscureText: true,
+            ),
+          ],
+        )
       )
     );
   }

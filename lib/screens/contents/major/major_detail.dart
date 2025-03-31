@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class MajorDetail extends StatelessWidget {
-  const MajorDetail({super.key, required this.major});
+  const MajorDetail(this.major, {super.key});
   final Major major;
 
   viewFile(BuildContext context) async {
@@ -24,8 +24,9 @@ class MajorDetail extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
+          icon: const Icon(Icons.chevron_left_outlined),
+          iconSize: 60.0,
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.chevron_left_outlined)
         ),
 
         title: Text("${major.name}\n@${major.region}")
@@ -37,11 +38,13 @@ class MajorDetail extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("Profile"),
+            
             const SizedBox(height: 16.0),
             const Text("Overview"),
             Text(major.overview),
             const SizedBox(height: 16.0),
             const Text("Promotional Video"),
+            
             const SizedBox(height: 16.0),
             const Text("Catalogues"),
             const SizedBox(height: 16.0),
@@ -49,7 +52,10 @@ class MajorDetail extends StatelessWidget {
               onPressed: () => viewFile(context),
               child: const SizedBox(
                 width: double.infinity,
-                child: Text("View and Download Catalogue")
+                child: Text(
+                  "View and Download Catalogue",
+                  textAlign: TextAlign.center
+                )
               )
             )
           ]

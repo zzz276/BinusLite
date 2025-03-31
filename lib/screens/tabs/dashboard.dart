@@ -1,3 +1,4 @@
+import 'package:binus_lite/screens/contents/dashboard/imageCarousel.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -12,9 +13,9 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Image.asset(""), 
-        
-      ],
+        Image.asset("lib/assets/pictures/Flazz Card.png"),
+        ImageCarousel()
+      ]
     );
   }
 }

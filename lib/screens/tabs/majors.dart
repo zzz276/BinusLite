@@ -26,62 +26,78 @@ class _MajorsState extends State<Majors> {
       faculty: "School of Computer Science",
       foundedYear: "2023",
       overview: "Machine Learning and Deep Learning Engineer"
+    ),
+
+    Major(
+      name: "Computer Science",
+      region: "Alam Sutera",
+      faculty: "School of Computer Science",
+      foundedYear: "1998",
+      overview: "Software Engineer"
     )
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SearchBar(
-          hintText: "Search major here ...",
-          keyboardType: TextInputType.text,
-          onChanged: (value) {
-            setState(() {
-              
-            });
-          },
-
-          trailing: const [Icon(Icons.search_rounded)],
-        ),
-
-        Expanded(
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return Card(
-                margin: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "${majors[index].name}\n@${majors[index].region}",
-                      overflow: TextOverflow.clip,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.start
-                    ),
-
-                    const SizedBox(height: 64.0),
-                    TextButton(
-                      onPressed: () => Navigator.push(
-                        context, MaterialPageRoute(
-                          builder: (context) => MajorDetail(major: majors[index])
-                        )
-                      ),
-
-                      child: const Text(
-                        "View",
-                        textAlign: TextAlign.end
-                      )
-                    )
-                  ]
-                )
-              );
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          SearchBar(
+            hintText: "Search major here ...",
+            keyboardType: TextInputType.text,
+            onChanged: (value) {
+              setState(() {
+                
+              });
             },
+          
+            trailing: const [Icon(Icons.search_rounded)],
+          ),
 
-            itemCount: majors.length
+          const SizedBox(height: 16.0),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return Card(
+                  color: const Color(0xFF6DCAF6),
+                  margin: const EdgeInsets.all(16.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "${majors[index].name}\n@${majors[index].region}",
+                          overflow: TextOverflow.clip,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.start
+                        ),
+
+                        const SizedBox(height: 16.0),
+                        ElevatedButton(
+                          onPressed: () => Navigator.push(
+                            context, MaterialPageRoute(
+                              builder: (context) => MajorDetail(majors[index])
+                            )
+                          ),
+                  
+                          child: const Text(
+                            "Detail",
+                            textAlign: TextAlign.center
+                          )
+                        )
+                      ]
+                    )
+                  )
+                );
+              },
+
+              itemCount: majors.length
+            )
           )
-        )
-      ]
+        ]
+      )
     );
   }
 }

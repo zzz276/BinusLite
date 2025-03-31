@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class About extends StatelessWidget {
-  const About({super.key});
+  const About(this.title, {super.key});
+  final String title;
   static final List<String> names = [
       "Gabriel Jovico Prathama",
       "Marvello Perdana",
@@ -20,7 +21,7 @@ class About extends StatelessWidget {
           onPressed: () => Navigator.pop(context)
         ),
 
-        title: const Text("Credits")
+        title: Text(title)
       ),
 
       body: Padding(

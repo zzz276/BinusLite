@@ -1,4 +1,12 @@
 class Major {
+  String name;
+  String faculty;
+  String foundedYear;
+  String overview;
+  String region;
+  String? videoLink;
+  String? catalogueLink;
+
   Major({
     required this.name,
     required this.region,
@@ -8,12 +16,4 @@ class Major {
     this.videoLink,
     this.catalogueLink
   });
-
-  String name;
-  String faculty;
-  String foundedYear;
-  String overview;
-  String region;
-  String? videoLink;
-  String? catalogueLink;
 }

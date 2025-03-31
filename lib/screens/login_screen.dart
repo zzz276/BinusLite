@@ -64,15 +64,6 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // const Text(
-                //   'BinusLite',
-                //   style: TextStyle(
-                //     color: Colors.black,
-                //     fontSize: 32.0,
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-
                 Image.asset("lib/assets/pictures/BinusLite Logo NoBack.png"),
                 const SizedBox(height: 32.0),
                 TextField(
@@ -111,7 +102,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: double.infinity,
                     child: Text(
                       "Login",
-                      style: TextStyle(color: Color(0xFFFFFFFF))
+                      style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontWeight: FontWeight.bold
+                      ),
+
+                      textAlign: TextAlign.center,
                     )
                   )
                 ),
@@ -127,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Didn't have an account? Register here!",
                     style: TextStyle(
                       color: Color(0xFFFFFFFF),
-                      fontStyle: FontStyle.italic
+                      fontWeight: FontWeight.bold
                     )
                   )
                 )

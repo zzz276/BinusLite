@@ -1,3 +1,4 @@
+import 'package:binus_lite/models/tab.dart' as tab;
 import 'package:binus_lite/screens/tabs/dashboard.dart';
 import 'package:binus_lite/screens/tabs/forum.dart';
 import 'package:binus_lite/screens/tabs/majors.dart';
@@ -13,21 +14,40 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  static final List<String> titles = [
-    "Dashboard",
-    "Majors",
-    "Quiz",
-    "Forum",
-    "Miscellaneous"
+  static List<tab.Tab> tabs = const [
+    tab.Tab(
+      title: "Dashboard",
+      page: Dashboard()
+    ),
+
+    tab.Tab(
+      title: "Majors",
+      page: Majors()
+    ),
+
+    tab.Tab(
+      title: "Quiz",
+      page: Quiz()
+    ),
+
+    tab.Tab(
+      title: "Forum",
+      page: Forum()
+    ),
+
+    tab.Tab(
+      title: "Miscellaneous",
+      page: Miscellaneous()
+    )
   ];
 
-  String title = titles[0];
+  String title = tabs[0].title;
   int selectedIndex = 0;
 
   void selectIndex(int value) {
     setState(() {
       selectedIndex = value;
-      title = titles[value];
+      title = tabs[value].title;
     });
   }
 
@@ -36,20 +56,20 @@ class _NavigationState extends State<Navigation> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFFFFFFFF),
         centerTitle: true,
-        title: Text(title)
+        title: Text(title),
+        titleTextStyle: const TextStyle(
+          color: Color(0xFF018ED5),
+          fontFamily: "Century Gothic",
+          fontSize: 32.0,
+          fontWeight: FontWeight.bold
+        ),
+
+        toolbarHeight: 100.0
       ),
 
-      body: Center(
-        child: const <Widget>[
-          Dashboard(),
-          Majors(),
-          Quiz(),
-          Forum(),
-          Miscellaneous()
-        ][selectedIndex]
-      ),
-
+      body: Center(child: tabs[selectedIndex].page),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: BottomNavigationBarTheme.of(context).backgroundColor,
         currentIndex: selectedIndex,

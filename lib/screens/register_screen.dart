@@ -126,7 +126,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     width: double.infinity,
                     child: Text(
                       "Register",
-                      style: TextStyle(color: Color(0xFFFFFFFF))
+                      style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontWeight: FontWeight.bold
+                      ),
+
+                      textAlign: TextAlign.center
                     )
                   )
                 ),
@@ -137,7 +142,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     "Already have an account? Log in here!",
                     style: TextStyle(
                       color: Color(0xFFFFFFFF),
-                      fontStyle: FontStyle.italic
+                      fontWeight: FontWeight.bold
                     )
                   )
                 )

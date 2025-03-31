@@ -10,7 +10,7 @@ class Quiz extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
-          "Take the quiz",
+          "Have you found your desired major?\nLet's find out!",
           textAlign: TextAlign.center
         ),
 
