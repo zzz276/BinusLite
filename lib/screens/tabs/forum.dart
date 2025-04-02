@@ -28,7 +28,7 @@ class _ForumState extends State<Forum> {
               });
             },
             
-            trailing: const [Icon(Icons.search_rounded)],
+            trailing: const [Icon(Icons.search_rounded)]
           ),
 
           const SizedBox(height: 16.0),
