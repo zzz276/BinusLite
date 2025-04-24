@@ -10,7 +10,11 @@ class Forum extends StatefulWidget {
 
 class _ForumState extends State<Forum> {
   List<ForumPost> posts = [
-    ForumPost(question: "Is Mobile Application and Technology a good major?")
+    ForumPost(question: "Is Mobile Application and Technology a good major?"),
+    ForumPost(
+      question: "What are the reasons behind the students to enroll in Psychology?",
+      replies: 2
+    )
   ];
 
   @override
