@@ -10,6 +10,8 @@ class Majors extends StatefulWidget {
 }
 
 class _MajorsState extends State<Majors> {
+  static late String searchQuery;
+  static late List<Major> searchMajor;
   List<Major> majors = [
     Major(
       name: "Mobile Application and Technology",
@@ -39,6 +41,7 @@ class _MajorsState extends State<Majors> {
 
   @override
   Widget build(BuildContext context) {
+    majors.sort((a, b) => a.name.compareTo(b.name));
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -48,8 +51,10 @@ class _MajorsState extends State<Majors> {
             keyboardType: TextInputType.text,
             onChanged: (value) {
               setState(() {
-                
+                searchQuery = value;
               });
+
+              // searchMajor = majors.cast<Major>().;
             },
           
             trailing: const [Icon(Icons.search_rounded)],
@@ -65,27 +70,37 @@ class _MajorsState extends State<Majors> {
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text(
-                          "${majors[index].name}\n@${majors[index].region}",
-                          overflow: TextOverflow.clip,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.start
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${majors[index].name}\n@${majors[index].region}",
+                              overflow: TextOverflow.clip,
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.start
+                            )
+                          ]
                         ),
 
                         const SizedBox(height: 16.0),
-                        ElevatedButton(
-                          onPressed: () => Navigator.push(
-                            context, MaterialPageRoute(
-                              builder: (context) => MajorDetail(majors[index])
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () => Navigator.push(
+                                context, MaterialPageRoute(
+                                  builder: (context) => MajorDetail(majors[index])
+                                )
+                              ),
+
+                              child: const Text(
+                                "Detail",
+                                textAlign: TextAlign.center
+                              )
                             )
-                          ),
-                  
-                          child: const Text(
-                            "Detail",
-                            textAlign: TextAlign.center
-                          )
+                          ]
                         )
                       ]
                     )
