@@ -44,6 +44,30 @@ class _GuidelineState extends State<Guideline> {
               )
             ),
 
+            const Text(
+              "Welcome,"
+            ),
+
+            const Text(
+              "This quiz "
+            ),
+
+            const Text(
+              "Purpose"
+            ),
+
+            const Text(
+              "This quiz "
+            ),
+
+            const Text(
+              "Instruction"
+            ),
+
+            const Text(
+              "This quiz "
+            ),
+
             CheckboxListTile(
               controlAffinity: ListTileControlAffinity.leading,
               onChanged: (value) => setState(() => isReady = value!),
@@ -54,6 +78,16 @@ class _GuidelineState extends State<Guideline> {
             const SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: () => startQuiz(context),
+              style: (isReady) ? 
+              const ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(Color(0xFFEF8800)),
+                foregroundColor: WidgetStatePropertyAll(Color(0xFFFFFFFF))
+              ) : 
+              const ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(Color(0xFFFFD2B4)),
+                foregroundColor: WidgetStatePropertyAll(Color(0xB4FFFFFF))
+              ),
+
               child: const SizedBox(
                 width: double.infinity,
                 child: Text(
