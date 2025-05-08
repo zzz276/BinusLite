@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class MajorDetail extends StatefulWidget {
   final Major major;
-  const MajorDetail(this.major);
+  const MajorDetail(this.major, {super.key});
   
   @override
   State<MajorDetail> createState() => _MajorDetailState();
@@ -58,7 +58,7 @@ class _MajorDetailState extends State<MajorDetail> {
 
             Table(
               columnWidths: const {
-                0: FixedColumnWidth(100.0),
+                0: FixedColumnWidth(150.0),
                 1:FlexColumnWidth()
               },
 
@@ -87,7 +87,7 @@ class _MajorDetailState extends State<MajorDetail> {
                   children: [
                     const Text("Duration"),
                     Text(
-                      major.duration.toString(),
+                      "${major.duration.toString()} years",
                       textAlign: TextAlign.end,
                     )
                   ]
@@ -137,7 +137,7 @@ class _MajorDetailState extends State<MajorDetail> {
               child: const SizedBox(
                 width: double.infinity,
                 child: Text(
-                  "View and Download Catalogue",
+                  "Download and View Catalogue",
                   textAlign: TextAlign.center
                 )
               )
