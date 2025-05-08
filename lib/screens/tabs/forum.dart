@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:binus_lite/models/forum_post.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class Forum extends StatefulWidget {
 }
 
 class _ForumState extends State<Forum> {
-  List<ForumPost> posts = [
+  final List<ForumPost> posts = [
     ForumPost(question: "Is Mobile Application and Technology a good major?"),
     ForumPost(
       question: "What are the reasons behind the students to enroll in Psychology?",
@@ -17,28 +18,51 @@ class _ForumState extends State<Forum> {
     )
   ];
 
+  final TextEditingController searchController = TextEditingController();
+  static late List<ForumPost> searchPost;
+
+  void querySearch(String q) {
+    setState(() {
+      searchPost = posts.where((post) =>
+      post.question.toLowerCase().contains(q.toLowerCase())).toList();
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    searchPost = posts;
+  }
+
   @override
   Widget build(BuildContext context) {
+    searchPost.sort((a, b) => min(a.replies, b.replies));
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
           SearchBar(
+            controller: searchController,
             hintText: "Ask any questions here ...",
             keyboardType: TextInputType.text,
-            onChanged: (value) {
-              setState(() {
-                  
-              });
-            },
-            
-            trailing: const [Icon(Icons.search_rounded)]
+            onChanged: querySearch,
+            trailing: [
+              IconButton(
+                onPressed: () {
+                  searchController.clear();
+                  querySearch("");
+                },
+
+                icon: const Icon(Icons.search_rounded)
+              )
+            ]
           ),
 
           const SizedBox(height: 16.0),
           Expanded(
             child: ListView.builder(
-              itemCount: posts.length,
+              itemCount: searchPost.length,
               itemBuilder: (context, index) {
                 return Card(
                   color: const Color(0xFF018ED5),
@@ -49,7 +73,7 @@ class _ForumState extends State<Forum> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          posts[index].question,
+                          searchPost[index].question,
                           style: const TextStyle(color: Color(0xFFFFFFFF)),
                           textAlign: TextAlign.start
                         ),
@@ -71,7 +95,7 @@ class _ForumState extends State<Forum> {
                               ),
       
                               Text(
-                                posts[index].replies.toString(),
+                                searchPost[index].replies.toString(),
                                 style: const TextStyle(color: Color(0xFFFFFFFF))
                               ),
 

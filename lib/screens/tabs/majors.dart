@@ -10,9 +10,8 @@ class Majors extends StatefulWidget {
 }
 
 class _MajorsState extends State<Majors> {
-  static late String searchQuery;
-  static late List<Major> searchMajor;
-  List<Major> majors = [
+  final TextEditingController searchController = TextEditingController();
+  final List<Major> majors = [
     Major(
       name: "Mobile Application and Technology",
       region: "Kemanggisan",
@@ -34,30 +33,49 @@ class _MajorsState extends State<Majors> {
       name: "Computer Science",
       region: "Alam Sutera",
       faculty: "School of Computer Science",
-      foundedYear: "1998",
+      foundedYear: "1987",
       overview: "Software Engineer"
     )
   ];
 
+  late List<Major> searchMajor;
+
+  void querySearch(String q) {
+    setState(() {
+      searchMajor = majors.where((major) =>
+      major.name.toLowerCase().startsWith(q.toLowerCase())).toList();
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    searchMajor = majors;
+  }
+
   @override
   Widget build(BuildContext context) {
-    majors.sort((a, b) => a.name.compareTo(b.name));
+    searchMajor.sort((a, b) => a.name.compareTo(b.name));
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
           SearchBar(
+            controller: searchController,
             hintText: "Search major here ...",
             keyboardType: TextInputType.text,
-            onChanged: (value) {
-              setState(() {
-                searchQuery = value;
-              });
+            onChanged: querySearch,
+            trailing: [
+              IconButton(
+                onPressed: () {
+                  searchController.clear();
+                  querySearch("");
+                },
 
-              // searchMajor = majors.cast<Major>().;
-            },
-          
-            trailing: const [Icon(Icons.search_rounded)],
+                icon: const Icon(Icons.search_rounded)
+              )
+            ]
           ),
 
           const SizedBox(height: 16.0),
@@ -76,7 +94,7 @@ class _MajorsState extends State<Majors> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${majors[index].name}\n@${majors[index].region}",
+                              "${searchMajor[index].name}\n@${searchMajor[index].region}",
                               overflow: TextOverflow.clip,
                               style: const TextStyle(fontWeight: FontWeight.bold),
                               textAlign: TextAlign.start
@@ -91,7 +109,7 @@ class _MajorsState extends State<Majors> {
                             ElevatedButton(
                               onPressed: () => Navigator.push(
                                 context, MaterialPageRoute(
-                                  builder: (context) => MajorDetail(majors[index])
+                                  builder: (context) => MajorDetail(searchMajor[index])
                                 )
                               ),
 
@@ -108,7 +126,7 @@ class _MajorsState extends State<Majors> {
                 );
               },
 
-              itemCount: majors.length
+              itemCount: searchMajor.length
             )
           )
         ]
