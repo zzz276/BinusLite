@@ -16,8 +16,11 @@ class _MajorsState extends State<Majors> {
       name: "Mobile Application and Technology",
       region: "Kemanggisan",
       faculty: "School of Computer Science",
-      foundedYear: "2010",
+      foundedYear: 2010,
+      duration: 4,
+      title: "S. Kom.",
       overview: "Mobile Application and IoT Engineer",
+      career: "Mobile Engineer",
       catalogueLink: "https://curriculum.binus.ac.id/files/2012/04/SOCS-Mobile-Application-Technology-2023.pdf"
     ),
 
@@ -25,16 +28,22 @@ class _MajorsState extends State<Majors> {
       name: "Artificial Intelligence",
       region: "Kemanggisan",
       faculty: "School of Computer Science",
-      foundedYear: "2023",
-      overview: "Machine Learning and Deep Learning Engineer"
+      foundedYear: 2023,
+      duration: 4,
+      title: "S. Kom.",
+      overview: "Machine Learning, Deep Learning, Natural Language Processing",
+      career: "Machine Learning and Deep Learning Engineer"
     ),
 
     Major(
       name: "Computer Science",
       region: "Alam Sutera",
       faculty: "School of Computer Science",
-      foundedYear: "1987",
-      overview: "Software Engineer"
+      foundedYear: 1987,
+      duration: 4,
+      title: "S. Kom.",
+      overview: "Software Engineer",
+      career: "Developer, IT Consultant"
     )
   ];
 
@@ -107,8 +116,8 @@ class _MajorsState extends State<Majors> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             ElevatedButton(
-                              onPressed: () => Navigator.push(
-                                context, MaterialPageRoute(
+                              onPressed: () => Navigator.of(context).push(
+                                MaterialPageRoute(
                                   builder: (context) => MajorDetail(searchMajor[index])
                                 )
                               ),

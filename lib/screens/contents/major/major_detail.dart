@@ -2,9 +2,16 @@ import 'package:binus_lite/models/major.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class MajorDetail extends StatelessWidget {
-  const MajorDetail(this.major, {super.key});
+class MajorDetail extends StatefulWidget {
   final Major major;
+  const MajorDetail(this.major);
+  
+  @override
+  State<MajorDetail> createState() => _MajorDetailState();
+}
+
+class _MajorDetailState extends State<MajorDetail> {
+  late Major major;
 
   viewFile(BuildContext context) async {
     try { await launchUrlString(major.catalogueLink!); }
@@ -16,6 +23,13 @@ class MajorDetail extends StatelessWidget {
         ))
       );
     }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    major = widget.major;
   }
 
   @override
@@ -51,6 +65,16 @@ class MajorDetail extends StatelessWidget {
               children: [
                 TableRow(
                   children: [
+                    const Text("Established"),
+                    Text(
+                      major.foundedYear.toString(),
+                      textAlign: TextAlign.end
+                    )
+                  ]
+                ),
+
+                TableRow(
+                  children: [
                     const Text("Faculty"),
                     Text(
                       major.faculty,
@@ -61,10 +85,20 @@ class MajorDetail extends StatelessWidget {
 
                 TableRow(
                   children: [
-                    const Text("Established"),
+                    const Text("Duration"),
                     Text(
-                      major.foundedYear,
-                      textAlign: TextAlign.end
+                      major.duration.toString(),
+                      textAlign: TextAlign.end,
+                    )
+                  ]
+                ),
+
+                TableRow(
+                  children: [
+                    const Text("Academic Title"),
+                    Text(
+                      major.title,
+                      textAlign: TextAlign.end,
                     )
                   ]
                 ),
@@ -78,6 +112,13 @@ class MajorDetail extends StatelessWidget {
             ),
 
             Text(major.overview),
+            const SizedBox(height: 16.0),
+            const Text(
+              "Prospective Careers",
+              style: TextStyle(fontSize: 32.0)
+            ),
+
+            Text(major.career),
             const SizedBox(height: 16.0),
             const Text(
               "Promotional Video",
