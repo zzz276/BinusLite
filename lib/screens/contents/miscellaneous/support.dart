@@ -22,7 +22,7 @@ class Support extends StatelessWidget {
         padding: EdgeInsets.all(32.0),
         child: Column(
           children: [
-            Text("A")
+            
           ],
         )
       ),

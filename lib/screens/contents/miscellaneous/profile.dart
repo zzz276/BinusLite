@@ -14,21 +14,10 @@ class _ProfileState extends State<Profile> {
   static String email = "a3@aaa.aa";
   static String password = "12345678";
   final List<TextEditingController> controllers = [
-    TextEditingController.fromValue(
-      TextEditingValue(text: displayName)
-    ),
-
-    TextEditingController.fromValue(
-      TextEditingValue(text: username)
-    ),
-
-    TextEditingController.fromValue(
-      TextEditingValue(text: email)
-    ),
-
-    TextEditingController.fromValue(
-      TextEditingValue(text: password)
-    )
+    TextEditingController.fromValue(TextEditingValue(text: displayName)),
+    TextEditingController.fromValue(TextEditingValue(text: username)),
+    TextEditingController.fromValue(TextEditingValue(text: email)),
+    TextEditingController.fromValue(TextEditingValue(text: password))
   ];
 
   @override
@@ -42,7 +31,7 @@ class _ProfileState extends State<Profile> {
           onPressed: () => Navigator.pop(context)
         ),
 
-        title: const Text("Profile")
+        title: Text(widget.title)
       ),
 
       body: Padding(
@@ -66,21 +55,16 @@ class _ProfileState extends State<Profile> {
               )
             ),
 
+            const SizedBox(height: 32.0),
             TextField(
               controller: controllers[0],
               decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.0)
-                ),
-                    
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
                 filled: true,
                 fillColor: const Color(0xFFFFFFFF),
                 hintText: "Display Name ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() {
-                    displayName = controllers[0].text;
-                  }),
-
+                  onPressed: () => setState(() => displayName = controllers[0].text),
                   icon: const Icon(Icons.edit)
                 )
               )
@@ -90,18 +74,12 @@ class _ProfileState extends State<Profile> {
             TextField(
               controller: controllers[1],
               decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.0)
-                ),
-                    
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
                 filled: true,
                 fillColor: const Color(0xFFFFFFFF),
                 hintText: "Username ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() {
-                    username = controllers[1].text;
-                  }),
-
+                  onPressed: () => setState(() => username = controllers[1].text),
                   icon: const Icon(Icons.edit)
                 )
               )
@@ -111,18 +89,12 @@ class _ProfileState extends State<Profile> {
             TextField(
               controller: controllers[2],
               decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.0)
-                ),
-
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
                 filled: true,
                 fillColor: const Color(0xFFFFFFFF),
                 hintText: "Email ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() {
-                    email = controllers[2].text;
-                  }),
-
+                  onPressed: () => setState(() => email = controllers[2].text),
                   icon: const Icon(Icons.edit)
                 )
               )
@@ -132,18 +104,12 @@ class _ProfileState extends State<Profile> {
             TextField(
               controller: controllers[3],
               decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.0)
-                ),
-
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
                 filled: true,
                 fillColor: const Color(0xFFFFFFFF),
                 hintText: "Password ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() {
-                    password = controllers[3].text;
-                  }),
-
+                  onPressed: () => setState(() => password = controllers[3].text),
                   icon: const Icon(Icons.edit)
                 )
               ),

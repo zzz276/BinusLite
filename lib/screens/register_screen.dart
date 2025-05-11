@@ -27,6 +27,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ))
         );
 
+        nameController.clear();
+        emailController.clear();
+        passwordController.clear();
         Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
         if(e.code.compareTo("weak-password") == 0) {
@@ -48,106 +51,82 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            colors: [Color(0xFF6DCAF6), Color(0xFF989898)],
-            end: Alignment.bottomCenter
-          )
-        ),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          colors: [Color(0xFF6DCAF6), Color(0xFF989898)],
+          end: Alignment.bottomCenter
+        )
+      ),
 
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Welcome to BinusLite",
-                  style: TextStyle(
-                    color: Color(0xFFFFFFFF),
-                    fontSize: 32.0,
-                    fontWeight: FontWeight.bold
-                  ),
-
-                  textAlign: TextAlign.center
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 92.0),
+              const Text(
+                "Welcome to BinusLite",
+                style: TextStyle(
+                  color: Color(0xFFFFFFFF),
+                  fontSize: 32.0,
+                  fontWeight: FontWeight.bold
                 ),
-              
-                const SizedBox(height: 64.0),
-                TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0)
-                    ),
+
+                textAlign: TextAlign.center
+              ),
                     
-                    filled: true,
-                    fillColor: const Color(0xFFFFFFFF),
-                    hintText: "Username ..."
-                  )
-                ),
+              const SizedBox(height: 92.0),
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(hintText: "Username ...")
+              ),
+                 
+              const SizedBox(height: 32.0),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(hintText: "Email ...")
+              ),
               
-                const SizedBox(height: 32.0),
-                TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0)
-                    ),
-
-                    filled: true,
-                    fillColor: const Color(0xFFFFFFFF),
-                    hintText: "Email ..."
-                  )
-                ),
-              
-                const SizedBox(height: 32.0),
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0)
-                    ),
-
-                    filled: true,
-                    fillColor: const Color(0xFFFFFFFF),
-                    hintText: "Password ..."
-                  ),
-              
-                  obscureText: true
-                ),
-              
-                const SizedBox(height: 64.0),
-                ElevatedButton(
-                  onPressed: () => register(context: context),
-                  child: const SizedBox(
-                    width: double.infinity,
-                    child: Text(
-                      "Register",
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontWeight: FontWeight.bold
-                      ),
-
-                      textAlign: TextAlign.center
-                    )
-                  )
-                ),
-          
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text(
-                    "Already have an account? Log in here!",
+              const SizedBox(height: 32.0),
+              TextField(
+                controller: passwordController,
+                decoration: const InputDecoration(hintText: "Password ..."),
+                obscureText: true
+              ),
+                
+              const SizedBox(height: 64.0),
+              ElevatedButton(
+                onPressed: () => register(context: context),
+                child: const SizedBox(
+                  width: double.infinity,
+                  child: Text(
+                    "Register",
                     style: TextStyle(
                       color: Color(0xFFFFFFFF),
                       fontWeight: FontWeight.bold
-                    )
+                    ),
+
+                    textAlign: TextAlign.center
                   )
                 )
-              ]
-            )
+              ),
+              
+              const SizedBox(height: 16.0),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(
+                  "Already have an account? Log in here!",
+                  style: TextStyle(
+                    color: Color(0xFFFFFFFF),
+                    fontWeight: FontWeight.bold
+                  )
+                )
+              )
+            ]
           )
         )
       )

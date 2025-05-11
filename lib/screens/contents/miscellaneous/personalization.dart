@@ -20,14 +20,14 @@ class _PersonalizationState extends State<Personalization> {
           onPressed: () => Navigator.pop(context),
         ),
 
-        title: const Text("Personalization"),
+        title: Text(widget.title),
       ),
 
       body: const Padding(
         padding: EdgeInsets.all(32.0),
         child: Column(
           children: [
-            Text("A")
+            
           ],
         )
       ),

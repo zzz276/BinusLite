@@ -13,9 +13,11 @@ class _GuidelineState extends State<Guideline> {
 
   startQuiz(BuildContext context) {
     if (!isReady) return;
-    Navigator.push(context, MaterialPageRoute(
-      builder: (context) => const Questions()
-    ));
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const Questions()
+      )
+    );
   }
 
   @override
@@ -29,53 +31,80 @@ class _GuidelineState extends State<Guideline> {
           onPressed: () => Navigator.pop(context),
         ),
 
-        title: const Text("Quiz")
+        title: const Text("Guideline")
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(32.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              "Guideline",
-              style: TextStyle(
-                fontSize: 32.0,
-                fontWeight: FontWeight.bold
-              )
+              "Introduction",
+              style: TextStyle(fontWeight: FontWeight.bold)
+            ),
+
+            const SizedBox(height: 8.0),
+            const Text(
+              "This quiz is designed to help you to know more of your interest, potential, and personal talent tendencies, which would determine the right major in BINUS University or any other universities."
+            ),
+
+            const SizedBox(height: 16.0),
+            const Text(
+              "Purpose",
+              style: TextStyle(fontWeight: FontWeight.bold)
+            ),
+
+            const SizedBox(height: 8.0),
+            const Text(
+              "This quiz helps you evaluate your interest in various study fields."
             ),
 
             const Text(
-              "Welcome,"
+              "This quiz finds out appropriate activities, subjects, and professions based on your personalities and talents."
             ),
 
             const Text(
-              "This quiz "
+              "This quiz gives you major preview which could help you make better decision."
+            ),
+
+            const SizedBox(height: 16.0),
+            const Text(
+              "Instruction",
+              style: TextStyle(fontWeight: FontWeight.bold)
+            ),
+
+            const SizedBox(height: 8.0),
+            const Text(
+              "Answer each question honestly!"
             ),
 
             const Text(
-              "Purpose"
+              "There's no right or wrong answer. The answers reflect your uniqueness."
             ),
 
             const Text(
-              "This quiz "
+              "There are a few scale-scoring questions, multiple choices questions, and an open ended question at the end of the quiz."
             ),
 
             const Text(
-              "Instruction"
+              "Read the question carefully before answering!"
             ),
 
             const Text(
-              "This quiz "
+              "Use your time wisely!\nThis quiz could be done in 10~15 minutes."
             ),
 
+            const SizedBox(height: 16.0),
             CheckboxListTile(
+              activeColor: const Color(0xFFEF8800),
               controlAffinity: ListTileControlAffinity.leading,
               onChanged: (value) => setState(() => isReady = value!),
               title: const Text("I have read the guideline."),
               value: isReady
             ),
         
-            const SizedBox(height: 32.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () => startQuiz(context),
               style: (isReady) ? 
@@ -90,10 +119,7 @@ class _GuidelineState extends State<Guideline> {
 
               child: const SizedBox(
                 width: double.infinity,
-                child: Text(
-                  "Start the quiz",
-                  textAlign: TextAlign.center
-                )
+                child: Text("Start the quiz", textAlign: TextAlign.center)
               )
             )
           ]

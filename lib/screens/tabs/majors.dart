@@ -10,7 +10,6 @@ class Majors extends StatefulWidget {
 }
 
 class _MajorsState extends State<Majors> {
-  final TextEditingController searchController = TextEditingController();
   final List<Major> majors = [
     Major(
       name: "Mobile Application and Technology",
@@ -47,6 +46,7 @@ class _MajorsState extends State<Majors> {
     )
   ];
 
+  final TextEditingController searchController = TextEditingController();
   late List<Major> searchMajor;
 
   void querySearch(String q) {
@@ -69,6 +69,7 @@ class _MajorsState extends State<Majors> {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SearchBar(
             controller: searchController,
@@ -81,12 +82,12 @@ class _MajorsState extends State<Majors> {
                   searchController.clear();
                   querySearch("");
                 },
-
-                icon: const Icon(Icons.search_rounded)
+      
+                icon: const Icon(Icons.close_rounded)
               )
             ]
           ),
-
+      
           const SizedBox(height: 16.0),
           Expanded(
             child: ListView.builder(
@@ -110,7 +111,7 @@ class _MajorsState extends State<Majors> {
                             )
                           ]
                         ),
-
+      
                         const SizedBox(height: 16.0),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -121,11 +122,8 @@ class _MajorsState extends State<Majors> {
                                   builder: (context) => MajorDetail(searchMajor[index])
                                 )
                               ),
-
-                              child: const Text(
-                                "Detail",
-                                textAlign: TextAlign.center
-                              )
+      
+                              child: const Text("Detail", textAlign: TextAlign.center)
                             )
                           ]
                         )
@@ -134,12 +132,12 @@ class _MajorsState extends State<Majors> {
                   )
                 );
               },
-
+      
               itemCount: searchMajor.length
             )
           )
         ]
-      )
+      ),
     );
   }
 }

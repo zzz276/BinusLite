@@ -4,13 +4,13 @@ class About extends StatelessWidget {
   const About(this.title, {super.key});
   final String title;
   static final List<String> names = [
-      "Gabriel Jovico Prathama",
-      "Marvello Perdana",
-      "Riansyah Hazmi Halomoan Abdian",
-      "Tobyas Nathaniel Triwira Nababan",
-      // "Welan Ale Zeni",
-      "Zeni Zuanda"
-    ];
+    "Gabriel Jovico Prathama",
+    "Marvello Perdana",
+    "Riansyah Hazmi Halomoan Abdian",
+    "Tobyas Nathaniel Triwira Nababan",
+    // "Welan Ale Zeni",
+    "Zeni Zuanda"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +18,7 @@ class About extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.chevron_left_outlined),
+          iconSize: 60.0,
           onPressed: () => Navigator.pop(context)
         ),
 
@@ -34,10 +35,7 @@ class About extends StatelessWidget {
                   Text(
                     names[index],
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0
-                    )
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)
                   ),
 
                   const SizedBox(height: 32.0)

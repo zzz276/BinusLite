@@ -1,4 +1,4 @@
-import 'package:binus_lite/models/tab.dart' as tab;
+import 'package:binus_lite/models/components/tab.dart' as tab;
 import 'package:binus_lite/screens/tabs/dashboard.dart';
 import 'package:binus_lite/screens/tabs/forum.dart';
 import 'package:binus_lite/screens/tabs/majors.dart';
@@ -54,7 +54,7 @@ class _NavigationState extends State<Navigation> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: BottomNavigationBarTheme.of(context).backgroundColor,
         currentIndex: selectedIndex,
-        iconSize: 32.0,
+        iconSize: 36.0,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.emoji_objects_rounded), label: ""),
@@ -71,7 +71,8 @@ class _NavigationState extends State<Navigation> {
         unselectedItemColor: const Color(0xFFFFFFFF)
       ),
 
-      extendBody: true
+      extendBody: true,
+      resizeToAvoidBottomInset: false,
     );
   }
 }

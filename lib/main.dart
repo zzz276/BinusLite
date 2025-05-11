@@ -1,4 +1,5 @@
 import 'package:binus_lite/screens/login_screen.dart';
+import 'package:binus_lite/screens/navigation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const LoginScreen(),
+      routes: {
+        '/navigation': (context) => const Navigation()
+      },
+
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -40,7 +45,8 @@ class MyApp extends StatelessWidget {
             color: Color(0xFFFFFFFF),
             fontFamily: "Century Gothic",
             fontSize: 32.0,
-            fontWeight: FontWeight.bold
+            fontWeight: FontWeight.bold,
+            overflow: TextOverflow.clip
           ),
 
           toolbarHeight: 100.0
@@ -49,14 +55,40 @@ class MyApp extends StatelessWidget {
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Color(0xFF018ED5)
         ),
-        
+
         elevatedButtonTheme: const ElevatedButtonThemeData(style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(Color(0xFFEF8800)),
             foregroundColor: WidgetStatePropertyAll(Color(0xFFFFFFFF))
         )),
 
         fontFamily: "Century Gothic",
-        useMaterial3: true,
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16.0),
+            borderSide: const BorderSide(color: Color(0xFFEF8800))
+          ),
+
+          filled: true,
+          fillColor: const Color(0xFFFFFFFF),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16.0),
+            borderSide: const BorderSide(color: Color(0xFFEF8800))
+          )
+        ),
+
+        sliderTheme: const SliderThemeData(
+          activeTrackColor: Color(0xFFEF8800),
+          showValueIndicator: ShowValueIndicator.onlyForDiscrete,
+          thumbColor: Color(0xFFEF8800)
+        ),
+        
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xFFEF8800),
+          selectionColor: Color(0xFFEF8800),
+          selectionHandleColor: Color(0xFFEF8800),
+        ),
+
+        useMaterial3: true
       ),
 
       title: "BinusLite"

@@ -1,4 +1,3 @@
-import 'package:binus_lite/screens/navigation.dart';
 import 'package:binus_lite/screens/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +21,9 @@ class _LoginScreenState extends State<LoginScreen> {
           password: passwordController.text
         );
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Navigation()
-          )
-        );
+        emailController.clear();
+        passwordController.clear();
+        Navigator.of(context).pushNamed('/navigation');
       } on FirebaseAuthException catch (e) {
         if(e.code.compareTo("user-not-found") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -48,90 +44,74 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            colors: [Color(0xFF018ED5), Color(0xFF7E3586)],
-            end: Alignment.bottomCenter
-          ),
-        ),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          colors: [Color(0xFF018ED5), Color(0xFF7E3586)],
+          end: Alignment.bottomCenter
+        )
+      ),
 
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset("lib/assets/pictures/BinusLite Logo NoBack.png"),
-                const SizedBox(height: 32.0),
-                TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0)
-                    ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 64.0),
+              Image.asset("lib/assets/pictures/BinusLite Logo NoBack.png"),
+              const SizedBox(height: 64.0),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(hintText: "Email ...")
+              ),
 
-                    filled: true,
-                    fillColor: const Color(0xFFFFFFFF),
-                    hintText: "Email ..."
-                  )
-                ),
+              const SizedBox(height: 32.0),
+              TextField(
+                controller: passwordController,
+                decoration: const InputDecoration(hintText: "Password ..."),
+                obscureText: true
+              ),
 
-                const SizedBox(height: 32.0),
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16.0)
-                    ),
-
-                    filled: true,
-                    fillColor:const Color(0xFFFFFFFF),
-                    hintText: "Password ..."
-                  ),
-                  
-                  obscureText: true
-                ),
-
-                const SizedBox(height: 64.0),
-                ElevatedButton(
-                  onPressed: () => login(context: context),
-                  child: const SizedBox(
-                    width: double.infinity,
-                    child: Text(
-                      "Login",
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontWeight: FontWeight.bold
-                      ),
-
-                      textAlign: TextAlign.center,
-                    )
-                  )
-                ),
-
-                TextButton(
-                  onPressed: () => Navigator.push(
-                    context, MaterialPageRoute(
-                      builder: (context) => const RegisterScreen()
-                    )
-                  ),
-
-                  child: const Text(
-                    "Didn't have an account? Register here!",
+              const SizedBox(height: 64.0),
+              ElevatedButton(
+                onPressed: () => login(context: context),
+                child: const SizedBox(
+                  width: double.infinity,
+                  child: Text(
+                    "Login",
                     style: TextStyle(
                       color: Color(0xFFFFFFFF),
                       fontWeight: FontWeight.bold
-                    )
+                    ),
+
+                    textAlign: TextAlign.center,
                   )
                 )
-              ]
-            )
+              ),
+
+              const SizedBox(height: 16.0),
+              TextButton(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const RegisterScreen()
+                  )
+                ),
+
+                child: const Text(
+                  "Didn't have an account? Register here!",
+                  style: TextStyle(
+                    color: Color(0xFFFFFFFF),
+                    fontWeight: FontWeight.bold
+                  )
+                )
+              )
+            ]
           )
         )
-      )
+      ),
     );
   }
 }

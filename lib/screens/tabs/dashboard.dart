@@ -13,40 +13,59 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Image.asset("lib/assets/pictures/Flazz Card.png"),
-        const SizedBox(height: 8.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox.square(
-              dimension: 32.0,
-              child: Icon(Icons.person)
-            ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
+                color: Colors.transparent,
+                height: 300.0,
+                padding: const EdgeInsets.only(bottom: 10.0, left: 150.0),
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Text(
+                      "Welcome,",
+                      style: TextStyle(fontSize: 24.0)
+                    ),
 
-            const SizedBox.square(dimension: 32.0),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text("Welcome,"),
-                Text(
-                  displayName,
-                  style: const TextStyle(fontWeight: FontWeight.bold)
+                    Text(
+                      displayName,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold
+                      )
+                    )
+                  ],
+                ),
+              ),
+
+              Image.asset("lib/assets/pictures/Flazz Card.png"),
+              Positioned(
+                left: 15.0,
+                top: 150.0,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFBBBFC2),
+                    shape: BoxShape.circle
+                  ),
+
+                  height: 125.0,
+                  width: 125.0,
+                  child: const Icon(Icons.person, size: 100.0),
                 )
-              ]
-            )
-          ]
-        ),
+              )
+            ]
+          ),
 
-        const SizedBox(height: 8.0),
-        const Text(
-          "Campus Directory",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-
-        const ImageCarousel()
-      ]
+          const SizedBox(height: 32.0),
+          const ImageCarousel()
+        ]
+      ),
     );
   }
 }

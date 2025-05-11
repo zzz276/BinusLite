@@ -10,19 +10,26 @@ class Quiz extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
-          "Have you found your desired major?\nLet's find out!",
+          "Have you found your desired major?\nLet's find out here!",
+          style: TextStyle(fontSize: 24.0),
           textAlign: TextAlign.center
         ),
 
         const SizedBox(height: 64.0),
         ElevatedButton(
-          onPressed: () => Navigator.push(
-            context, MaterialPageRoute(
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(
               builder: (context) => const Guideline()
             )
           ),
 
-          child: const Text("Take the quiz")
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Take the quiz",
+              style: TextStyle(fontSize: 24.0),
+            ),
+          )
         )
       ]
     );

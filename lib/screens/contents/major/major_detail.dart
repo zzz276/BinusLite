@@ -16,7 +16,6 @@ class _MajorDetailState extends State<MajorDetail> {
   viewFile(BuildContext context) async {
     try { await launchUrlString(major.catalogueLink!); }
     catch (err) {
-      // debugPrint("Catalogue link isn't available at this time.");
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text(
           "Catalogue link isn't available at this time."
@@ -51,11 +50,7 @@ class _MajorDetailState extends State<MajorDetail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Profile",
-              style: TextStyle(fontSize: 32.0)
-            ),
-
+            const Text("Profile", style: TextStyle(fontSize: 32.0)),
             Table(
               columnWidths: const {
                 0: FixedColumnWidth(150.0),
@@ -101,45 +96,26 @@ class _MajorDetailState extends State<MajorDetail> {
                       textAlign: TextAlign.end,
                     )
                   ]
-                ),
+                )
               ]
             ),
 
             const SizedBox(height: 16.0),
-            const Text(
-              "Overview",
-              style: TextStyle(fontSize: 32.0)
-            ),
-
+            const Text("Overview", style: TextStyle(fontSize: 32.0)),
             Text(major.overview),
             const SizedBox(height: 16.0),
-            const Text(
-              "Prospective Careers",
-              style: TextStyle(fontSize: 32.0)
-            ),
-
+            const Text("Prospective Careers", style: TextStyle(fontSize: 32.0)),
             Text(major.career),
             const SizedBox(height: 16.0),
-            const Text(
-              "Promotional Video",
-              style: TextStyle(fontSize: 32.0)
-            ),
-            
+            const Text("Promotional Video", style: TextStyle(fontSize: 32.0)),
             const SizedBox(height: 16.0),
-            const Text(
-              "Catalogues",
-              style: TextStyle(fontSize: 32.0)
-            ),
-
+            const Text("Catalogues", style: TextStyle(fontSize: 32.0)),
             const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () => viewFile(context),
               child: const SizedBox(
                 width: double.infinity,
-                child: Text(
-                  "Download and View Catalogue",
-                  textAlign: TextAlign.center
-                )
+                child: Text("Download and View Catalogue", textAlign: TextAlign.center)
               )
             )
           ]

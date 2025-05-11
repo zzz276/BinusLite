@@ -13,8 +13,9 @@ class _ForumDetailState extends State<ForumDetail> {
     return const Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("A")
+          
         ]
       )
     );

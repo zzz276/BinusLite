@@ -54,7 +54,7 @@ class _ForumState extends State<Forum> {
                   querySearch("");
                 },
 
-                icon: const Icon(Icons.search_rounded)
+                icon: const Icon(Icons.close_rounded)
               )
             ]
           ),
@@ -72,45 +72,63 @@ class _ForumState extends State<Forum> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          searchPost[index].question,
-                          style: const TextStyle(color: Color(0xFFFFFFFF)),
-                          textAlign: TextAlign.start
+                        Table(
+                          columnWidths: const {
+                            0: FlexColumnWidth(),
+                            1: FixedColumnWidth(30.0)
+                          },
+
+                          children: [
+                            TableRow(
+                              children: [
+                                Text(
+                                  searchPost[index].question,
+                                  style: const TextStyle(color: Color(0xFFFFFFFF)),
+                                  textAlign: TextAlign.start
+                                ),
+
+                                IconButton(
+                                  onPressed: () {
+                                    
+                                  },
+
+                                  icon: const Icon(Icons.more_vert_rounded, color: Color(0xFFFFFFFF),)
+                                )
+                              ]
+                            )
+                          ]
                         ),
                         
-                        const SizedBox(height: 16.0),
-                        Card(
-                          color: const Color(0xFFEF8800),
-                          child: Row(
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  
-                                },
-      
-                                icon: const Icon(
-                                  Icons.arrow_upward_outlined,
-                                  color: Color(0xFFFFFFFF)
+                        const SizedBox(height: 32.0),
+                        SizedBox(
+                          width: 115.0,
+                          child: Card(
+                            color: const Color(0xFFEF8800),
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    
+                                  },
+                                
+                                  icon: const Icon(Icons.arrow_upward_outlined, color: Color(0xFFFFFFFF))
+                                ),
+                                
+                                Text(
+                                  searchPost[index].replies.toString(),
+                                  style: const TextStyle(color: Color(0xFFFFFFFF))
+                                ),
+                          
+                                IconButton(
+                                  onPressed: () {
+                                    
+                                  },
+                                
+                                  icon: const Icon(Icons.arrow_downward_outlined, color: Color(0xFFFFFFFF))
                                 )
-                              ),
-      
-                              Text(
-                                searchPost[index].replies.toString(),
-                                style: const TextStyle(color: Color(0xFFFFFFFF))
-                              ),
-
-                              IconButton(
-                                onPressed: () {
-                                  
-                                },
-      
-                                icon: const Icon(
-                                  Icons.arrow_downward_outlined,
-                                  color: Color(0xFFFFFFFF)
-                                )
-                              )
-                            ]
-                          )
+                              ]
+                            )
+                          ),
                         )
                       ]
                     )
