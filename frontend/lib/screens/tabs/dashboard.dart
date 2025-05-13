@@ -49,14 +49,19 @@ class _DashboardState extends State<Dashboard> {
                 left: 15.0,
                 top: 150.0,
                 child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFBBBFC2),
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                    color: const Color(0xFFF2F2F2),
                     shape: BoxShape.circle
                   ),
 
                   height: 125.0,
                   width: 125.0,
-                  child: const Icon(Icons.person, size: 100.0),
+                  child: const Icon(
+                    Icons.person,
+                    color: Color(0xFFBBBFC2),
+                    size: 100.0
+                  )
                 )
               )
             ]

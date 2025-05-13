@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
+const database = require('../database/database');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

@@ -95,6 +95,11 @@ class _MajorsState extends State<Majors> {
                 return Card(
                   color: const Color(0xFF6DCAF6),
                   margin: const EdgeInsets.all(16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                    side: const BorderSide(color: Color(0xFF7E3586), width: 1.0)
+                  ),
+
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(

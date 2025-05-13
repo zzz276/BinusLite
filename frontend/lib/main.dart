@@ -63,9 +63,10 @@ class MyApp extends StatelessWidget {
 
         fontFamily: "Century Gothic",
         inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
+          errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.0),
-            borderSide: const BorderSide(color: Color(0xFFEF8800))
+            borderSide: const BorderSide(color: Color(0xFFFF0000))
           ),
 
           filled: true,
@@ -73,13 +74,21 @@ class MyApp extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.0),
             borderSide: const BorderSide(color: Color(0xFFEF8800))
+          ),
+
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16.0),
+            borderSide: const BorderSide(color: Color(0xFFFF0000))
           )
         ),
 
         sliderTheme: const SliderThemeData(
           activeTrackColor: Color(0xFFEF8800),
           showValueIndicator: ShowValueIndicator.onlyForDiscrete,
-          thumbColor: Color(0xFFEF8800)
+          thumbColor: Color(0xFFEF8800),
+          valueIndicatorColor: Color(0xFFEF8800),
+          valueIndicatorShape: RectangularSliderValueIndicatorShape(),
+          valueIndicatorTextStyle: TextStyle(color: Color(0xFFFFFFFF))
         ),
         
         textSelectionTheme: const TextSelectionThemeData(

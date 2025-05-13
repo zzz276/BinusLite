@@ -19,9 +19,10 @@ class Result extends StatelessWidget {
                 textAlign: TextAlign.center
               ),
               
+              const SizedBox(height: 16.0),
               Text(
                 result,
-                style: const TextStyle(fontSize: 32.0),
+                style: const TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center
               ),
 
@@ -31,7 +32,7 @@ class Result extends StatelessWidget {
                 softWrap: true,
               ),
 
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 32.0),
               ElevatedButton(
                 onPressed: () => Navigator.popUntil(context, ModalRoute.withName('/navigation')),
                 child: const SizedBox(
