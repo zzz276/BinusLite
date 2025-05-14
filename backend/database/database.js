@@ -3,7 +3,7 @@ var database = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'binus_lite'
+    database: 'binuslite'
 });
 
 database.connect();
