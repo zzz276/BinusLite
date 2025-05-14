@@ -1,11 +1,3 @@
-# BinusLite
-
-Human and Computer Interaction and Software Engineering project.
-
-## Introduction
-
-Provides informations about programs and courses within them, specifically in BINUS University.
-
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
