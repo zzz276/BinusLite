@@ -1,3 +1,4 @@
+import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:binus_lite/screens/contents/dashboard/image_carousel.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final String displayName = "Omega";
+  final String displayName = (LoggedInUser.loggedInUser?.displayName)!;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class _DashboardState extends State<Dashboard> {
           Stack(
             children: [
               Container(
-                color: Colors.transparent,
+                color: const Color(0x00000000),
                 height: 300.0,
                 padding: const EdgeInsets.only(bottom: 10.0, left: 150.0),
                 width: double.infinity,

@@ -1,3 +1,4 @@
+import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:binus_lite/models/components/menu.dart';
 import 'package:binus_lite/screens/contents/miscellaneous/about.dart';
 import 'package:binus_lite/screens/contents/miscellaneous/personalization.dart';
@@ -82,7 +83,11 @@ class _MiscellaneousState extends State<Miscellaneous> {
           return AlertDialog(
             actions: [
               TextButton(
-                onPressed: () => logout(context: context),
+                onPressed: () {
+                  LoggedInUser.loggedInUser = null;
+                  logout(context: context);
+                },
+
                 child: const Text("Yes")
               ),
 

@@ -1,3 +1,4 @@
+import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:binus_lite/screens/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,11 @@ class _LoginScreenState extends State<LoginScreen> {
           email: emailController.text,
           password: passwordController.text
         );
+
+        LoggedInUser.loggedInUser?.displayName = "AA";
+        LoggedInUser.loggedInUser?.username = (LoggedInUser.loggedInUser?.displayName)!;
+        LoggedInUser.loggedInUser?.email = emailController.text;
+        LoggedInUser.loggedInUser?.password = passwordController.text;
 
         emailController.clear();
         passwordController.clear();
@@ -54,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
 
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0x00000000),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(32.0),
           child: Column(

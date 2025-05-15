@@ -28,7 +28,7 @@ class Result extends StatelessWidget {
 
               const SizedBox(height: 64.0),
               const Text(
-                "You can discuss about the result with your counselor, homeroom teacher, or parent. If you're interested in  your study in , you can also",
+                "You can discuss about the result with your counselor, homeroom teacher, or parent. If you're interested to continue your study at BINUS, you can also match the result with various majors there.",
                 softWrap: true,
               ),
 

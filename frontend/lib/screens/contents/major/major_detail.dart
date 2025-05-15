@@ -1,6 +1,7 @@
 import 'package:binus_lite/models/major.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class MajorDetail extends StatefulWidget {
   final Major major;
@@ -12,6 +13,7 @@ class MajorDetail extends StatefulWidget {
 
 class _MajorDetailState extends State<MajorDetail> {
   late Major major;
+  late YoutubePlayerController controller;
 
   viewFile(BuildContext context) async {
     try { await launchUrlString(major.catalogueLink!); }
@@ -29,6 +31,17 @@ class _MajorDetailState extends State<MajorDetail> {
     // TODO: implement initState
     super.initState();
     major = widget.major;
+    controller = YoutubePlayerController(
+      flags: const YoutubePlayerFlags(autoPlay: false),
+      initialVideoId: YoutubePlayer.convertUrlToId(major.videoLink!)!
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -42,7 +55,7 @@ class _MajorDetailState extends State<MajorDetail> {
           onPressed: () => Navigator.pop(context),
         ),
 
-        title: Text("${major.name}\n@${major.region}")
+        title: Text(major.name)
       ),
 
       body: Padding(
@@ -96,6 +109,16 @@ class _MajorDetailState extends State<MajorDetail> {
                       textAlign: TextAlign.end,
                     )
                   ]
+                ),
+
+                TableRow(
+                  children: [
+                    const Text("Available Region(s)"),
+                    Text(
+                      major.region,
+                      textAlign: TextAlign.end,
+                    )
+                  ]
                 )
               ]
             ),
@@ -108,6 +131,12 @@ class _MajorDetailState extends State<MajorDetail> {
             Text(major.career),
             const SizedBox(height: 16.0),
             const Text("Promotional Video", style: TextStyle(fontSize: 32.0)),
+            YoutubePlayer(
+              controller: controller,
+              onReady: () => controller.addListener,
+              showVideoProgressIndicator: true
+            ),
+
             const SizedBox(height: 16.0),
             const Text("Catalogues", style: TextStyle(fontSize: 32.0)),
             const SizedBox(height: 16.0),

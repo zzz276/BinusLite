@@ -1,3 +1,4 @@
+import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -21,7 +22,18 @@ class _ProfileState extends State<Profile> {
   ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    displayName = (LoggedInUser.loggedInUser?.displayName)!;
+    username = (LoggedInUser.loggedInUser?.username)!;
+    email = (LoggedInUser.loggedInUser?.email)!;
+    password = (LoggedInUser.loggedInUser?.password)!;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -89,7 +101,7 @@ class _ProfileState extends State<Profile> {
 
                 hintText: "Display Name ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() => displayName = controllers[0].text),
+                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.displayName = controllers[0].text),
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
               )
@@ -108,7 +120,7 @@ class _ProfileState extends State<Profile> {
 
                 hintText: "Username ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() => username = controllers[1].text),
+                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.username = controllers[1].text),
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
               )
@@ -127,7 +139,7 @@ class _ProfileState extends State<Profile> {
 
                 hintText: "Email ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() => email = controllers[2].text),
+                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.email = controllers[2].text),
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
               )
@@ -146,7 +158,7 @@ class _ProfileState extends State<Profile> {
 
                 hintText: "Password ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() => password = controllers[3].text),
+                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.password = controllers[3].text),
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
               ),

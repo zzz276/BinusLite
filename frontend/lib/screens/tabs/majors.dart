@@ -109,7 +109,7 @@ class _MajorsState extends State<Majors> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${searchMajor[index].name}\n@${searchMajor[index].region}",
+                              searchMajor[index].name,
                               overflow: TextOverflow.clip,
                               style: const TextStyle(fontWeight: FontWeight.bold),
                               textAlign: TextAlign.start

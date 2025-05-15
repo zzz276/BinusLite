@@ -61,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
 
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0x00000000),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(32.0),
           child: Column(
