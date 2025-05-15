@@ -10,10 +10,10 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  static String displayName = "Omega";
-  static String username = "omg";
-  static String email = "a3@aaa.aa";
-  static String password = "12345678";
+  static String displayName = (LoggedInUser.loggedInUser?.displayName)!;
+  static String username = (LoggedInUser.loggedInUser?.username)!;
+  static String email = (LoggedInUser.loggedInUser?.email)!;
+  static String password = (LoggedInUser.loggedInUser?.password)!;
   final List<TextEditingController> controllers = [
     TextEditingController.fromValue(TextEditingValue(text: displayName)),
     TextEditingController.fromValue(TextEditingValue(text: username)),

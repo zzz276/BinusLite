@@ -1,4 +1,5 @@
 import 'package:binus_lite/helpers/logged_in_user.dart';
+import 'package:binus_lite/models/user.dart' as user;
 import 'package:binus_lite/screens/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,14 +23,17 @@ class _LoginScreenState extends State<LoginScreen> {
           password: passwordController.text
         );
 
-        LoggedInUser.loggedInUser?.displayName = "AA";
-        LoggedInUser.loggedInUser?.username = (LoggedInUser.loggedInUser?.displayName)!;
-        LoggedInUser.loggedInUser?.email = emailController.text;
-        LoggedInUser.loggedInUser?.password = passwordController.text;
+        LoggedInUser.loggedInUser = user.User(
+          id: 0,
+          displayName: "AA",
+          username: "AAA",
+          email: emailController.text,
+          password: passwordController.text
+        );
 
         emailController.clear();
         passwordController.clear();
-        Navigator.of(context).pushNamed('/navigation');
+        Navigator.of(context).pushReplacementNamed('/navigation');
       } on FirebaseAuthException catch (e) {
         if(e.code.compareTo("user-not-found") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(

@@ -1,7 +1,7 @@
 import 'package:binus_lite/models/major.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:video_player/video_player.dart';
 
 class MajorDetail extends StatefulWidget {
   final Major major;
@@ -13,7 +13,7 @@ class MajorDetail extends StatefulWidget {
 
 class _MajorDetailState extends State<MajorDetail> {
   late Major major;
-  late YoutubePlayerController controller;
+  late VideoPlayerController controller;
 
   viewFile(BuildContext context) async {
     try { await launchUrlString(major.catalogueLink!); }
@@ -31,10 +31,8 @@ class _MajorDetailState extends State<MajorDetail> {
     // TODO: implement initState
     super.initState();
     major = widget.major;
-    controller = YoutubePlayerController(
-      flags: const YoutubePlayerFlags(autoPlay: false),
-      initialVideoId: YoutubePlayer.convertUrlToId(major.videoLink!)!
-    );
+    controller = VideoPlayerController.networkUrl(Uri.parse(major.videoLink!))
+    ..initialize().then((_) => setState(() {}));
   }
 
   @override
@@ -131,11 +129,30 @@ class _MajorDetailState extends State<MajorDetail> {
             Text(major.career),
             const SizedBox(height: 16.0),
             const Text("Promotional Video", style: TextStyle(fontSize: 32.0)),
-            YoutubePlayer(
-              controller: controller,
-              onReady: () => controller.addListener,
-              showVideoProgressIndicator: true
-            ),
+
+            // Promotional Video
+            controller.value.isInitialized ?
+            Stack(
+              children: [
+                AspectRatio(
+                  aspectRatio: controller.value.aspectRatio,
+                  child: VideoPlayer(controller),
+                ),
+
+                FloatingActionButton(
+                  onPressed: () {
+                    setState(() {
+                      controller.value.isPlaying ? controller.pause() : controller.play();
+                    });
+                  },
+
+                  child: Icon(
+                    controller.value.isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded
+                  )
+                )
+              ]
+            ) :
+            Container(),
 
             const SizedBox(height: 16.0),
             const Text("Catalogues", style: TextStyle(fontSize: 32.0)),

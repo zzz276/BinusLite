@@ -48,7 +48,7 @@ class _DashboardState extends State<Dashboard> {
               Image.asset("lib/assets/pictures/Flazz Card.png"),
               Positioned(
                 left: 15.0,
-                top: 150.0,
+                top: 160.0,
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(),

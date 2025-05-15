@@ -20,6 +20,7 @@ class _MajorsState extends State<Majors> {
       title: "S. Kom.",
       overview: "Mobile Application and IoT Engineer",
       career: "Mobile Engineer",
+      videoLink: "https://www.youtube.com/watch?v=ocbpJPgkl3w&list=PLVfxj2HRUAZEN_XxPsLqizEwPRHI-RR2c&index=40",
       catalogueLink: "https://curriculum.binus.ac.id/files/2012/04/SOCS-Mobile-Application-Technology-2023.pdf"
     ),
 
