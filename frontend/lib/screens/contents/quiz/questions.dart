@@ -314,7 +314,8 @@ class _QuestionsState extends State<Questions> {
                 setState(() => radioValues[2] = value);
               },
 
-              title: const Text("Data Analyst"),
+              // Menyampaikan ide lewat tulisan
+              title: const Text("Idea Elicitation"),
               value: 2
             ),
 
