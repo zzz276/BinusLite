@@ -34,7 +34,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
       children: [
         const Text(
           "Campus Directory",
-          style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold)
         ),
 
         const SizedBox(height: 16.0),
@@ -42,21 +42,12 @@ class _ImageCarouselState extends State<ImageCarousel> {
           height: 512.0,
           child: PageView.builder(
             onPageChanged: (index) => setState(() => selectedIndex = index),
-
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  Image.asset(
-                    images[index].link,
-                    fit: BoxFit.cover,
-                    height: 333.0,
-                  ),
-
+                  Image.asset(images[index].link, fit: BoxFit.cover, height: 333.0),
                   const SizedBox(height: 16.0),
-                  Text(
-                    images[index].caption,
-                    style: const TextStyle(fontSize: 16.0)
-                  )
+                  Text(images[index].caption, style: const TextStyle(fontSize: 16.0))
                 ]
               );
             },

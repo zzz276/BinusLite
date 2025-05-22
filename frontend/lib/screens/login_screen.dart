@@ -92,11 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: double.infinity,
                   child: Text(
                     "Login",
-                    style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontWeight: FontWeight.bold
-                    ),
-
+                    style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   )
                 )
@@ -105,23 +101,18 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 16.0),
               TextButton(
                 onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const RegisterScreen()
-                  )
+                  MaterialPageRoute(builder: (context) => const RegisterScreen())
                 ),
 
                 child: const Text(
                   "Didn't have an account? Register here!",
-                  style: TextStyle(
-                    color: Color(0xFFFFFFFF),
-                    fontWeight: FontWeight.bold
-                  )
+                  style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold)
                 )
               )
             ]
           )
         )
-      ),
+      )
     );
   }
 }

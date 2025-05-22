@@ -19,18 +19,12 @@ class _QuestionsState extends State<Questions> {
 
   String? generateLabel(double v) {
     switch (v) {
-      case 1.0:
-        return "I don't like it at all.";
-      case 2.0:
-        return "I don't like it.";
-      case 3.0:
-        return "I'm not sure.";
-      case 4.0:
-        return "I like it.";
-      case 5.0:
-        return "I like it very much.";
-      default:
-        return null;
+      case 1.0: return "I don't like it at all.";
+      case 2.0: return "I don't like it.";
+      case 3.0: return "I'm not sure.";
+      case 4.0: return "I like it.";
+      case 5.0: return "I like it very much.";
+      default: return null;
     }
   }
 
@@ -151,10 +145,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[0],
-              onChanged: (value) {
-                setState(() => radioValues[0] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[0] = value),
               title: const Text("Innovator"),
               value: 1
             ),
@@ -164,10 +155,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[0],
-              onChanged: (value) {
-                setState(() => radioValues[0] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[0] = value),
               title: const Text("Data Analyst"),
               value: 2
             ),
@@ -177,10 +165,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[0],
-              onChanged: (value) {
-                setState(() => radioValues[0] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[0] = value),
               title: const Text("Technician"),
               value: 3
             ),
@@ -190,10 +175,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[0],
-              onChanged: (value) {
-                setState(() => radioValues[0] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[0] = value),
               title: const Text("Designer"),
               value: 4
             ),
@@ -203,10 +185,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[0],
-              onChanged: (value) {
-                setState(() => radioValues[0] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[0] = value),
               title: const Text("Leader"),
               value: 5
             )
@@ -224,10 +203,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[1],
-              onChanged: (value) {
-                setState(() => radioValues[1] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[1] = value),
               title: const Text("Reading or writing"),
               value: 1
             ),
@@ -237,10 +213,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[1],
-              onChanged: (value) {
-                setState(() => radioValues[1] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[1] = value),
               title: const Text("Drawing or creating visual design"),
               value: 2
             ),
@@ -250,10 +223,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[1],
-              onChanged: (value) {
-                setState(() => radioValues[1] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[1] = value),
               title: const Text("Playing games or coding"),
               value: 3
             ),
@@ -263,10 +233,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[1],
-              onChanged: (value) {
-                setState(() => radioValues[1] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[1] = value),
               title: const Text("Discussing"),
               value: 4
             ),
@@ -276,10 +243,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[1],
-              onChanged: (value) {
-                setState(() => radioValues[1] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[1] = value),
               title: const Text("Watching documentary films or exploring scientific topics"),
               value: 5
             )
@@ -297,10 +261,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[2],
-              onChanged: (value) {
-                setState(() => radioValues[2] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[2] = value),
               title: const Text("Calculating and analyzing numbers"),
               value: 1
             ),
@@ -310,12 +271,8 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[2],
-              onChanged: (value) {
-                setState(() => radioValues[2] = value);
-              },
-
-              // Menyampaikan ide lewat tulisan
-              title: const Text("Idea Elicitation"),
+              onChanged: (value) => setState(() => radioValues[2] = value),
+              title: const Text("Idea Elicitation via Writings"),
               value: 2
             ),
 
@@ -324,10 +281,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[2],
-              onChanged: (value) {
-                setState(() => radioValues[2] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[2] = value),
               title: const Text("Public speaking"),
               value: 3
             ),
@@ -337,10 +291,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[2],
-              onChanged: (value) {
-                setState(() => radioValues[2] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[2] = value),
               title: const Text("Operating or producing with a computer"),
               value: 4
             ),
@@ -350,10 +301,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[2],
-              onChanged: (value) {
-                setState(() => radioValues[2] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[2] = value),
               title: const Text("Interacting and helping others"),
               value: 5
             )
@@ -371,10 +319,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[3],
-              onChanged: (value) {
-                setState(() => radioValues[3] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[3] = value),
               title: const Text("Business and Economics"),
               value: 1
             ),
@@ -384,10 +329,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[3],
-              onChanged: (value) {
-                setState(() => radioValues[3] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[3] = value),
               title: const Text("Human Physiology and Health"),
               value: 2
             ),
@@ -397,10 +339,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[3],
-              onChanged: (value) {
-                setState(() => radioValues[3] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[3] = value),
               title: const Text("Psychology and Human Behaviors"),
               value: 3
             ),
@@ -410,10 +349,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[3],
-              onChanged: (value) {
-                setState(() => radioValues[3] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[3] = value),
               title: const Text("Technology, Computer, and Robotics"),
               value: 4
             ),
@@ -423,10 +359,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[3],
-              onChanged: (value) {
-                setState(() => radioValues[3] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[3] = value),
               title: const Text("Design, Art, and Visual Expressions"),
               value: 5
             )
@@ -444,10 +377,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[4],
-              onChanged: (value) {
-                setState(() => radioValues[4] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[4] = value),
               title: const Text("Create a software or computer program"),
               value: 1
             ),
@@ -457,10 +387,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[4],
-              onChanged: (value) {
-                setState(() => radioValues[4] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[4] = value),
               title: const Text("Do social phenomenon or human behavior research"),
               value: 2
             ),
@@ -470,10 +397,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[4],
-              onChanged: (value) {
-                setState(() => radioValues[4] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[4] = value),
               title: const Text("Design a product or artwork"),
               value: 3
             ),
@@ -483,10 +407,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[4],
-              onChanged: (value) {
-                setState(() => radioValues[4] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[4] = value),
               title: const Text("Write a business or market study report"),
               value: 4
             ),
@@ -496,10 +417,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[4],
-              onChanged: (value) {
-                setState(() => radioValues[4] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[4] = value),
               title: const Text("Initiate a heath or social campaign"),
               value: 5
             )
@@ -517,10 +435,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[5],
-              onChanged: (value) {
-                setState(() => radioValues[5] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[5] = value),
               title: const Text("Doctor, Nurse, or Farmacist"),
               value: 1
             ),
@@ -530,10 +445,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[5],
-              onChanged: (value) {
-                setState(() => radioValues[5] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[5] = value),
               title: const Text("Accountant, Business Analyst, or Manager"),
               value: 2
             ),
@@ -543,10 +455,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[5],
-              onChanged: (value) {
-                setState(() => radioValues[5] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[5] = value),
               title: const Text("Psychologist, Counselor, or HRD"),
               value: 3
             ),
@@ -556,10 +465,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[5],
-              onChanged: (value) {
-                setState(() => radioValues[5] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[5] = value),
               title: const Text("Programmer, Software Engineer, or IT Consultant"),
               value: 4
             ),
@@ -569,10 +475,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[5],
-              onChanged: (value) {
-                setState(() => radioValues[5] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[5] = value),
               title: const Text("Graphic Designer, Architech, or Illustrator"),
               value: 5
             )
@@ -590,10 +493,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[6],
-              onChanged: (value) {
-                setState(() => radioValues[6] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[6] = value),
               title: const Text("I like it very much and I learn it independently."),
               value: 1
             ),
@@ -603,10 +503,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[6],
-              onChanged: (value) {
-                setState(() => radioValues[6] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[6] = value),
               title: const Text("Quite, especially when directed to."),
               value: 2
             ),
@@ -616,10 +513,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[6],
-              onChanged: (value) {
-                setState(() => radioValues[6] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[6] = value),
               title: const Text("So so."),
               value: 3
             ),
@@ -629,10 +523,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[6],
-              onChanged: (value) {
-                setState(() => radioValues[6] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[6] = value),
               title: const Text("Not quite."),
               value: 4
             ),
@@ -642,10 +533,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[6],
-              onChanged: (value) {
-                setState(() => radioValues[6] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[6] = value),
               title: const Text("I don't like it at all."),
               value: 5
             )
@@ -663,10 +551,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[7],
-              onChanged: (value) {
-                setState(() => radioValues[7] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[7] = value),
               title: const Text("Looking at a visual object, picture, or diagram"),
               value: 1
             ),
@@ -676,10 +561,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[7],
-              onChanged: (value) {
-                setState(() => radioValues[7] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[7] = value),
               title: const Text("Listening a lecture and discussing"),
               value: 2
             ),
@@ -689,10 +571,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[7],
-              onChanged: (value) {
-                setState(() => radioValues[7] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[7] = value),
               title: const Text("Reading and writing independently"),
               value: 3
             ),
@@ -702,10 +581,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[7],
-              onChanged: (value) {
-                setState(() => radioValues[7] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[7] = value),
               title: const Text("Practicing"),
               value: 4
             ),
@@ -715,10 +591,7 @@ class _QuestionsState extends State<Questions> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               groupValue: radioValues[7],
-              onChanged: (value) {
-                setState(() => radioValues[7] = value);
-              },
-
+              onChanged: (value) => setState(() => radioValues[7] = value),
               title: const Text("Teaching and retell it to others"),
               value: 5
             )
@@ -739,11 +612,7 @@ class _QuestionsState extends State<Questions> {
               ),
 
               maxLines: 10,
-              onChanged: (value) {
-                setState(() {
-                  textValue = value;
-                });
-              }
+              onChanged: (value) => setState(() => textValue = value)
             )
           ],
         )
@@ -794,19 +663,14 @@ class _QuestionsState extends State<Questions> {
 
                 // Score Evaluation
 
+
+                // Result
                 result = "Engineer";
 
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Result(result)
-                  )
-                );
+                Navigator.of(context).push(MaterialPageRoute( builder: (context) => Result(result)));
               },
 
-              child: const SizedBox(
-                width: double.infinity,
-                child: Text("Submit", textAlign: TextAlign.center)
-              )
+              child: const SizedBox(width: double.infinity, child: Text("Submit", textAlign: TextAlign.center))
             )
           ]
         )

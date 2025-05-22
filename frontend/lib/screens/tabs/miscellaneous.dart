@@ -56,36 +56,32 @@ class _MiscellaneousState extends State<Miscellaneous> {
      switch (index) {
       case 0:
         return Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => Profile(menus[index].text.data!)
-          )
+          MaterialPageRoute(builder: (context) => Profile(menus[index].text.data!))
         );
+
       case 1:
         return Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => Personalization(menus[index].text.data!)
-          )
+          MaterialPageRoute(builder: (context) => Personalization(menus[index].text.data!))
         );
+
       case 2:
         return Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => Support(menus[index].text.data!)
-          )
+          MaterialPageRoute(builder: (context) => Support(menus[index].text.data!))
         );
+
       case 3:
         return Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => About(menus[index].text.data!)
-          )
+          MaterialPageRoute(builder: (context) => About(menus[index].text.data!))
         );
+
       default:
         showDialog(context: context, builder: (context) {
           return AlertDialog(
             actions: [
               TextButton(
                 onPressed: () {
-                  LoggedInUser.loggedInUser = null;
                   logout(context: context);
+                  LoggedInUser.loggedInUser = null;
                 },
 
                 child: const Text("Yes")
@@ -120,9 +116,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                   },
 
                   style: const ButtonStyle(foregroundColor: WidgetStatePropertyAll(Color(0xFF000000))),
-                  child: Row(
-                    children: [menus[index].icon, const SizedBox(width: 32.0), menus[index].text]
-                  )
+                  child: Row(children: [menus[index].icon, const SizedBox(width: 32.0), menus[index].text])
                 );
               },
 

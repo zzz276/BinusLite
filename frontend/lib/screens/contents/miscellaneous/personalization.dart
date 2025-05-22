@@ -27,7 +27,7 @@ class _PersonalizationState extends State<Personalization> {
         padding: EdgeInsets.all(32.0),
         child: Column(
           children: [
-            
+            // Coming Soon
           ],
         )
       ),

@@ -13,11 +13,7 @@ class _GuidelineState extends State<Guideline> {
 
   startQuiz(BuildContext context) {
     if (!isReady) return;
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const Questions()
-      )
-    );
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Questions()));
   }
 
   @override

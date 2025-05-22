@@ -23,7 +23,7 @@ class _ForumState extends State<Forum> {
 
   void querySearch(String q) {
     setState(() {
-      searchPost = posts.where((post) =>
+      searchPost = posts.where((post) => 
       post.question.toLowerCase().contains(q.toLowerCase())).toList();
     });
   }
@@ -73,11 +73,7 @@ class _ForumState extends State<Forum> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Table(
-                          columnWidths: const {
-                            0: FlexColumnWidth(),
-                            1: FixedColumnWidth(30.0)
-                          },
-
+                          columnWidths: const {0: FlexColumnWidth(), 1: FixedColumnWidth(30.0)},
                           children: [
                             TableRow(
                               children: [
@@ -92,7 +88,7 @@ class _ForumState extends State<Forum> {
                                     
                                   },
 
-                                  icon: const Icon(Icons.more_vert_rounded, color: Color(0xFFFFFFFF),)
+                                  icon: const Icon(Icons.more_vert_rounded, color: Color(0xFFFFFFFF))
                                 )
                               ]
                             )

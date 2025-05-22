@@ -15,7 +15,7 @@ class _ForumDetailState extends State<ForumDetail> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          
+          // Coming Soon
         ]
       )
     );

@@ -28,18 +28,11 @@ class _DashboardState extends State<Dashboard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const Text(
-                      "Welcome,",
-                      style: TextStyle(fontSize: 24.0)
-                    ),
-
+                    const Text("Welcome,", style: TextStyle(fontSize: 24.0)),
                     Text(
                       displayName,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold
-                      )
+                      style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)
                     )
                   ],
                 ),

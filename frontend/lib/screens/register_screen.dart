@@ -105,11 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   width: double.infinity,
                   child: Text(
                     "Register",
-                    style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontWeight: FontWeight.bold
-                    ),
-
+                    style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center
                   )
                 )
@@ -120,10 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onPressed: () => Navigator.pop(context),
                 child: const Text(
                   "Already have an account? Log in here!",
-                  style: TextStyle(
-                    color: Color(0xFFFFFFFF),
-                    fontWeight: FontWeight.bold
-                  )
+                  style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold)
                 )
               )
             ]

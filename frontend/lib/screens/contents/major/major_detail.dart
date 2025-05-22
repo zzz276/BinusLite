@@ -1,7 +1,7 @@
 import 'package:binus_lite/models/major.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:video_player/video_player.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class MajorDetail extends StatefulWidget {
   final Major major;
@@ -12,8 +12,14 @@ class MajorDetail extends StatefulWidget {
 }
 
 class _MajorDetailState extends State<MajorDetail> {
+  final controller = YoutubePlayerController();
   late Major major;
-  late VideoPlayerController controller;
+
+  Widget showYoutubeVideo() {
+    return (major.videoLink != null) ? 
+    YoutubePlayer(aspectRatio: (16 / 9), controller: controller) : 
+    const Text("Video link isn't available at this time.");
+  }
 
   viewFile(BuildContext context) async {
     try { await launchUrlString(major.catalogueLink!); }
@@ -31,15 +37,8 @@ class _MajorDetailState extends State<MajorDetail> {
     // TODO: implement initState
     super.initState();
     major = widget.major;
-    controller = VideoPlayerController.networkUrl(Uri.parse(major.videoLink!))
-    ..initialize().then((_) => setState(() {}));
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    controller.dispose();
-    super.dispose();
+    
+    if (major.videoLink != null) controller.loadVideoByUrl(mediaContentUrl: major.videoLink!);
   }
 
   @override
@@ -56,68 +55,20 @@ class _MajorDetailState extends State<MajorDetail> {
         title: Text(major.name)
       ),
 
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("Profile", style: TextStyle(fontSize: 32.0)),
             Table(
-              columnWidths: const {
-                0: FixedColumnWidth(150.0),
-                1:FlexColumnWidth()
-              },
-
+              columnWidths: const {0: FixedColumnWidth(150.0), 1:FlexColumnWidth()},
               children: [
-                TableRow(
-                  children: [
-                    const Text("Established"),
-                    Text(
-                      major.foundedYear.toString(),
-                      textAlign: TextAlign.end
-                    )
-                  ]
-                ),
-
-                TableRow(
-                  children: [
-                    const Text("Faculty"),
-                    Text(
-                      major.faculty,
-                      textAlign: TextAlign.end
-                    )
-                  ]
-                ),
-
-                TableRow(
-                  children: [
-                    const Text("Duration"),
-                    Text(
-                      "${major.duration.toString()} years",
-                      textAlign: TextAlign.end,
-                    )
-                  ]
-                ),
-
-                TableRow(
-                  children: [
-                    const Text("Academic Title"),
-                    Text(
-                      major.title,
-                      textAlign: TextAlign.end,
-                    )
-                  ]
-                ),
-
-                TableRow(
-                  children: [
-                    const Text("Available Region(s)"),
-                    Text(
-                      major.region,
-                      textAlign: TextAlign.end,
-                    )
-                  ]
-                )
+                TableRow(children: [const Text("Established"), Text(major.foundedYear.toString(), textAlign: TextAlign.end)]),
+                TableRow(children: [const Text("Faculty"), Text(major.faculty, textAlign: TextAlign.end)]),
+                TableRow(children: [const Text("Duration"), Text("${major.duration.toString()} years", textAlign: TextAlign.end)]),
+                TableRow(children: [const Text("Academic Title"), Text(major.title, textAlign: TextAlign.end)]),
+                TableRow(children: [const Text("Available Region(s)"), Text(major.region, textAlign: TextAlign.end)])
               ]
             ),
 
@@ -131,29 +82,7 @@ class _MajorDetailState extends State<MajorDetail> {
             const Text("Promotional Video", style: TextStyle(fontSize: 32.0)),
 
             // Promotional Video
-            controller.value.isInitialized ?
-            Stack(
-              children: [
-                AspectRatio(
-                  aspectRatio: controller.value.aspectRatio,
-                  child: VideoPlayer(controller),
-                ),
-
-                FloatingActionButton(
-                  onPressed: () {
-                    setState(() {
-                      controller.value.isPlaying ? controller.pause() : controller.play();
-                    });
-                  },
-
-                  child: Icon(
-                    controller.value.isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded
-                  )
-                )
-              ]
-            ) :
-            Container(),
-
+            showYoutubeVideo(),
             const SizedBox(height: 16.0),
             const Text("Catalogues", style: TextStyle(fontSize: 32.0)),
             const SizedBox(height: 16.0),

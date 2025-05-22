@@ -52,7 +52,7 @@ class _MajorsState extends State<Majors> {
 
   void querySearch(String q) {
     setState(() {
-      searchMajor = majors.where((major) =>
+      searchMajor = majors.where((major) => 
       major.name.toLowerCase().startsWith(q.toLowerCase())).toList();
     });
   }
@@ -124,9 +124,7 @@ class _MajorsState extends State<Majors> {
                           children: [
                             ElevatedButton(
                               onPressed: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => MajorDetail(searchMajor[index])
-                                )
+                                MaterialPageRoute(builder: (context) => MajorDetail(searchMajor[index]))
                               ),
       
                               child: const Text("Detail", textAlign: TextAlign.center)
