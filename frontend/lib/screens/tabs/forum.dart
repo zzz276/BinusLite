@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:binus_lite/models/forum_post.dart';
+import 'package:binus_lite/screens/contents/forum/make_forum.dart';
 import 'package:flutter/material.dart';
 
 class Forum extends StatefulWidget {
@@ -14,7 +15,7 @@ class _ForumState extends State<Forum> {
     ForumPost(question: "Is Mobile Application and Technology a good major?"),
     ForumPost(
       question: "What are the reasons behind the students to enroll in Psychology?",
-      replies: 2
+      voteCount: 2
     )
   ];
 
@@ -30,24 +31,24 @@ class _ForumState extends State<Forum> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     searchPost = posts;
   }
 
   @override
   Widget build(BuildContext context) {
-    searchPost.sort((a, b) => min(a.replies, b.replies));
+    searchPost.sort((a, b) => max(a.voteCount, b.voteCount));
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           SearchBar(
             controller: searchController,
             hintText: "Ask any questions here ...",
             keyboardType: TextInputType.text,
             onChanged: querySearch,
-            trailing: [
+            trailing: (searchController.text.isNotEmpty) ? null : [
               IconButton(
                 onPressed: () {
                   searchController.clear();
@@ -57,6 +58,21 @@ class _ForumState extends State<Forum> {
                 icon: const Icon(Icons.close_rounded)
               )
             ]
+          ),
+
+          const SizedBox(height: 16.0),
+          ElevatedButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const MakeForum())
+            ),
+
+            child: const Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(Icons.add_rounded),
+                Text("Add Forum")
+              ]
+            )
           ),
 
           const SizedBox(height: 16.0),
@@ -83,13 +99,13 @@ class _ForumState extends State<Forum> {
                                   textAlign: TextAlign.start
                                 ),
 
-                                IconButton(
-                                  onPressed: () {
+                                // IconButton(
+                                //   onPressed: () {
                                     
-                                  },
+                                //   },
 
-                                  icon: const Icon(Icons.more_vert_rounded, color: Color(0xFFFFFFFF))
-                                )
+                                //   icon: const Icon(Icons.more_vert_rounded, color: Color(0xFFFFFFFF))
+                                // )
                               ]
                             )
                           ]
@@ -97,34 +113,32 @@ class _ForumState extends State<Forum> {
                         
                         const SizedBox(height: 32.0),
                         SizedBox(
-                          width: 115.0,
                           child: Card(
                             color: const Color(0xFFEF8800),
                             child: Row(
                               children: [
                                 IconButton(
-                                  onPressed: () {
-                                    
-                                  },
-                                
+                                  onPressed: () => setState(() => searchPost[index].voteCount++),
                                   icon: const Icon(Icons.arrow_upward_outlined, color: Color(0xFFFFFFFF))
                                 ),
                                 
                                 Text(
-                                  searchPost[index].replies.toString(),
+                                  searchPost[index].voteCount.toString(),
                                   style: const TextStyle(color: Color(0xFFFFFFFF))
                                 ),
                           
                                 IconButton(
                                   onPressed: () {
-                                    
+                                    setState(() {
+                                      (searchPost[index].voteCount > 0) ? searchPost[index].voteCount-- : 0;
+                                    });
                                   },
-                                
+
                                   icon: const Icon(Icons.arrow_downward_outlined, color: Color(0xFFFFFFFF))
                                 )
                               ]
                             )
-                          ),
+                          )
                         )
                       ]
                     )

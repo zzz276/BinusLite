@@ -30,7 +30,6 @@ class _QuestionsState extends State<Questions> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     sliderValues = List.generate(8, (index) => (3.0 + 0 * index), growable: false);
     radioValues = List.generate(8, (index) => (1 + 0 * index), growable: false);

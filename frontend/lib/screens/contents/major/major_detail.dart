@@ -17,7 +17,7 @@ class _MajorDetailState extends State<MajorDetail> {
 
   Widget showYoutubeVideo() {
     return (major.videoLink != null) ? 
-    YoutubePlayer(aspectRatio: (16 / 9), controller: controller) : 
+    YoutubePlayer(controller: controller) : 
     const Text("Video link isn't available at this time.");
   }
 
@@ -34,7 +34,6 @@ class _MajorDetailState extends State<MajorDetail> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     major = widget.major;
     
@@ -49,7 +48,7 @@ class _MajorDetailState extends State<MajorDetail> {
         leading: IconButton(
           icon: const Icon(Icons.chevron_left_outlined),
           iconSize: 60.0,
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.pop(context)
         ),
 
         title: Text(major.name)

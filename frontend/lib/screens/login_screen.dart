@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
         emailController.clear();
         passwordController.clear();
-        Navigator.of(context).pushReplacementNamed('/navigation');
+        Navigator.of(context).pushNamed('/navigation');
       } on FirebaseAuthException catch (e) {
         if(e.code.compareTo("user-not-found") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -93,16 +93,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text(
                     "Login",
                     style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.center
                   )
                 )
               ),
 
               const SizedBox(height: 16.0),
               TextButton(
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const RegisterScreen())
-                ),
+                onPressed: () {
+                  emailController.clear();
+                  passwordController.clear();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const RegisterScreen())
+                  );
+                },
 
                 child: const Text(
                   "Didn't have an account? Register here!",

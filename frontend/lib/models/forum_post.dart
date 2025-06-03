@@ -1,6 +1,6 @@
 class ForumPost {
   String question;
-  int replies;
+  int voteCount;
 
-  ForumPost({required this.question, this.replies = 0});
+  ForumPost({required this.question, this.voteCount = 0});
 }

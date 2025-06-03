@@ -35,7 +35,7 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: (selectedIndex == 0) ? null : AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFFFFFFFF),
         centerTitle: true,

@@ -113,7 +113,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               
               const SizedBox(height: 16.0),
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  nameController.clear();
+                  emailController.clear();
+                  passwordController.clear();
+                  Navigator.pop(context);
+                },
+
                 child: const Text(
                   "Already have an account? Log in here!",
                   style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold)

@@ -34,14 +34,14 @@ class _DashboardState extends State<Dashboard> {
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)
                     )
-                  ],
-                ),
+                  ]
+                )
               ),
 
               Image.asset("lib/assets/pictures/Flazz Card.png"),
               Positioned(
                 left: 15.0,
-                top: 160.0,
+                top: 150.0,
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(),
@@ -64,7 +64,7 @@ class _DashboardState extends State<Dashboard> {
           const SizedBox(height: 32.0),
           const ImageCarousel()
         ]
-      ),
+      )
     );
   }
 }

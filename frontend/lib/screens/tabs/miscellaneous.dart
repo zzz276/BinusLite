@@ -1,7 +1,6 @@
 import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:binus_lite/models/components/menu.dart';
 import 'package:binus_lite/screens/contents/miscellaneous/about.dart';
-import 'package:binus_lite/screens/contents/miscellaneous/personalization.dart';
 import 'package:binus_lite/screens/contents/miscellaneous/support.dart';
 import 'package:binus_lite/screens/contents/miscellaneous/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,11 +18,6 @@ class _MiscellaneousState extends State<Miscellaneous> {
     Menu(
       icon: Icon(Icons.person, size: 36.0),
       text: Text("Profile", style: TextStyle(fontSize: 24.0))
-    ),
-
-    Menu(
-      icon: Icon(Icons.edit, size: 36.0),
-      text: Text("Personalization", style: TextStyle(fontSize: 24.0))
     ),
 
     Menu(
@@ -61,15 +55,10 @@ class _MiscellaneousState extends State<Miscellaneous> {
 
       case 1:
         return Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => Personalization(menus[index].text.data!))
-        );
-
-      case 2:
-        return Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => Support(menus[index].text.data!))
         );
 
-      case 3:
+      case 2:
         return Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => About(menus[index].text.data!))
         );

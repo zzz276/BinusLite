@@ -59,7 +59,6 @@ class _MajorsState extends State<Majors> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     searchMajor = majors;
   }
@@ -77,7 +76,7 @@ class _MajorsState extends State<Majors> {
             hintText: "Search major here ...",
             keyboardType: TextInputType.text,
             onChanged: querySearch,
-            trailing: [
+            trailing: (searchController.text.isNotEmpty) ? null : [
               IconButton(
                 onPressed: () {
                   searchController.clear();
@@ -141,7 +140,7 @@ class _MajorsState extends State<Majors> {
             )
           )
         ]
-      ),
+      )
     );
   }
 }
