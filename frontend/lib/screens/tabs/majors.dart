@@ -53,7 +53,7 @@ class _MajorsState extends State<Majors> {
   void querySearch(String q) {
     setState(() {
       searchMajor = majors.where((major) => 
-      major.name.toLowerCase().startsWith(q.toLowerCase())).toList();
+      major.name.toLowerCase().contains(q.toLowerCase())).toList();
     });
   }
 
@@ -76,7 +76,7 @@ class _MajorsState extends State<Majors> {
             hintText: "Search major here ...",
             keyboardType: TextInputType.text,
             onChanged: querySearch,
-            trailing: (searchController.text.isNotEmpty) ? null : [
+            trailing: (searchController.text.isEmpty) ? null : [
               IconButton(
                 onPressed: () {
                   searchController.clear();

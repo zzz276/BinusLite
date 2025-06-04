@@ -26,7 +26,7 @@ class About extends StatelessWidget {
       ),
 
       body: Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             const Text(
@@ -34,10 +34,16 @@ class About extends StatelessWidget {
               style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)
             ),
 
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 8.0),
             const Text(
               "BinusLite is a mobile application which provides information about available majors in BINUS University. This app helps users find out more in-depth information about the majors, including career prospects, how much the major suits their interests, as well as being able to communicate with other users who are interested to attend in BINUS University, one of the best private universities in Indonesia.",
               textAlign: TextAlign.center,
+            ),
+
+            const SizedBox(height: 8.0),
+            const Text(
+              "Co-founders",
+              style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 8.0),
@@ -73,12 +79,12 @@ class About extends StatelessWidget {
                             children: [
                               Text(
                                 cofounders[index][0],
-                                style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)
+                                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)
                               ),
-                                    
+                              
                               Text(
                                 cofounders[index][1],
-                                style: const TextStyle(fontSize: 14.0)
+                                style: const TextStyle(fontSize: 16.0)
                               )
                             ]
                           )

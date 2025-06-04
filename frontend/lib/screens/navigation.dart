@@ -1,4 +1,5 @@
 import 'package:binus_lite/models/components/tab.dart' as tab;
+import 'package:binus_lite/screens/contents/forum/make_forum.dart';
 import 'package:binus_lite/screens/tabs/dashboard.dart';
 import 'package:binus_lite/screens/tabs/forum.dart';
 import 'package:binus_lite/screens/tabs/majors.dart';
@@ -72,6 +73,14 @@ class _NavigationState extends State<Navigation> {
       ),
 
       extendBody: true,
+      floatingActionButton: (selectedIndex != 3) ? null : FloatingActionButton.extended(
+        icon: const Icon(Icons.add_rounded),
+        label: const Text("Add Forum"),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => MakeForum(tabs[3].title))
+        )
+      ),
+
       resizeToAvoidBottomInset: false,
     );
   }

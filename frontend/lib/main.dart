@@ -49,14 +49,16 @@ class MyApp extends StatelessWidget {
           toolbarHeight: 100.0
         ),
 
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Color(0xFF018ED5)
-        ),
-
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: Color(0xFF018ED5)),
         elevatedButtonTheme: const ElevatedButtonThemeData(style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(Color(0xFFEF8800)),
             foregroundColor: WidgetStatePropertyAll(Color(0xFFFFFFFF))
         )),
+
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFFEF8800),
+          foregroundColor: Color(0xFFFFFFFF)
+        ),
 
         fontFamily: "Century Gothic",
         inputDecorationTheme: InputDecorationTheme(
@@ -91,7 +93,7 @@ class MyApp extends StatelessWidget {
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Color(0xFFEF8800),
           selectionColor: Color(0xFFEF8800),
-          selectionHandleColor: Color(0xFFEF8800),
+          selectionHandleColor: Color(0xFFEF8800)
         ),
 
         useMaterial3: true

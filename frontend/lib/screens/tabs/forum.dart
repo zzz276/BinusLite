@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:binus_lite/models/forum_post.dart';
-import 'package:binus_lite/screens/contents/forum/make_forum.dart';
 import 'package:flutter/material.dart';
 
 class Forum extends StatefulWidget {
@@ -48,7 +47,7 @@ class _ForumState extends State<Forum> {
             hintText: "Ask any questions here ...",
             keyboardType: TextInputType.text,
             onChanged: querySearch,
-            trailing: (searchController.text.isNotEmpty) ? null : [
+            trailing: (searchController.text.isEmpty) ? null : [
               IconButton(
                 onPressed: () {
                   searchController.clear();
@@ -59,22 +58,7 @@ class _ForumState extends State<Forum> {
               )
             ]
           ),
-
-          const SizedBox(height: 16.0),
-          ElevatedButton(
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const MakeForum())
-            ),
-
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(Icons.add_rounded),
-                Text("Add Forum")
-              ]
-            )
-          ),
-
+          
           const SizedBox(height: 16.0),
           Expanded(
             child: ListView.builder(

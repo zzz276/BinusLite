@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MakeForum extends StatefulWidget {
-  const MakeForum({super.key});
+  const MakeForum(this.title, {super.key});
+  final String title;
 
   @override
   State<MakeForum> createState() => _MakeForumState();
@@ -44,9 +45,11 @@ class _MakeForumState extends State<MakeForum> {
             const SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: () {
+                titleController.clear();
+                descriptionController.clear();
                 Navigator.of(context).pop();
               },
-        
+
               child: const SizedBox(
                 width: double.infinity,
                 child: Text(
