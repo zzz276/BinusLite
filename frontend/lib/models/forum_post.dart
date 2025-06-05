@@ -1,6 +1,7 @@
 class ForumPost {
-  String question;
+  String title;
+  String description;
   int voteCount;
 
-  ForumPost({required this.question, this.voteCount = 0});
+  ForumPost({required this.title, required this.description, this.voteCount = 0});
 }

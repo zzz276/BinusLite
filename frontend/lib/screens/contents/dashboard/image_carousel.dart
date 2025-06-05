@@ -32,11 +32,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text(
-          "Campus Directory",
-          style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold)
-        ),
-
+        const Text("Campus Directory", style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold)),
         const SizedBox(height: 16.0),
         SizedBox(
           height: 512.0,

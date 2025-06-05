@@ -19,7 +19,7 @@ class About extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.chevron_left_outlined),
           iconSize: 60.0,
-          onPressed: () => Navigator.pop(context)
+          onPressed: () => Navigator.of(context).pop()
         ),
 
         title: Text(title)
@@ -66,26 +66,15 @@ class About extends StatelessWidget {
                                     
                             height: 50.0,
                             width: 50.0,
-                            child: const Icon(
-                              Icons.person,
-                              color: Color(0xFFBBBFC2),
-                              size: 40.0
-                            )
+                            child: const Icon(Icons.person, color: Color(0xFFBBBFC2), size: 40.0)
                           ),
                       
                           const SizedBox(width: 8.0),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                cofounders[index][0],
-                                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)
-                              ),
-                              
-                              Text(
-                                cofounders[index][1],
-                                style: const TextStyle(fontSize: 16.0)
-                              )
+                              Text(cofounders[index][0], style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                              Text(cofounders[index][1], style: const TextStyle(fontSize: 16.0))
                             ]
                           )
                         ]

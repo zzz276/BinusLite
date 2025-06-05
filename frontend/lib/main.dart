@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const LoginScreen(),
-      routes: { '/navigation': (context) => const Navigation() },
+      routes: { '/navigation': (context) => Navigation() },
       theme: ThemeData(
         // This is the theme of your application.
         //

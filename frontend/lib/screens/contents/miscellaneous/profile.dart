@@ -1,4 +1,5 @@
 import 'package:binus_lite/helpers/logged_in_user.dart';
+import 'package:binus_lite/screens/contents/miscellaneous/profile_picture.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -22,11 +23,6 @@ class _ProfileState extends State<Profile> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     displayName = (LoggedInUser.loggedInUser?.displayName)!;
     username = (LoggedInUser.loggedInUser?.username)!;
@@ -39,7 +35,7 @@ class _ProfileState extends State<Profile> {
         leading: IconButton(
           icon: const Icon(Icons.chevron_left_outlined),
           iconSize: 60.0,
-          onPressed: () => Navigator.pop(context)
+          onPressed: () => Navigator.of(context).pop()
         ),
 
         title: Text(widget.title)
@@ -60,19 +56,26 @@ class _ProfileState extends State<Profile> {
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        color: const Color(0xFFF2F2F2),
-                        shape: BoxShape.circle
-                      ),
+                    (LoggedInUser.loggedInUser?.picture == null) ? 
+                    CircleAvatar(
+                      backgroundColor: const Color(0xFFF2F2F2),
+                      radius: 36.0,
+                      child: IconButton(
+                        icon: const Icon(Icons.person, color: Color(0xFFBBBFC2), size: 54.0),
+                        onPressed: () => Navigator.of(context).push(MaterialPageRoute( builder: (context) => ProfilePicture(widget.title)))
+                      )
+                    ) : 
+                    CircleAvatar(
+                      backgroundImage: AssetImage((LoggedInUser.loggedInUser?.picture)!),
+                      radius: 36.0,
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.of(context).push(MaterialPageRoute( builder: (context) => ProfilePicture(widget.title))),
+                        style: const ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(Color(0x00000000)),
+                          elevation: WidgetStatePropertyAll(100.0)
+                        ),
 
-                      height: 80.0,
-                      width: 80.0,
-                      child: const Icon(
-                        Icons.person,
-                        color: Color(0xFFBBBFC2),
-                        size: 60.0
+                        child: null
                       )
                     ),
 
@@ -80,7 +83,7 @@ class _ProfileState extends State<Profile> {
                     Text(
                       "$displayName\n$username",
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 20.0),
+                      style: const TextStyle(fontSize: 20.0)
                     )
                   ]
                 )

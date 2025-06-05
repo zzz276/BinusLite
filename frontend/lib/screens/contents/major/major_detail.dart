@@ -4,8 +4,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class MajorDetail extends StatefulWidget {
-  final Major major;
   const MajorDetail(this.major, {super.key});
+  final Major major;
   
   @override
   State<MajorDetail> createState() => _MajorDetailState();
@@ -23,11 +23,9 @@ class _MajorDetailState extends State<MajorDetail> {
 
   viewFile(BuildContext context) async {
     try { await launchUrlString(major.catalogueLink!); }
-    catch (err) {
+    catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text(
-          "Catalogue link isn't available at this time."
-        ))
+        const SnackBar(content: Text("Catalogue link isn't available at this time."))
       );
     }
   }
@@ -87,10 +85,7 @@ class _MajorDetailState extends State<MajorDetail> {
             const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () => viewFile(context),
-              child: const SizedBox(
-                width: double.infinity,
-                child: Text("Download and View Catalogue", textAlign: TextAlign.center)
-              )
+              child: const SizedBox(width: double.infinity, child: Text("Download and View Catalogue", textAlign: TextAlign.center))
             )
           ]
         )

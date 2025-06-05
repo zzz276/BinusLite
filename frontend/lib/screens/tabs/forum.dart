@@ -1,42 +1,35 @@
-import 'dart:math';
 import 'package:binus_lite/models/forum_post.dart';
 import 'package:flutter/material.dart';
 
 class Forum extends StatefulWidget {
-  const Forum({super.key});
+  const Forum(this.title, this.postsList, {super.key});
+  final String title;
+  final List<ForumPost> postsList;
 
   @override
   State<Forum> createState() => _ForumState();
 }
 
 class _ForumState extends State<Forum> {
-  final List<ForumPost> posts = [
-    ForumPost(question: "Is Mobile Application and Technology a good major?"),
-    ForumPost(
-      question: "What are the reasons behind the students to enroll in Psychology?",
-      voteCount: 2
-    )
-  ];
-
   final TextEditingController searchController = TextEditingController();
   static late List<ForumPost> searchPost;
 
   void querySearch(String q) {
     setState(() {
-      searchPost = posts.where((post) => 
-      post.question.toLowerCase().contains(q.toLowerCase())).toList();
+      searchPost = widget.postsList.where((post) => 
+      post.title.toLowerCase().contains(q.toLowerCase())).toList();
     });
   }
 
   @override
   void initState() {
     super.initState();
-    searchPost = posts;
+    searchPost = widget.postsList;
   }
 
   @override
   Widget build(BuildContext context) {
-    searchPost.sort((a, b) => max(a.voteCount, b.voteCount));
+    searchPost.sort((a, b) => b.voteCount.compareTo(a.voteCount));
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -78,7 +71,7 @@ class _ForumState extends State<Forum> {
                             TableRow(
                               children: [
                                 Text(
-                                  searchPost[index].question,
+                                  searchPost[index].title,
                                   style: const TextStyle(color: Color(0xFFFFFFFF)),
                                   textAlign: TextAlign.start
                                 ),

@@ -605,11 +605,7 @@ class _QuestionsState extends State<Questions> {
           children: [
             TextField(
               controller: textArea,
-              decoration: InputDecoration(
-                errorText: (textValue == "") ? "Text area can't be empty" : null,
-                hintText: "Type here ..."
-              ),
-
+              decoration: InputDecoration(errorText: (textValue == "") ? "Text area can't be empty" : null, hintText: "Type here ..."),
               maxLines: 10,
               onChanged: (value) => setState(() => textValue = value)
             )

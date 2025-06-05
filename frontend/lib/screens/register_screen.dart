@@ -16,33 +16,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
   register({required BuildContext context}) async {
     if(nameController.text.isNotEmpty && emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       try {
-        UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text
-        );
-
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text(
-            "Register successful."
-          ))
+          const SnackBar(content: Text("Register successful."))
         );
 
+        Navigator.of(context).pop();
         nameController.clear();
         emailController.clear();
         passwordController.clear();
-        Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
         if(e.code.compareTo("weak-password") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text(
-              "Password is too weak."
-            ))
+            const SnackBar(content: Text("Password is too weak."))
           );
         } else if(e.code.compareTo("email-already-in-use") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text(
-              "Email is already existed."
-            ))
+            const SnackBar(content: Text("Email is already existed."))
           );
         }
       }
@@ -80,17 +70,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
                     
               const SizedBox(height: 92.0),
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(hintText: "Username ...")
-              ),
-                 
+              TextField(controller: nameController, decoration: const InputDecoration(hintText: "Username ...")),
               const SizedBox(height: 32.0),
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(hintText: "Email ...")
-              ),
-              
+              TextField(controller: emailController, decoration: const InputDecoration(hintText: "Email ...")),
               const SizedBox(height: 32.0),
               TextField(
                 controller: passwordController,
@@ -114,16 +96,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 16.0),
               TextButton(
                 onPressed: () {
+                  Navigator.of(context).pop();
                   nameController.clear();
                   emailController.clear();
                   passwordController.clear();
-                  Navigator.pop(context);
                 },
 
-                child: const Text(
-                  "Already have an account? Log in here!",
-                  style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold)
-                )
+                child: const Text("Already have an account? Log in here!", style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold))
               )
             ]
           )

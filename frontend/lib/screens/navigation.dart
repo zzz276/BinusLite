@@ -1,4 +1,6 @@
 import 'package:binus_lite/models/components/tab.dart' as tab;
+import 'package:binus_lite/models/forum_post.dart';
+import 'package:binus_lite/models/major.dart';
 import 'package:binus_lite/screens/contents/forum/make_forum.dart';
 import 'package:binus_lite/screens/tabs/dashboard.dart';
 import 'package:binus_lite/screens/tabs/forum.dart';
@@ -8,29 +10,113 @@ import 'package:binus_lite/screens/tabs/quiz.dart';
 import 'package:flutter/material.dart';
 
 class Navigation extends StatefulWidget {
-  const Navigation({super.key});
+  Navigation({super.key});
+  final String forumTitle = "Forum";
+  final List<ForumPost> posts = [
+    ForumPost(
+      title: "Is Mobile Application and Technology a good major?",
+      description: "AAA"
+    ),
+
+    ForumPost(
+      title: "What are the reasons behind the students to enroll in Psychology?",
+      description: "BBB",
+      voteCount: 2
+    )
+  ];
+
+  final List<Major> majors = [
+    Major(
+      name: "Mobile Application and Technology",
+      region: "Kemanggisan",
+      faculty: "School of Computer Science",
+      foundedYear: 2010,
+      duration: 4,
+      title: "S. Kom.",
+      overview: "Mobile Application and IoT Engineer",
+      career: "Mobile Engineer",
+      videoLink: "https://www.youtube.com/watch?v=ocbpJPgkl3w&list=PLVfxj2HRUAZEN_XxPsLqizEwPRHI-RR2c&index=40",
+      catalogueLink: "https://curriculum.binus.ac.id/files/2012/04/SOCS-Mobile-Application-Technology-2023.pdf"
+    ),
+
+    Major(
+      name: "Artificial Intelligence",
+      region: "Kemanggisan",
+      faculty: "School of Computer Science",
+      foundedYear: 2023,
+      duration: 4,
+      title: "S. Kom.",
+      overview: "Machine Learning, Deep Learning, Natural Language Processing",
+      career: "Machine Learning and Deep Learning Engineer"
+    ),
+
+    Major(
+      name: "Computer Science",
+      region: "Alam Sutera",
+      faculty: "School of Computer Science",
+      foundedYear: 1987,
+      duration: 4,
+      title: "S. Kom.",
+      overview: "Software Engineer",
+      career: "Developer, IT Consultant"
+    )
+  ];
 
   @override
   State<Navigation> createState() => _NavigationState();
 }
 
 class _NavigationState extends State<Navigation> {
-  static const List<tab.Tab> tabs = [
-    tab.Tab(title: "Dashboard", page: Dashboard()),
-    tab.Tab(title: "Majors", page: Majors()),
-    tab.Tab(title: "Quiz", page: Quiz()),
-    tab.Tab(title: "Forum", page: Forum()),
-    tab.Tab(title: "Miscellaneous", page: Miscellaneous())
-  ];
+  late List<tab.Tab> tabs;
+  late String title;
+  late int selectedIndex;
 
-  String title = tabs[0].title;
-  int selectedIndex = 0;
+  FloatingActionButton? showFAB(int index) {
+    if (index == 1) {
+      return FloatingActionButton.extended(
+        icon: const Icon(Icons.bookmark_rounded),
+        label: const Text("Watchlist"),
+        onPressed: () {}
+      );
+    }
+
+    if (index == 3) {
+      return FloatingActionButton.extended(
+        icon: const Icon(Icons.add_rounded),
+        label: const Text("Add Forum"),
+        onPressed: () => postForum(context, widget.forumTitle)
+      );
+    }
+
+    return null;
+  }
+
+  void postForum(BuildContext context, String title) async {
+    ForumPost post = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => MakeForum(title)));
+
+    widget.posts.add(post);
+  }
 
   void selectIndex(int value) {
     setState(() {
       selectedIndex = value;
       title = tabs[value].title;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    tabs = [
+      tab.Tab(title: "Dashboard", page: const Dashboard()),
+      tab.Tab(title: "Majors", page: Majors(widget.majors)),
+      tab.Tab(title: "Quiz", page: const Quiz()),
+      tab.Tab(title: widget.forumTitle, page: Forum(widget.forumTitle, widget.posts)),
+      tab.Tab(title: "Miscellaneous", page: const Miscellaneous())
+    ];
+
+    title = tabs[0].title;
+    selectedIndex = 0;
   }
 
   @override
@@ -73,15 +159,8 @@ class _NavigationState extends State<Navigation> {
       ),
 
       extendBody: true,
-      floatingActionButton: (selectedIndex != 3) ? null : FloatingActionButton.extended(
-        icon: const Icon(Icons.add_rounded),
-        label: const Text("Add Forum"),
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => MakeForum(tabs[3].title))
-        )
-      ),
-
-      resizeToAvoidBottomInset: false,
+      floatingActionButton: showFAB(selectedIndex),
+      resizeToAvoidBottomInset: false
     );
   }
 }

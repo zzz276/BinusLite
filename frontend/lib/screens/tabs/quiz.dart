@@ -17,14 +17,8 @@ class Quiz extends StatelessWidget {
 
         const SizedBox(height: 64.0),
         ElevatedButton(
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const Guideline())
-          ),
-
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text("Take the quiz", style: TextStyle(fontSize: 24.0))
-          )
+          onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Guideline())),
+          child: const Padding(padding: EdgeInsets.all(8.0), child: Text("Take the quiz", style: TextStyle(fontSize: 24.0)))
         )
       ]
     );

@@ -1,5 +1,6 @@
 import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:binus_lite/screens/contents/dashboard/image_carousel.dart';
+import 'package:binus_lite/screens/contents/miscellaneous/profile.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -40,21 +41,28 @@ class _DashboardState extends State<Dashboard> {
 
               Image.asset("lib/assets/pictures/Flazz Card.png"),
               Positioned(
-                left: 15.0,
+                left: 12.0,
                 top: 150.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(),
-                    color: const Color(0xFFF2F2F2),
-                    shape: BoxShape.circle
-                  ),
+                child: (LoggedInUser.loggedInUser?.picture == null) ? 
+                CircleAvatar(
+                  backgroundColor: const Color(0xFFF2F2F2),
+                  radius: 64.0,
+                  child: IconButton(
+                    icon: const Icon(Icons.person, color: Color(0xFFBBBFC2), size: 100.0),
+                    onPressed: () => Navigator.of(context).push(MaterialPageRoute( builder: (context) => const Profile("Profile")))
+                  )
+                ) : 
+                CircleAvatar(
+                  backgroundImage: AssetImage((LoggedInUser.loggedInUser?.picture)!),
+                  radius: 64.0,
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.of(context).push(MaterialPageRoute( builder: (context) => const Profile("Profile"))),
+                    style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Color(0x00000000)),
+                      elevation: WidgetStatePropertyAll(100.0)
+                    ),
 
-                  height: 125.0,
-                  width: 125.0,
-                  child: const Icon(
-                    Icons.person,
-                    color: Color(0xFFBBBFC2),
-                    size: 100.0
+                    child: null
                   )
                 )
               )

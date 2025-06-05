@@ -12,7 +12,7 @@ class Support extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.chevron_left_outlined),
           iconSize: 60.0,
-          onPressed: () => Navigator.pop(context)
+          onPressed: () => Navigator.of(context).pop()
         ),
 
         title: Text(title)
@@ -25,20 +25,13 @@ class Support extends StatelessWidget {
           children: [
             const Text(
               "Need help? Contact us!",
-              style: TextStyle(
-                fontSize: 28.0,
-                fontWeight: FontWeight.bold
-              ),
-
+              style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center
             ),
 
             const SizedBox(height: 32.0),
             ElevatedButton(
-              onPressed: () {
-                
-              },
-
+              onPressed: () {},
               style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Color(0xFF6DCAF6))),
               child: const SizedBox(
                 width: double.infinity,
@@ -61,10 +54,7 @@ class Support extends StatelessWidget {
                             )
                           ),
                   
-                          Text(
-                            "08123456789",
-                            style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 16.0)
-                          )
+                          Text("08123456789", style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 16.0))
                         ]
                       )
                     ]
@@ -75,10 +65,7 @@ class Support extends StatelessWidget {
 
             const SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: () {
-                
-              },
-
+              onPressed: () {},
               style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Color(0xFF6DCAF6))),
               child: const SizedBox(
                 width: double.infinity,
@@ -101,10 +88,7 @@ class Support extends StatelessWidget {
                             )
                           ),
                   
-                          Text(
-                            "binussupport@binus.edu",
-                            style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 16.0)
-                          )
+                          Text("binussupport@binus.edu", style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 16.0))
                         ]
                       )
                     ]

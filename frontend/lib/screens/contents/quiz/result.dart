@@ -30,15 +30,17 @@ class Result extends StatelessWidget {
               const Text(
                 "You can discuss about the result with your counselor, homeroom teacher, or parent. If you're interested to continue your study at BINUS, you can also match the result with various majors there.",
                 softWrap: true,
+                textAlign: TextAlign.center
               ),
 
               const SizedBox(height: 32.0),
               ElevatedButton(
-                onPressed: () => Navigator.popUntil(context, ModalRoute.withName('/navigation')),
-                child: const SizedBox(
-                  width: double.infinity,
-                  child: Text("Back to Dashboard", textAlign: TextAlign.center)
-                )
+                onPressed: () {
+                  Navigator.of(context).popUntil(ModalRoute.withName('/'));
+                  Navigator.of(context).pushNamed('/navigation');
+                },
+
+                child: const SizedBox(width: double.infinity, child: Text("Back to Dashboard", textAlign: TextAlign.center))
               )
             ]
           )

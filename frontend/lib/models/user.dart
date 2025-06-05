@@ -3,6 +3,7 @@ class User {
   String username;
   String email;
   String password;
+  String? picture;
   int id;
 
   User({

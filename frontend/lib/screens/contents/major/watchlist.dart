@@ -2,15 +2,15 @@ import 'package:binus_lite/models/major.dart';
 import 'package:binus_lite/screens/contents/major/major_detail.dart';
 import 'package:flutter/material.dart';
 
-class Majors extends StatefulWidget {
-  const Majors(this.majorsList, {super.key});
+class Watchlist extends StatefulWidget {
+  const Watchlist(this.majorsList, {super.key});
   final List<Major> majorsList;
 
   @override
-  State<Majors> createState() => _MajorsState();
+  State<Watchlist> createState() => _WatchlistState();
 }
 
-class _MajorsState extends State<Majors> {
+class _WatchlistState extends State<Watchlist> {
   final TextEditingController searchController = TextEditingController();
   late List<Major> searchMajor;
 
@@ -59,11 +59,7 @@ class _MajorsState extends State<Majors> {
                 return Card(
                   color: const Color(0xFF6DCAF6),
                   margin: const EdgeInsets.all(16.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                    side: const BorderSide(color: Color(0xFF7E3586), width: 1.0)
-                  ),
-
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0), side: const BorderSide(color: Color(0xFF7E3586), width: 1.0)),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -86,10 +82,7 @@ class _MajorsState extends State<Majors> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             ElevatedButton(
-                              onPressed: () => Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => MajorDetail(searchMajor[index]))
-                              ),
-      
+                              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => MajorDetail(searchMajor[index]))),
                               child: const Text("Detail", textAlign: TextAlign.center)
                             )
                           ]

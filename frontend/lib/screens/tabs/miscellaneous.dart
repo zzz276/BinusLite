@@ -32,10 +32,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
 
     Menu(
       icon: Icon(Icons.logout, color: Color(0xFF950000), size: 36.0),
-      text: Text(
-        "Log Out",
-        style: TextStyle(color: Color(0xFF750000), fontSize: 24.0)
-      )
+      text: Text("Log Out", style: TextStyle(color: Color(0xFF750000), fontSize: 24.0))
     )
   ];
 
@@ -43,26 +40,14 @@ class _MiscellaneousState extends State<Miscellaneous> {
 
   logout({required BuildContext context}) async {
     await FirebaseAuth.instance.signOut();
-    Navigator.popUntil(context, ModalRoute.withName('/'));
+    Navigator.of(context).popUntil(ModalRoute.withName('/'));
   }
 
   navigate(BuildContext context, int index) {
      switch (index) {
-      case 0:
-        return Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => Profile(menus[index].text.data!))
-        );
-
-      case 1:
-        return Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => Support(menus[index].text.data!))
-        );
-
-      case 2:
-        return Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => About(menus[index].text.data!))
-        );
-
+      case 0: return Navigator.of(context).push(MaterialPageRoute(builder: (context) => Profile(menus[index].text.data!)));
+      case 1: return Navigator.of(context).push(MaterialPageRoute(builder: (context) => Support(menus[index].text.data!)));
+      case 2: return Navigator.of(context).push(MaterialPageRoute(builder: (context) => About(menus[index].text.data!)));
       default:
         showDialog(context: context, builder: (context) {
           return AlertDialog(
@@ -76,10 +61,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                 child: const Text("Yes")
               ),
 
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text("No")
-              )
+              TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text("No"))
             ],
 
             content: const Text("Do you really want to quit?"),

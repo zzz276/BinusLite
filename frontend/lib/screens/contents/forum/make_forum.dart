@@ -1,3 +1,4 @@
+import 'package:binus_lite/models/forum_post.dart';
 import 'package:flutter/material.dart';
 
 class MakeForum extends StatefulWidget {
@@ -20,10 +21,10 @@ class _MakeForumState extends State<MakeForum> {
         leading: IconButton(
           icon: const Icon(Icons.chevron_left_outlined),
           iconSize: 60.0,
-          onPressed: () => Navigator.pop(context)
+          onPressed: () => Navigator.of(context).pop()
         ),
 
-        title: const Text("Forum")
+        title: Text(widget.title)
       ),
 
       body: Padding(
@@ -45,9 +46,19 @@ class _MakeForumState extends State<MakeForum> {
             const SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: () {
-                titleController.clear();
-                descriptionController.clear();
-                Navigator.of(context).pop();
+                if (titleController.text.isNotEmpty && descriptionController.text.isNotEmpty) {
+                  Navigator.of(context).pop(ForumPost(title: titleController.text, description: descriptionController.text));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Your forum has been posted successfully."))
+                  );
+                  
+                  titleController.clear();
+                  descriptionController.clear();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Please fill both provided fields!"))
+                  );
+                }
               },
 
               child: const SizedBox(

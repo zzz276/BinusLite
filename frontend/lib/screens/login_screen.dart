@@ -18,11 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   login({required BuildContext context}) async {
     if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text
-        );
-
+        await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
         LoggedInUser.loggedInUser = user.User(
           id: 0,
           displayName: "AA",
@@ -31,21 +27,17 @@ class _LoginScreenState extends State<LoginScreen> {
           password: passwordController.text
         );
 
+        Navigator.of(context).pushNamed('/navigation');
         emailController.clear();
         passwordController.clear();
-        Navigator.of(context).pushNamed('/navigation');
       } on FirebaseAuthException catch (e) {
         if(e.code.compareTo("user-not-found") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text(
-              "User isn't existed."
-            ))
+            const SnackBar(content: Text("User isn't existed."))
           );
         } else if(e.code.compareTo("wrong-password") == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text(
-              "Password isn't correct."
-            ))
+            const SnackBar(content: Text("Password isn't correct."))
           );
         }
       }
@@ -73,11 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 64.0),
               Image.asset("lib/assets/pictures/BinusLite Logo NoBack.png"),
               const SizedBox(height: 64.0),
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(hintText: "Email ...")
-              ),
-
+              TextField(controller: emailController, decoration: const InputDecoration(hintText: "Email ...")),
               const SizedBox(height: 32.0),
               TextField(
                 controller: passwordController,
@@ -101,17 +89,12 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 16.0),
               TextButton(
                 onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterScreen()));
                   emailController.clear();
                   passwordController.clear();
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const RegisterScreen())
-                  );
                 },
 
-                child: const Text(
-                  "Didn't have an account? Register here!",
-                  style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold)
-                )
+                child: const Text("Didn't have an account? Register here!", style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold))
               )
             ]
           )
