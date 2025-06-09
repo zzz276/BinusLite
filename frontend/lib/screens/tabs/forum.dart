@@ -17,7 +17,7 @@ class _ForumState extends State<Forum> {
   void querySearch(String q) {
     setState(() {
       searchPost = widget.postsList.where((post) => 
-      post.title.toLowerCase().contains(q.toLowerCase())).toList();
+      post.question.toLowerCase().contains(q.toLowerCase())).toList();
     });
   }
 
@@ -71,7 +71,7 @@ class _ForumState extends State<Forum> {
                             TableRow(
                               children: [
                                 Text(
-                                  searchPost[index].title,
+                                  searchPost[index].question,
                                   style: const TextStyle(color: Color(0xFFFFFFFF)),
                                   textAlign: TextAlign.start
                                 ),

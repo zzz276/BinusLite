@@ -7,6 +7,7 @@ class Major {
   String region;
   String? videoLink;
   String? catalogueLink;
+  bool isWatched;
   int foundedYear;
   int duration;
 
@@ -20,6 +21,7 @@ class Major {
     required this.overview,
     required this.career,
     this.videoLink,
-    this.catalogueLink
+    this.catalogueLink,
+    this.isWatched = false
   });
 }

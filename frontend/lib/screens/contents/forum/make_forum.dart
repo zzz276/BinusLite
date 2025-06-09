@@ -1,3 +1,4 @@
+import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:binus_lite/models/forum_post.dart';
 import 'package:flutter/material.dart';
 
@@ -46,8 +47,13 @@ class _MakeForumState extends State<MakeForum> {
             const SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: () {
-                if (titleController.text.isNotEmpty && descriptionController.text.isNotEmpty) {
-                  Navigator.of(context).pop(ForumPost(title: titleController.text, description: descriptionController.text));
+                if (descriptionController.text.isNotEmpty) {
+                  Navigator.of(context).pop(ForumPost(
+                    title: titleController.text,
+                    question: descriptionController.text,
+                    username: (LoggedInUser.loggedInUser?.username)!
+                  ));
+
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Your forum has been posted successfully."))
                   );
@@ -56,7 +62,7 @@ class _MakeForumState extends State<MakeForum> {
                   descriptionController.clear();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Please fill both provided fields!"))
+                    const SnackBar(content: Text("Please fill the description field!"))
                   );
                 }
               },

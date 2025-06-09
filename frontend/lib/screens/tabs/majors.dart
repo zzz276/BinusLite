@@ -82,9 +82,14 @@ class _MajorsState extends State<Majors> {
                         ),
       
                         const SizedBox(height: 16.0),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                        Row(
                           children: [
+                            IconButton(
+                              onPressed: () => setState(() => searchMajor[index].isWatched = true),
+                              icon: const Icon(Icons.bookmark_rounded)
+                            ),
+
+                            const SizedBox(width: double.infinity),
                             ElevatedButton(
                               onPressed: () => Navigator.of(context).push(
                                 MaterialPageRoute(builder: (context) => MajorDetail(searchMajor[index]))

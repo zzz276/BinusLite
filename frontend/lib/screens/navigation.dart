@@ -2,6 +2,7 @@ import 'package:binus_lite/models/components/tab.dart' as tab;
 import 'package:binus_lite/models/forum_post.dart';
 import 'package:binus_lite/models/major.dart';
 import 'package:binus_lite/screens/contents/forum/make_forum.dart';
+import 'package:binus_lite/screens/contents/major/watchlist.dart';
 import 'package:binus_lite/screens/tabs/dashboard.dart';
 import 'package:binus_lite/screens/tabs/forum.dart';
 import 'package:binus_lite/screens/tabs/majors.dart';
@@ -12,15 +13,16 @@ import 'package:flutter/material.dart';
 class Navigation extends StatefulWidget {
   Navigation({super.key});
   final String forumTitle = "Forum";
+  final String majorTitle = "Majors";
   final List<ForumPost> posts = [
     ForumPost(
-      title: "Is Mobile Application and Technology a good major?",
-      description: "AAA"
+      question: "Is Mobile Application and Technology a good major?",
+      username: "AAA"
     ),
 
     ForumPost(
-      title: "What are the reasons behind the students to enroll in Psychology?",
-      description: "BBB",
+      question: "What are the reasons behind the students to enroll in Psychology?",
+      username: "BBB",
       voteCount: 2
     )
   ];
@@ -76,7 +78,12 @@ class _NavigationState extends State<Navigation> {
       return FloatingActionButton.extended(
         icon: const Icon(Icons.bookmark_rounded),
         label: const Text("Watchlist"),
-        onPressed: () {}
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Watchlist(
+            widget.majors.where((major) => major.isWatched == true).toList(),
+            widget.majorTitle
+          )));
+        }
       );
     }
 
@@ -109,7 +116,7 @@ class _NavigationState extends State<Navigation> {
     super.initState();
     tabs = [
       tab.Tab(title: "Dashboard", page: const Dashboard()),
-      tab.Tab(title: "Majors", page: Majors(widget.majors)),
+      tab.Tab(title: widget.majorTitle, page: Majors(widget.majors)),
       tab.Tab(title: "Quiz", page: const Quiz()),
       tab.Tab(title: widget.forumTitle, page: Forum(widget.forumTitle, widget.posts)),
       tab.Tab(title: "Miscellaneous", page: const Miscellaneous())
