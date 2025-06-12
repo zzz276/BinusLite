@@ -15,19 +15,23 @@ class Navigation extends StatefulWidget {
   Navigation({super.key});
   final List<ForumPost> posts = [
     ForumPost(
+      postID: 0,
       question: "Is Mobile Application and Technology a good major?",
-      username: "AAA"
+      userID: 0,
+      voteCount: 0
     ),
 
     ForumPost(
+      postID: 0,
       question: "What are the reasons behind the students to enroll in Psychology?",
-      username: "BBB",
+      userID: 0,
       voteCount: 2
     )
   ];
 
   final List<Major> majors = [
     Major(
+      id: 0,
       name: "Mobile Application and Technology",
       region: "Kemanggisan",
       faculty: "School of Computer Science",
@@ -37,10 +41,12 @@ class Navigation extends StatefulWidget {
       overview: "Mobile Application and IoT Engineer",
       career: "Mobile Engineer",
       videoLink: "https://www.youtube.com/watch?v=ocbpJPgkl3w&list=PLVfxj2HRUAZEN_XxPsLqizEwPRHI-RR2c&index=40",
-      catalogueLink: "https://curriculum.binus.ac.id/files/2012/04/SOCS-Mobile-Application-Technology-2023.pdf"
+      catalogueLink: "https://curriculum.binus.ac.id/files/2012/04/SOCS-Mobile-Application-Technology-2023.pdf",
+      isWatched: false
     ),
 
     Major(
+      id: 1,
       name: "Artificial Intelligence",
       region: "Kemanggisan",
       faculty: "School of Computer Science",
@@ -48,10 +54,12 @@ class Navigation extends StatefulWidget {
       duration: 4,
       title: "S. Kom.",
       overview: "Machine Learning, Deep Learning, Natural Language Processing",
-      career: "Machine Learning and Deep Learning Engineer"
+      career: "Machine Learning and Deep Learning Engineer",
+      isWatched: false
     ),
 
     Major(
+      id: 2,
       name: "Computer Science",
       region: "Alam Sutera",
       faculty: "School of Computer Science",
@@ -59,7 +67,8 @@ class Navigation extends StatefulWidget {
       duration: 4,
       title: "S. Kom.",
       overview: "Software Engineer",
-      career: "Developer, IT Consultant"
+      career: "Developer, IT Consultant",
+      isWatched: false
     )
   ];
 

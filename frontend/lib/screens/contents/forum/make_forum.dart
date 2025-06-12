@@ -50,9 +50,11 @@ class _MakeForumState extends State<MakeForum> {
               onPressed: () {
                 if (titleController.text.isNotEmpty) {
                   Navigator.of(context).pop(ForumPost(
+                    postID: 0,
                     question: titleController.text,
                     description: descriptionController.text,
-                    username: (LoggedInUser.loggedInUser?.username)!
+                    userID: (LoggedInUser.loggedInUser?.userID)!,
+                    voteCount: 0
                   ));
 
                   ScaffoldMessenger.of(context).showSnackBar(

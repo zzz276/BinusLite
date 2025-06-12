@@ -13,8 +13,8 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   static String displayName = (LoggedInUser.loggedInUser?.displayName)!;
   static String username = (LoggedInUser.loggedInUser?.username)!;
-  static String email = (LoggedInUser.loggedInUser?.email)!;
-  static String password = (LoggedInUser.loggedInUser?.password)!;
+  static String email = (LoggedInUser.loggedInUser?.userEmail)!;
+  static String password = (LoggedInUser.loggedInUser?.userPassword)!;
   final List<TextEditingController> controllers = [
     TextEditingController.fromValue(TextEditingValue(text: displayName)),
     TextEditingController.fromValue(TextEditingValue(text: username)),
@@ -37,8 +37,8 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     displayName = (LoggedInUser.loggedInUser?.displayName)!;
     username = (LoggedInUser.loggedInUser?.username)!;
-    email = (LoggedInUser.loggedInUser?.email)!;
-    password = (LoggedInUser.loggedInUser?.password)!;
+    email = (LoggedInUser.loggedInUser?.userEmail)!;
+    password = (LoggedInUser.loggedInUser?.userPassword)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -143,7 +143,7 @@ class _ProfileState extends State<Profile> {
 
                 hintText: "Email ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.email = controllers[2].text),
+                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.userEmail = controllers[2].text),
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
               )
@@ -162,7 +162,7 @@ class _ProfileState extends State<Profile> {
 
                 hintText: "Password ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.password = controllers[3].text),
+                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.userPassword = controllers[3].text),
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
               ),

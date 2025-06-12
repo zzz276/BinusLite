@@ -20,11 +20,11 @@ class _LoginScreenState extends State<LoginScreen> {
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
         LoggedInUser.loggedInUser = user.User(
-          id: 0,
+          userID: 0,
           displayName: "AA",
           username: "AAA",
-          email: emailController.text,
-          password: passwordController.text
+          userEmail: emailController.text,
+          userPassword: passwordController.text
         );
 
         Navigator.of(context).pushNamed('/navigation');

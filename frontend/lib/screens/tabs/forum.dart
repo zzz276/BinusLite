@@ -70,7 +70,7 @@ class _ForumState extends State<Forum> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                searchPost[index].username,
+                                searchPost[index].userID.toString(),
                                 style: const TextStyle(color: Color(0xFFFFFFFF), fontSize: 24.0, fontWeight: FontWeight.bold),
                               ),
 
