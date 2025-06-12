@@ -1,3 +1,4 @@
+import 'package:binus_lite/models/components/menu.dart';
 import 'package:binus_lite/models/components/tab.dart' as tab;
 import 'package:binus_lite/models/forum_post.dart';
 import 'package:binus_lite/models/major.dart';
@@ -12,8 +13,6 @@ import 'package:flutter/material.dart';
 
 class Navigation extends StatefulWidget {
   Navigation({super.key});
-  final String forumTitle = "Forum";
-  final String majorTitle = "Majors";
   final List<ForumPost> posts = [
     ForumPost(
       question: "Is Mobile Application and Technology a good major?",
@@ -64,11 +63,37 @@ class Navigation extends StatefulWidget {
     )
   ];
 
+  final List<Menu> menus = const [
+    Menu(
+      icon: Icon(Icons.person, size: 36.0),
+      text: Text("Profile", style: TextStyle(fontSize: 24.0))
+    ),
+
+    Menu(
+      icon: Icon(Icons.headset_mic, size: 36.0),
+      text: Text("Support", style: TextStyle(fontSize: 24.0))
+    ),
+
+    Menu(
+      icon: Icon(Icons.info, size: 36.0),
+      text: Text("About Us", style: TextStyle(fontSize: 24.0))
+    ),
+
+    Menu(
+      icon: Icon(Icons.logout, color: Color(0xFF950000), size: 36.0),
+      text: Text("Log Out", style: TextStyle(color: Color(0xFF750000), fontSize: 24.0))
+    )
+  ];
+
   @override
   State<Navigation> createState() => _NavigationState();
 }
 
 class _NavigationState extends State<Navigation> {
+  final String forumTitle = "Forum";
+  final String majorTitle = "Majors";
+  late List<ForumPost> posts;
+  late List<Major> majors;
   late List<tab.Tab> tabs;
   late String title;
   late int selectedIndex;
@@ -80,8 +105,8 @@ class _NavigationState extends State<Navigation> {
         label: const Text("Watchlist"),
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => Watchlist(
-            widget.majors.where((major) => major.isWatched == true).toList(),
-            widget.majorTitle
+            majors.where((major) => major.isWatched == true).toList(),
+            majorTitle
           )));
         }
       );
@@ -91,17 +116,17 @@ class _NavigationState extends State<Navigation> {
       return FloatingActionButton.extended(
         icon: const Icon(Icons.add_rounded),
         label: const Text("Add Forum"),
-        onPressed: () => postForum(context, widget.forumTitle)
+        onPressed: postForum
       );
     }
 
     return null;
   }
 
-  void postForum(BuildContext context, String title) async {
-    ForumPost post = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => MakeForum(title)));
-
-    widget.posts.add(post);
+  Future<void> postForum() async {
+    ForumPost post = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => MakeForum(forumTitle)));
+    
+    setState(() => posts.add(post));
   }
 
   void selectIndex(int value) {
@@ -114,12 +139,14 @@ class _NavigationState extends State<Navigation> {
   @override
   void initState() {
     super.initState();
+    majors = widget.majors;
+    posts = widget.posts;
     tabs = [
-      tab.Tab(title: "Dashboard", page: const Dashboard()),
-      tab.Tab(title: widget.majorTitle, page: Majors(widget.majors)),
+      tab.Tab(title: "Dashboard", page: Dashboard((widget.menus[0].text.data)!)),
+      tab.Tab(title: majorTitle, page: Majors(majors)),
       tab.Tab(title: "Quiz", page: const Quiz()),
-      tab.Tab(title: widget.forumTitle, page: Forum(widget.forumTitle, widget.posts)),
-      tab.Tab(title: "Miscellaneous", page: const Miscellaneous())
+      tab.Tab(title: forumTitle, page: Forum(forumTitle, posts)),
+      tab.Tab(title: "Miscellaneous", page: Miscellaneous(widget.menus))
     ];
 
     title = tabs[0].title;

@@ -1,11 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var mysql = require('mysql');
-const database = require('../database/database');
+const express = require('express');
+const router = express.Router();
+const majorController = require('../controllers/majorController');
 
-/* GET major listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.post('/createMajor', majorController.createMajor);
+router.get('/allMajor', majorController.getAllMajors);
 
 module.exports = router;

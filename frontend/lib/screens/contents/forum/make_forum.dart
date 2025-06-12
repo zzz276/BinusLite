@@ -28,13 +28,14 @@ class _MakeForumState extends State<MakeForum> {
         title: Text(widget.title)
       ),
 
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(32.0),
         child: Column(
           children: [
             TextField(
               controller: titleController,
-              decoration: const InputDecoration(hintText: "Write title here ...")
+              decoration: const InputDecoration(hintText: "Write title here ..."),
+              maxLines: 10
             ),
 
             const SizedBox(height: 32.0),
@@ -47,10 +48,10 @@ class _MakeForumState extends State<MakeForum> {
             const SizedBox(height: 32.0),
             ElevatedButton(
               onPressed: () {
-                if (descriptionController.text.isNotEmpty) {
+                if (titleController.text.isNotEmpty) {
                   Navigator.of(context).pop(ForumPost(
-                    title: titleController.text,
-                    question: descriptionController.text,
+                    question: titleController.text,
+                    description: descriptionController.text,
                     username: (LoggedInUser.loggedInUser?.username)!
                   ));
 

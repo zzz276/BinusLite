@@ -1,22 +1,19 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const userRoutes = require('./routes/user-account');
+const majorRoutes = require('./routes/major');
+const forumRoutes = require('./routes/forum');
 
-var indexRouter = require('./routes/index');
-var majorRouter = require('./routes/major');
-var userAccountRouter = require('./routes/user-account');
-
-var app = express();
-
-app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/major', majorRouter);
-app.use('/user_account', userAccountRouter);
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
 
-module.exports = app;
+app.use('/api/user', userRoutes);
+app.use('/api/major', majorRoutes);
+app.use('/api/forum', forumRoutes);
+
+app.listen(3000, () => console.log('Server running on http://localhost:3000'));

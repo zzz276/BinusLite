@@ -72,7 +72,11 @@ class _WatchlistState extends State<Watchlist> {
                   return Card(
                     color: const Color(0xFF6DCAF6),
                     margin: const EdgeInsets.all(16.0),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0), side: const BorderSide(color: Color(0xFF7E3586), width: 1.0)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                      side: const BorderSide(color: Color(0xFF7E3586), width: 1.0)
+                    ),
+
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
@@ -83,20 +87,34 @@ class _WatchlistState extends State<Watchlist> {
                             children: [
                               Text(
                                 searchMajor[index].name,
-                                overflow: TextOverflow.clip,
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                overflow: TextOverflow.visible,
+                                softWrap: true,
+                                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.start
                               )
                             ]
                           ),
-        
+
                           const SizedBox(height: 16.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                          Row(
                             children: [
+                              const Icon(
+                                Icons.bookmark_rounded,
+                                color: Color(0xFFEF8800),
+                                size: 36.0
+                              ),
+
+                              const SizedBox(width: 160.0),
                               ElevatedButton(
-                                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => MajorDetail(searchMajor[index]))),
-                                child: const Text("Detail", textAlign: TextAlign.center)
+                                onPressed: () => Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (context) => MajorDetail(searchMajor[index]))
+                                ),
+
+                                child: const Text(
+                                  "Detail",
+                                  style: TextStyle(fontSize: 16.0),
+                                  textAlign: TextAlign.center
+                                )
                               )
                             ]
                           )

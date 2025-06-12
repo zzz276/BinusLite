@@ -74,8 +74,9 @@ class _MajorsState extends State<Majors> {
                           children: [
                             Text(
                               searchMajor[index].name,
-                              overflow: TextOverflow.clip,
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.visible,
+                              softWrap: true,
+                              style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.start
                             )
                           ]
@@ -84,18 +85,28 @@ class _MajorsState extends State<Majors> {
                         const SizedBox(height: 16.0),
                         Row(
                           children: [
-                            IconButton(
-                              onPressed: () => setState(() => searchMajor[index].isWatched = true),
-                              icon: const Icon(Icons.bookmark_rounded)
+                            GestureDetector(
+                              onTap: () => setState(() => searchMajor[index].isWatched = (searchMajor[index].isWatched == false) ? true : false),
+                              child: Icon(
+                                Icons.bookmark_rounded,
+                                color: (searchMajor[index].isWatched == false) ? 
+                                const Color(0xFFFFFFFF) : 
+                                const Color(0xFFEF8800),
+                                size: 36.0
+                              )
                             ),
 
-                            const SizedBox(width: double.infinity),
+                            const SizedBox(width: 160.0),
                             ElevatedButton(
                               onPressed: () => Navigator.of(context).push(
                                 MaterialPageRoute(builder: (context) => MajorDetail(searchMajor[index]))
                               ),
       
-                              child: const Text("Detail", textAlign: TextAlign.center)
+                              child: const Text(
+                                "Detail",
+                                style: TextStyle(fontSize: 16.0),
+                                textAlign: TextAlign.center
+                              )
                             )
                           ]
                         )

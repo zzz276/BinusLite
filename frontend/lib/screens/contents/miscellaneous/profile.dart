@@ -22,6 +22,17 @@ class _ProfileState extends State<Profile> {
     TextEditingController.fromValue(TextEditingValue(text: password))
   ];
 
+  String? profilePicture = LoggedInUser.loggedInUser?.picture;
+
+  void changeProfilePicture() async {
+    String? picture = await Navigator.of(context).push(MaterialPageRoute( builder: (context) => ProfilePicture(widget.title, profilePicture)));
+
+    setState(() {
+      profilePicture = picture;
+      LoggedInUser.loggedInUser?.picture = picture;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     displayName = (LoggedInUser.loggedInUser?.displayName)!;
@@ -35,7 +46,7 @@ class _ProfileState extends State<Profile> {
         leading: IconButton(
           icon: const Icon(Icons.chevron_left_outlined),
           iconSize: 60.0,
-          onPressed: () => Navigator.of(context).pop()
+          onPressed: () => Navigator.of(context).pop(profilePicture)
         ),
 
         title: Text(widget.title)
@@ -56,34 +67,25 @@ class _ProfileState extends State<Profile> {
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
-                    (LoggedInUser.loggedInUser?.picture == null) ? 
-                    CircleAvatar(
-                      backgroundColor: const Color(0xFFF2F2F2),
-                      radius: 36.0,
-                      child: IconButton(
-                        icon: const Icon(Icons.person, color: Color(0xFFBBBFC2), size: 54.0),
-                        onPressed: () => Navigator.of(context).push(MaterialPageRoute( builder: (context) => ProfilePicture(widget.title)))
-                      )
-                    ) : 
-                    CircleAvatar(
-                      backgroundImage: AssetImage((LoggedInUser.loggedInUser?.picture)!),
-                      radius: 36.0,
-                      child: ElevatedButton(
-                        onPressed: () => Navigator.of(context).push(MaterialPageRoute( builder: (context) => ProfilePicture(widget.title))),
-                        style: const ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(Color(0x00000000)),
-                          elevation: WidgetStatePropertyAll(100.0)
-                        ),
-
-                        child: null
+                    GestureDetector(
+                      onTap: changeProfilePicture,
+                      child: (profilePicture == null) ? 
+                      const CircleAvatar(
+                        backgroundColor: Color(0xFFF2F2F2),
+                        radius: 36.0,
+                        child: Icon(Icons.person, color: Color(0xFFBBBFC2), size: 54.0)
+                      ) : 
+                      CircleAvatar(
+                        backgroundImage: AssetImage(profilePicture!),
+                        radius: 36.0
                       )
                     ),
 
                     const SizedBox(width: 16.0),
                     Text(
-                      "$displayName\n$username",
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 20.0)
+                      '$displayName\n$username',
+                      overflow: TextOverflow.visible,
+                      style: const TextStyle(fontSize: 20.0),
                     )
                   ]
                 )

@@ -1,16 +1,24 @@
-import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ProfilePicture extends StatefulWidget {
-  const ProfilePicture(this.title, {super.key});
+  ProfilePicture(this.title, this.picture, {super.key});
   final String title;
+  String? picture;
 
   @override
   State<ProfilePicture> createState() => _ProfilePictureState();
 }
 
 class _ProfilePictureState extends State<ProfilePicture> {
-  final List<String> pictures = ["lib/assets/pictures/user profile 1.png", "lib/assets/pictures/user profile 2.png"];
+  final List<String?> pictures = ["lib/assets/pictures/user profile 1.png", "lib/assets/pictures/user profile 2.png", null];
+  String? picture;
+
+  @override
+  void initState() {
+    super.initState();
+    picture = widget.picture;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +28,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
         leading: IconButton(
           icon: const Icon(Icons.chevron_left_outlined),
           iconSize: 60.0,
-          onPressed: () => Navigator.of(context).pop()
+          onPressed: () => Navigator.of(context).pop(picture)
         ),
 
         title: Text(widget.title)
@@ -31,14 +39,14 @@ class _ProfilePictureState extends State<ProfilePicture> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            (LoggedInUser.loggedInUser?.picture == null) ? 
+            (picture == null) ? 
             const CircleAvatar(
               backgroundColor: Color(0xFFF2F2F2),
               radius: 128.0,
               child: Icon(Icons.person, color: Color(0xFFBBBFC2), size: 216.0)
             ) : 
             CircleAvatar(
-              backgroundImage: AssetImage((LoggedInUser.loggedInUser?.picture)!),
+              backgroundImage: AssetImage(picture!),
               radius: 128.0
             ),
 
@@ -61,46 +69,29 @@ class _ProfilePictureState extends State<ProfilePicture> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      backgroundImage: AssetImage(pictures[0]),
-                      radius: 36.0,
-                      child: ElevatedButton(
-                        onPressed: () => setState(() => LoggedInUser.loggedInUser?.picture = pictures[0]),
-                        style: const ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(Color(0x00000000)),
-                          elevation: WidgetStatePropertyAll(100.0)
-                        ),
-
-                        child: null
+                    GestureDetector(
+                      onTap: () => setState(() => picture = pictures[0]),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(pictures[0]!),
+                        radius: 36.0
                       )
                     ),
 
                     const SizedBox(width: 16.0),
-                    CircleAvatar(
-                      backgroundImage: AssetImage(pictures[1]),
-                      radius: 36.0,
-                      child: ElevatedButton(
-                        onPressed: () => setState(() => LoggedInUser.loggedInUser?.picture = pictures[1]),
-                        style: const ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(Color(0x00000000)),
-                          elevation: WidgetStatePropertyAll(100.0)
-                        ),
-
-                        child: null
+                    GestureDetector(
+                      onTap: () => setState(() => picture = pictures[1]),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(pictures[1]!),
+                        radius: 36.0
                       )
                     ),
 
                     const SizedBox(width: 16.0),
-                    CircleAvatar(
-                      backgroundColor: const Color(0xFFF2F2F2),
-                      radius: 36.0,
-                      child: IconButton(
-                        icon: const Icon(Icons.add_rounded, color: Color(0xFF000000), size: 60.0),
-                        onPressed: () => setState(() => LoggedInUser.loggedInUser?.picture = null),
-                        style: const ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(Color(0x00000000)),
-                          elevation: WidgetStatePropertyAll(100.0)
-                        )
+                    GestureDetector(
+                      onTap: () => setState(() => picture = null),
+                      child: const CircleAvatar(
+                        backgroundColor: Color(0xFFF2F2F2),
+                        radius: 36.0
                       )
                     )
                   ]
