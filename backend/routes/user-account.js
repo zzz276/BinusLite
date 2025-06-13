@@ -8,5 +8,4 @@ router.get('/:user_id/getProfile', userController.getUserProfile);
 router.patch('/:user_id/updateProfile', userController.updateUserProfile);
 router.patch('/:user_id/password', userController.updatePassword);
 
-
 module.exports = router;
