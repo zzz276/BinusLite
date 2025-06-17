@@ -14,13 +14,4 @@ class User {
     required this.userPassword,
     this.picture
   });
-
-  factory User.fromJson(Map<String, dynamic> json) => User(
-    userID: json['user_id'] as int,
-    displayName: json['displayname'].toString(),
-    username: json['username'].toString(),
-    userEmail: json['user_email'].toString(),
-    userPassword: json['user_password'].toString(),
-    picture: json['picture'].toString()
-  );
 }

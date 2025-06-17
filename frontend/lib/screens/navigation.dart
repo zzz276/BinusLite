@@ -1,6 +1,5 @@
 import 'package:binus_lite/models/components/menu.dart';
 import 'package:binus_lite/models/components/tab.dart' as tab;
-import 'package:binus_lite/models/forum_post.dart';
 import 'package:binus_lite/models/major.dart';
 import 'package:binus_lite/screens/contents/forum/make_forum.dart';
 import 'package:binus_lite/screens/contents/major/watchlist.dart';
@@ -13,21 +12,21 @@ import 'package:flutter/material.dart';
 
 class Navigation extends StatefulWidget {
   Navigation({super.key});
-  final List<ForumPost> posts = [
-    ForumPost(
-      postID: 0,
-      question: "Is Mobile Application and Technology a good major?",
-      userID: 0,
-      voteCount: 0
-    ),
+  // final List<ForumPost> posts = [
+  //   ForumPost(
+  //     postID: 0,
+  //     question: "Is Mobile Application and Technology a good major?",
+  //     voteCount: 0,
+  //     username: "AA"
+  //   ),
 
-    ForumPost(
-      postID: 0,
-      question: "What are the reasons behind the students to enroll in Psychology?",
-      userID: 0,
-      voteCount: 2
-    )
-  ];
+  //   ForumPost(
+  //     postID: 0,
+  //     question: "What are the reasons behind the students to enroll in Psychology?",
+  //     voteCount: 2,
+  //     username: "BB"
+  //   )
+  // ];
 
   final List<Major> majors = [
     Major(
@@ -101,7 +100,6 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   final String forumTitle = "Forum";
   final String majorTitle = "Majors";
-  late List<ForumPost> posts;
   late List<Major> majors;
   late List<tab.Tab> tabs;
   late String title;
@@ -125,17 +123,11 @@ class _NavigationState extends State<Navigation> {
       return FloatingActionButton.extended(
         icon: const Icon(Icons.add_rounded),
         label: const Text("Add Forum"),
-        onPressed: postForum
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => MakeForum(forumTitle)))
       );
     }
 
     return null;
-  }
-
-  Future<void> postForum() async {
-    ForumPost post = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => MakeForum(forumTitle)));
-    
-    setState(() => posts.add(post));
   }
 
   void selectIndex(int value) {
@@ -148,13 +140,11 @@ class _NavigationState extends State<Navigation> {
   @override
   void initState() {
     super.initState();
-    majors = widget.majors;
-    posts = widget.posts;
     tabs = [
       tab.Tab(title: "Dashboard", page: Dashboard((widget.menus[0].text.data)!)),
       tab.Tab(title: majorTitle, page: Majors(majors)),
       tab.Tab(title: "Quiz", page: const Quiz()),
-      tab.Tab(title: forumTitle, page: Forum(forumTitle, posts)),
+      tab.Tab(title: forumTitle, page: Forum(forumTitle)),
       tab.Tab(title: "Miscellaneous", page: Miscellaneous(widget.menus))
     ];
 

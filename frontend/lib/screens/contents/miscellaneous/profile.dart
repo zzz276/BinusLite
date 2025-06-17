@@ -1,3 +1,4 @@
+import 'package:binus_lite/apis/api.dart';
 import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:binus_lite/screens/contents/miscellaneous/profile_picture.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,10 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  static String displayName = (LoggedInUser.loggedInUser?.displayName)!;
-  static String username = (LoggedInUser.loggedInUser?.username)!;
-  static String email = (LoggedInUser.loggedInUser?.userEmail)!;
-  static String password = (LoggedInUser.loggedInUser?.userPassword)!;
+  static String displayName = LoggedInUser.loggedInUser!.displayName;
+  static String username = LoggedInUser.loggedInUser!.username;
+  static String email = LoggedInUser.loggedInUser!.userEmail;
+  static String password = LoggedInUser.loggedInUser!.userPassword;
   final List<TextEditingController> controllers = [
     TextEditingController.fromValue(TextEditingValue(text: displayName)),
     TextEditingController.fromValue(TextEditingValue(text: username)),
@@ -22,23 +23,23 @@ class _ProfileState extends State<Profile> {
     TextEditingController.fromValue(TextEditingValue(text: password))
   ];
 
-  String? profilePicture = LoggedInUser.loggedInUser?.picture;
+  String? profilePicture = LoggedInUser.loggedInUser!.picture;
 
   void changeProfilePicture() async {
     String? picture = await Navigator.of(context).push(MaterialPageRoute( builder: (context) => ProfilePicture(widget.title, profilePicture)));
 
     setState(() {
       profilePicture = picture;
-      LoggedInUser.loggedInUser?.picture = picture;
+      LoggedInUser.loggedInUser!.picture = picture;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    displayName = (LoggedInUser.loggedInUser?.displayName)!;
-    username = (LoggedInUser.loggedInUser?.username)!;
-    email = (LoggedInUser.loggedInUser?.userEmail)!;
-    password = (LoggedInUser.loggedInUser?.userPassword)!;
+    displayName = LoggedInUser.loggedInUser!.displayName;
+    username = LoggedInUser.loggedInUser!.username;
+    email = LoggedInUser.loggedInUser!.userEmail;
+    password = LoggedInUser.loggedInUser!.userPassword;
 
     return Scaffold(
       appBar: AppBar(
@@ -46,7 +47,16 @@ class _ProfileState extends State<Profile> {
         leading: IconButton(
           icon: const Icon(Icons.chevron_left_outlined),
           iconSize: 60.0,
-          onPressed: () => Navigator.of(context).pop(profilePicture)
+          onPressed: () async {
+            await updateUserProfile(
+              context,
+              LoggedInUser.loggedInUser!.userID,
+              displayName,
+              profilePicture
+            );
+
+            Navigator.of(context).pop(profilePicture);
+          }
         ),
 
         title: Text(widget.title)
@@ -105,7 +115,7 @@ class _ProfileState extends State<Profile> {
 
                 hintText: "Display Name ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.displayName = controllers[0].text),
+                  onPressed: () => setState(() => LoggedInUser.loggedInUser!.displayName = controllers[0].text),
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
               )
@@ -124,7 +134,7 @@ class _ProfileState extends State<Profile> {
 
                 hintText: "Username ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.username = controllers[1].text),
+                  onPressed: () => setState(() => LoggedInUser.loggedInUser!.username = controllers[1].text),
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
               )
@@ -143,7 +153,7 @@ class _ProfileState extends State<Profile> {
 
                 hintText: "Email ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.userEmail = controllers[2].text),
+                  onPressed: () => setState(() => LoggedInUser.loggedInUser!.userEmail = controllers[2].text),
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
               )
@@ -162,7 +172,19 @@ class _ProfileState extends State<Profile> {
 
                 hintText: "Password ...",
                 suffixIcon: IconButton(
-                  onPressed: () => setState(() => LoggedInUser.loggedInUser?.userPassword = controllers[3].text),
+                  onPressed: () async {
+                    bool isUpdated = await updatePassword(
+                      context,
+                      LoggedInUser.loggedInUser!.userID,
+                      LoggedInUser.loggedInUser!.userPassword,
+                      controllers[3].text
+                    );
+
+                    if (isUpdated) {
+                      setState(() => LoggedInUser.loggedInUser!.userPassword = controllers[3].text);
+                    }
+                  },
+
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
               ),

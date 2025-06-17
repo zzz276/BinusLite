@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
-  final String result;
   const Result(this.result, {super.key});
+  final String result;
 
   @override
   Widget build(BuildContext context) {

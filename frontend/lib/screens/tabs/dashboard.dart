@@ -12,15 +12,15 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final String displayName = (LoggedInUser.loggedInUser?.displayName)!;
-  String? profilePicture = LoggedInUser.loggedInUser?.picture;
+  final String displayName = LoggedInUser.loggedInUser!.displayName;
+  String? profilePicture = LoggedInUser.loggedInUser!.picture;
 
   void changeProfilePicture() async {
     String? picture = await Navigator.of(context).push(MaterialPageRoute( builder: (context) => Profile(widget.shortcutTitle)));
 
     setState(() {
       profilePicture = picture;
-      LoggedInUser.loggedInUser?.picture = picture;
+      LoggedInUser.loggedInUser!.picture = picture;
     });
   }
 

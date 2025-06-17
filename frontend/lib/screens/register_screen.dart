@@ -1,3 +1,5 @@
+import 'package:binus_lite/apis/api.dart';
+import 'package:binus_lite/helpers/snack_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -13,29 +15,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  void back(BuildContext context) {
+    Navigator.of(context).pop();
+    nameController.clear();
+    emailController.clear();
+    passwordController.clear();
+  }
+
   register({required BuildContext context}) async {
     if(nameController.text.isNotEmpty && emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Register successful."))
-        );
-
-        Navigator.of(context).pop();
-        nameController.clear();
-        emailController.clear();
-        passwordController.clear();
-      } on FirebaseAuthException catch (e) {
+      try { await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text); }
+      on FirebaseAuthException catch (e) {
         if(e.code.compareTo("weak-password") == 0) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Password is too weak."))
-          );
+          showSnackBar(context, "Password is too weak");
         } else if(e.code.compareTo("email-already-in-use") == 0) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Email is already existed."))
-          );
+          showSnackBar(context, "Email is already existed");
         }
       }
+
+      signUp(
+        context,
+        nameController.text,
+        nameController.text,
+        emailController.text,
+        passwordController.text
+      ).then((value) { if (value) { back(context); }});
+      back(context);
     }
   }
 
@@ -82,7 +87,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 
               const SizedBox(height: 64.0),
               ElevatedButton(
-                onPressed: () => register(context: context),
+                onPressed: () {
+                  register(context: context);
+
+                },
+
                 child: const SizedBox(
                   width: double.infinity,
                   child: Text(
@@ -95,13 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               
               const SizedBox(height: 16.0),
               TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  nameController.clear();
-                  emailController.clear();
-                  passwordController.clear();
-                },
-
+                onPressed: () => back(context),
                 child: const Text("Already have an account? Log in here!", style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold))
               )
             ]

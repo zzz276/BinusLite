@@ -1,5 +1,6 @@
+import 'package:binus_lite/apis/api.dart';
 import 'package:binus_lite/helpers/logged_in_user.dart';
-import 'package:binus_lite/models/user.dart' as user;
+import 'package:binus_lite/helpers/snack_bar.dart';
 import 'package:binus_lite/screens/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,31 +16,28 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  void clearInputs() {
+    emailController.clear();
+    passwordController.clear();
+  }
+
   login({required BuildContext context}) async {
     if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-        LoggedInUser.loggedInUser = user.User(
-          userID: 0,
-          displayName: "AA",
-          username: "AAA",
-          userEmail: emailController.text,
-          userPassword: passwordController.text
-        );
+      try { await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text); }
+      on FirebaseAuthException catch (e) {
+        if(e.code.compareTo("user-not-found") == 0) { showSnackBar(context, "User isn't existed"); } 
+        else if(e.code.compareTo("wrong-password") == 0) { showSnackBar(context, "Password isn't correct"); }
+      }
 
+      LoggedInUser.loggedInUser = await logIn(
+        context,
+        emailController.text,
+        passwordController.text
+      );
+
+      if (LoggedInUser.loggedInUser != null) {
         Navigator.of(context).pushNamed('/navigation');
-        emailController.clear();
-        passwordController.clear();
-      } on FirebaseAuthException catch (e) {
-        if(e.code.compareTo("user-not-found") == 0) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("User isn't existed."))
-          );
-        } else if(e.code.compareTo("wrong-password") == 0) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Password isn't correct."))
-          );
-        }
+        clearInputs();
       }
     }
   }
@@ -75,7 +73,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: 64.0),
               ElevatedButton(
-                onPressed: () => login(context: context),
+                onPressed: () {
+                  login(context: context);
+
+                },
+
                 child: const SizedBox(
                   width: double.infinity,
                   child: Text(
@@ -90,8 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterScreen()));
-                  emailController.clear();
-                  passwordController.clear();
+                  clearInputs();
                 },
 
                 child: const Text("Didn't have an account? Register here!", style: TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold))

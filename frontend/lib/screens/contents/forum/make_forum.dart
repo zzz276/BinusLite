@@ -1,5 +1,6 @@
+import 'package:binus_lite/apis/api.dart';
 import 'package:binus_lite/helpers/logged_in_user.dart';
-import 'package:binus_lite/models/forum_post.dart';
+import 'package:binus_lite/helpers/snack_bar.dart';
 import 'package:flutter/material.dart';
 
 class MakeForum extends StatefulWidget {
@@ -14,6 +15,12 @@ class _MakeForumState extends State<MakeForum> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
 
+  void back(BuildContext context) {
+    Navigator.of(context).pop();
+    titleController.clear();
+    descriptionController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +29,7 @@ class _MakeForumState extends State<MakeForum> {
         leading: IconButton(
           icon: const Icon(Icons.chevron_left_outlined),
           iconSize: 60.0,
-          onPressed: () => Navigator.of(context).pop()
+          onPressed: () => back(context)
         ),
 
         title: Text(widget.title)
@@ -47,27 +54,17 @@ class _MakeForumState extends State<MakeForum> {
         
             const SizedBox(height: 32.0),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 if (titleController.text.isNotEmpty) {
-                  Navigator.of(context).pop(ForumPost(
-                    postID: 0,
-                    question: titleController.text,
-                    description: descriptionController.text,
-                    userID: (LoggedInUser.loggedInUser?.userID)!,
-                    voteCount: 0
-                  ));
+                  bool isCreated = await createForum(
+                    context,
+                    titleController.text,
+                    descriptionController.text,
+                    LoggedInUser.loggedInUser!.userID
+                  );
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Your forum has been posted successfully."))
-                  );
-                  
-                  titleController.clear();
-                  descriptionController.clear();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Please fill the description field!"))
-                  );
-                }
+                  if (isCreated) { back(context); }
+                } else { showSnackBar(context, "Question field is empty"); }
               },
 
               child: const SizedBox(

@@ -1,3 +1,4 @@
+import 'package:binus_lite/helpers/snack_bar.dart';
 import 'package:binus_lite/models/major.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -23,11 +24,7 @@ class _MajorDetailState extends State<MajorDetail> {
 
   viewFile(BuildContext context) async {
     try { await launchUrlString(major.catalogueLink!); }
-    catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Catalogue link isn't available at this time."))
-      );
-    }
+    catch (e) { showSnackBar(context, "Catalogue link isn't available at this time"); }
   }
 
   @override
