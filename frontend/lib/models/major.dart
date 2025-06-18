@@ -10,7 +10,7 @@ class Major {
   String? catalogueLink;
   int foundedYear;
   int duration;
-  bool isWatched;
+  int isWatched;
 
   Major({
     required this.id,
@@ -39,6 +39,6 @@ class Major {
     catalogueLink: json['catalogueLink'].toString(),
     foundedYear: json['foundedYear'] as int,
     duration: json['duration'] as int,
-    isWatched: json['isWatched'] as bool
+    isWatched: json['isWatched'] as int
   );
 }

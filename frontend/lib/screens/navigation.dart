@@ -1,5 +1,8 @@
+import 'package:binus_lite/apis/api.dart';
+import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:binus_lite/models/components/menu.dart';
 import 'package:binus_lite/models/components/tab.dart' as tab;
+import 'package:binus_lite/models/forum_post.dart';
 import 'package:binus_lite/models/major.dart';
 import 'package:binus_lite/screens/contents/forum/make_forum.dart';
 import 'package:binus_lite/screens/contents/major/watchlist.dart';
@@ -12,21 +15,21 @@ import 'package:flutter/material.dart';
 
 class Navigation extends StatefulWidget {
   Navigation({super.key});
-  // final List<ForumPost> posts = [
-  //   ForumPost(
-  //     postID: 0,
-  //     question: "Is Mobile Application and Technology a good major?",
-  //     voteCount: 0,
-  //     username: "AA"
-  //   ),
+  final List<ForumPost> posts = [
+    ForumPost(
+      postID: 0,
+      question: "Is Mobile Application and Technology a good major?",
+      voteCount: 0,
+      username: "AA"
+    ),
 
-  //   ForumPost(
-  //     postID: 0,
-  //     question: "What are the reasons behind the students to enroll in Psychology?",
-  //     voteCount: 2,
-  //     username: "BB"
-  //   )
-  // ];
+    ForumPost(
+      postID: 0,
+      question: "What are the reasons behind the students to enroll in Psychology?",
+      voteCount: 2,
+      username: "BB"
+    )
+  ];
 
   final List<Major> majors = [
     Major(
@@ -41,7 +44,7 @@ class Navigation extends StatefulWidget {
       career: "Mobile Engineer",
       videoLink: "https://www.youtube.com/watch?v=ocbpJPgkl3w&list=PLVfxj2HRUAZEN_XxPsLqizEwPRHI-RR2c&index=40",
       catalogueLink: "https://curriculum.binus.ac.id/files/2012/04/SOCS-Mobile-Application-Technology-2023.pdf",
-      isWatched: false
+      isWatched: 0
     ),
 
     Major(
@@ -54,7 +57,7 @@ class Navigation extends StatefulWidget {
       title: "S. Kom.",
       overview: "Machine Learning, Deep Learning, Natural Language Processing",
       career: "Machine Learning and Deep Learning Engineer",
-      isWatched: false
+      isWatched: 0
     ),
 
     Major(
@@ -67,7 +70,7 @@ class Navigation extends StatefulWidget {
       title: "S. Kom.",
       overview: "Software Engineer",
       career: "Developer, IT Consultant",
-      isWatched: false
+      isWatched: 0
     )
   ];
 
@@ -100,7 +103,10 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   final String forumTitle = "Forum";
   final String majorTitle = "Majors";
+  late Future<List<Major>?> fetchMajors;
+  late Future<List<ForumPost>?> fetchPosts;
   late List<Major> majors;
+  late List<ForumPost> posts;
   late List<tab.Tab> tabs;
   late String title;
   late int selectedIndex;
@@ -112,7 +118,7 @@ class _NavigationState extends State<Navigation> {
         label: const Text("Watchlist"),
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => Watchlist(
-            majors.where((major) => major.isWatched == true).toList(),
+            LoggedInUser.majors!.where((major) => major.isWatched == 1).toList(),
             majorTitle
           )));
         }
@@ -137,12 +143,26 @@ class _NavigationState extends State<Navigation> {
     });
   }
 
+  void initializeMajor() async {
+    fetchMajors = allMajor(context);
+    majors = (await fetchMajors)!;
+  }
+
+  void initializePost() async {
+    fetchPosts = allForum(context);
+    posts = (await fetchPosts)!;
+  }
+
   @override
   void initState() {
     super.initState();
+    initializeMajor();
+    majors = widget.majors;
+    initializePost();
+    posts = widget.posts;
     tabs = [
       tab.Tab(title: "Dashboard", page: Dashboard((widget.menus[0].text.data)!)),
-      tab.Tab(title: majorTitle, page: Majors(majors)),
+      tab.Tab(title: majorTitle, page: const Majors()),
       tab.Tab(title: "Quiz", page: const Quiz()),
       tab.Tab(title: forumTitle, page: Forum(forumTitle)),
       tab.Tab(title: "Miscellaneous", page: Miscellaneous(widget.menus))

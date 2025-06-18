@@ -24,23 +24,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   register({required BuildContext context}) async {
     if(nameController.text.isNotEmpty && emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      try { await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text); }
-      on FirebaseAuthException catch (e) {
-        if(e.code.compareTo("weak-password") == 0) {
-          showSnackBar(context, "Password is too weak");
-        } else if(e.code.compareTo("email-already-in-use") == 0) {
-          showSnackBar(context, "Email is already existed");
-        }
-      }
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+        bool isSignedUp = await signUp(
+          context,
+          nameController.text,
+          nameController.text,
+          emailController.text,
+          passwordController.text
+        );
 
-      signUp(
-        context,
-        nameController.text,
-        nameController.text,
-        emailController.text,
-        passwordController.text
-      ).then((value) { if (value) { back(context); }});
-      back(context);
+        if (isSignedUp) { back(context); }
+      } on FirebaseAuthException catch (e) {
+        if(e.code.compareTo("weak-password") == 0) { showSnackBar(context, "Password is too weak"); }
+        else if(e.code.compareTo("email-already-in-use") == 0) { showSnackBar(context, "Email is already existed"); }
+      }
     }
   }
 
@@ -87,11 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 
               const SizedBox(height: 64.0),
               ElevatedButton(
-                onPressed: () {
-                  register(context: context);
-
-                },
-
+                onPressed: () => register(context: context),
                 child: const SizedBox(
                   width: double.infinity,
                   child: Text(

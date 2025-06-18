@@ -79,7 +79,7 @@ class _ProfileState extends State<Profile> {
                   children: [
                     GestureDetector(
                       onTap: changeProfilePicture,
-                      child: (profilePicture == null) ? 
+                      child: (profilePicture == null || profilePicture == '') ? 
                       const CircleAvatar(
                         backgroundColor: Color(0xFFF2F2F2),
                         radius: 36.0,
@@ -156,7 +156,9 @@ class _ProfileState extends State<Profile> {
                   onPressed: () => setState(() => LoggedInUser.loggedInUser!.userEmail = controllers[2].text),
                   icon: const Icon(Icons.edit_rounded, color: Color(0xFFEF8800))
                 )
-              )
+              ),
+
+              readOnly: true
             ),
               
             const SizedBox(height: 32.0),
@@ -189,11 +191,18 @@ class _ProfileState extends State<Profile> {
                 )
               ),
               
-              obscureText: true
+              obscureText: true,
+              readOnly: true
             )
           ]
         )
       )
     );
+  }
+
+  @override
+  void dispose() {
+    for (var element in controllers) { element.clear(); }
+    super.dispose();
   }
 }

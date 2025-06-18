@@ -1,4 +1,5 @@
 import 'package:binus_lite/apis/api.dart';
+import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:binus_lite/models/forum_post.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class _ForumState extends State<Forum> {
 
   void querySearch(String q) {
     setState(() {
-      searchPost = postsList.where((post) => 
+      searchPost = LoggedInUser.posts!.where((post) => 
       post.question.toLowerCase().contains(q.toLowerCase())).toList();
     });
   }
@@ -32,7 +33,6 @@ class _ForumState extends State<Forum> {
 
   @override
   Widget build(BuildContext context) {
-    searchPost.sort((a, b) => b.voteCount.compareTo(a.voteCount));
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -66,6 +66,12 @@ class _ForumState extends State<Forum> {
                 else {
                   postsList = data;
                   searchPost = postsList;
+                  LoggedInUser.posts = searchPost;
+
+                  searchPost.sort((a, b) => b.voteCount.compareTo(a.voteCount));
+                  searchPost = LoggedInUser.posts!.where((post) => 
+                    post.question.toLowerCase().contains(searchController.text.toLowerCase())
+                  ).toList();
 
                   return Expanded(
                     child: ListView.builder(

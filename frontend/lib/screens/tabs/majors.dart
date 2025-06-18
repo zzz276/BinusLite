@@ -1,11 +1,11 @@
 import 'package:binus_lite/apis/api.dart';
+import 'package:binus_lite/helpers/logged_in_user.dart';
 import 'package:binus_lite/models/major.dart';
 import 'package:binus_lite/screens/contents/major/major_detail.dart';
 import 'package:flutter/material.dart';
 
 class Majors extends StatefulWidget {
-  const Majors(this.majorsList, {super.key});
-  final List<Major> majorsList;
+  const Majors({super.key});
 
   @override
   State<Majors> createState() => _MajorsState();
@@ -32,7 +32,6 @@ class _MajorsState extends State<Majors> {
 
   @override
   Widget build(BuildContext context) {
-    searchMajor.sort((a, b) => a.name.compareTo(b.name));
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -66,7 +65,13 @@ class _MajorsState extends State<Majors> {
                 else {
                   majorsList = data;
                   searchMajor = majorsList;
+                  LoggedInUser.majors = searchMajor;
 
+                  searchMajor.sort((a, b) => a.name.compareTo(b.name));
+                  searchMajor = LoggedInUser.majors!.where((major) => 
+                    major.name.toLowerCase().contains(searchController.text.toLowerCase())
+                  ).toList();
+                  
                   return Expanded(
                     child: ListView.builder(
                       itemBuilder: (context, index) {
@@ -100,10 +105,14 @@ class _MajorsState extends State<Majors> {
                                 Row(
                                   children: [
                                     GestureDetector(
-                                      onTap: () => setState(() => searchMajor[index].isWatched = (searchMajor[index].isWatched == false) ? true : false),
+                                      onTap: () {
+                                        setState(() => searchMajor[index].isWatched = (searchMajor[index].isWatched == 0) ? 1 : 0);
+                                        LoggedInUser.majors = searchMajor;
+                                      },
+
                                       child: Icon(
                                         Icons.bookmark_rounded,
-                                        color: (searchMajor[index].isWatched == false) ? 
+                                        color: (searchMajor[index].isWatched == 0) ? 
                                         const Color(0xFFFFFFFF) : 
                                         const Color(0xFFEF8800),
                                         size: 36.0

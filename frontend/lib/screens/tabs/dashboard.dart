@@ -57,7 +57,7 @@ class _DashboardState extends State<Dashboard> {
                 top: 150.0,
                 child: GestureDetector(
                   onTap: changeProfilePicture,
-                  child: (profilePicture == null) ? 
+                  child: (profilePicture == null || profilePicture == '') ? 
                   const CircleAvatar(
                     backgroundColor: Color(0xFFF2F2F2),
                     radius: 64.0,

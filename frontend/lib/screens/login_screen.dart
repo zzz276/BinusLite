@@ -23,21 +23,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
   login({required BuildContext context}) async {
     if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      try { await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text); }
-      on FirebaseAuthException catch (e) {
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+        await logIn(context, emailController.text, passwordController.text);
+        if (LoggedInUser.loggedInUser != null) {
+          Navigator.of(context).pushNamed('/navigation');
+          clearInputs();
+        }
+      } on FirebaseAuthException catch (e) {
         if(e.code.compareTo("user-not-found") == 0) { showSnackBar(context, "User isn't existed"); } 
         else if(e.code.compareTo("wrong-password") == 0) { showSnackBar(context, "Password isn't correct"); }
-      }
-
-      LoggedInUser.loggedInUser = await logIn(
-        context,
-        emailController.text,
-        passwordController.text
-      );
-
-      if (LoggedInUser.loggedInUser != null) {
-        Navigator.of(context).pushNamed('/navigation');
-        clearInputs();
       }
     }
   }
@@ -73,11 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: 64.0),
               ElevatedButton(
-                onPressed: () {
-                  login(context: context);
-
-                },
-
+                onPressed: () => login(context: context),
                 child: const SizedBox(
                   width: double.infinity,
                   child: Text(

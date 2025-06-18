@@ -1,0 +1,17 @@
+Dokumentasi tambahan untuk BinusLite
+
+Mengawali penggunaan aplikasi dengan cara:
+1. Aktifkan (start) XAMPP bagian Apache dan MySQL, lalu klik Admin untuk membuka phpmyadmin
+2. Lakukan import binuslite.sql dari folder backend ke XAMPP, dengan klik tab import pada phpmyadmin
+3. Di VSCode, aktifkan server dengan menuliskan 'node app.js' di terminal untuk direktori folder 'backend'
+4. Aplikasi siap digunakan dengan menjalankan emulator di Android Studio.
+
+Aplikasi BinusLite saat ini hanya menampung data 15 jurusan dari 2 fakultas di Binus, yaitu:
+- Semua jurusan dari fakultas School of Accounting (4 jurusan).
+- Semua jurusan dari fakultas Binus Business School (11 jurusan).
+
+Tombol catalogue di detail jurusan bagian bawah seharusnya bila ditekan akan mendownload catalogue resmi dari BINUs berisi detail SKS jurusan. Tombol ini masih tidak bisa sepenuhnya diakses karena keterbatasan pencarian dan juga adanya kemungkinan catalogue yang selalu update dari tahun ke tahun.
+
+Hasil dari kuis minat jurusan saat ini masih menggunakan data dummy, belum menggunakan suatu mekanisme khusus ataupun mengandalkan Artificial Intelligence.
+
+Untuk fitur Watchlist, hanya dapat digunakan jika pengguna tidak meninggalkan menu Major, karena data jurusan selalu diambil dari database setiap kali pengguna mengakses menu tersebut. Selain itu, kami tidak memperbolehkan pengguna untuk mengganti email dan/atau password yang telah terdaftar di dalam aplikasi. Jika pengguna mengubahnya, maka pengguna tidak dapat melakukan Login, karena akun yang terdaftar dimasukkan ke database aplikasi dan Firebase. Pengecekan pada saat Login dilakukan pada dua platform tersebut.

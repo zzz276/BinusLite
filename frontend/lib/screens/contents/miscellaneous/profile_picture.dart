@@ -39,7 +39,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            (picture == null) ? 
+            (picture == null || picture == '') ? 
             const CircleAvatar(
               backgroundColor: Color(0xFFF2F2F2),
               radius: 128.0,
@@ -88,10 +88,11 @@ class _ProfilePictureState extends State<ProfilePicture> {
 
                     const SizedBox(width: 16.0),
                     GestureDetector(
-                      onTap: () => setState(() => picture = null),
+                      onTap: () => setState(() => picture = ''),
                       child: const CircleAvatar(
                         backgroundColor: Color(0xFFF2F2F2),
-                        radius: 36.0
+                        radius: 36.0,
+                        child: Icon(Icons.person, color: Color(0xFFBBBFC2), size: 56.0)
                       )
                     )
                   ]
